@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -5,16 +7,19 @@ import { getAllPosts } from '../../lib/api';
 import styles from '../../styles/Home.module.css';
 import blogStyles from '../../styles/Blog.module.css';
 
+import Navigation from '../../components/Navigation';
+
+import Container from '@material-ui/core/Container';
+
 const Blog = ({ allPosts: { edges } }) => (
-  <div className={styles.container}>
+  <React.Fragment>
     <Head>
       <title>The Salty Zebra</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-
-    <main className={styles.main}>
+    <Navigation />
+    <Container maxWidth="lg">
       <h1 className={styles.title}>Latest Blog Articles</h1>
-      <hr />
       <section>
         {edges.map(({ node }) => (
           <div className={blogStyles.listitem} key={node.id}>
@@ -36,8 +41,8 @@ const Blog = ({ allPosts: { edges } }) => (
           </div>
         ))}
       </section>
-    </main>
-  </div>
+    </Container>
+  </React.Fragment>
 );
 
 export default Blog;

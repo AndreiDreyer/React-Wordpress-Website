@@ -114,6 +114,10 @@
   height: 1em;
 }
 
+.drawerNavigation {
+  width: 250;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

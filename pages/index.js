@@ -1,6 +1,8 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Link from 'next/link';
+import styles from '../styles/Home.module.css';
+
+import Navigation from '../components/Navigation';
 
 export default function Home() {
   return (
@@ -9,15 +11,15 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <Navigation></Navigation>
       <main className={styles.main}>
-       <h1 className={styles.title}>Welcome to our demo blog</h1> 
-       <p>
-         You can find more articles on the{' '}
-         <Link href="/blog">
-           <a>blog articles page</a>
-         </Link>
-       </p>
+        <h1 className={styles.title}>Welcome to our demo blog</h1>
+        <p>
+          You can find more articles on the{' '}
+          <Link href="/blog">
+            <a>blog articles page</a>
+          </Link>
+        </p>
       </main>
 
       <footer className={styles.footer}>
@@ -31,5 +33,5 @@ export default function Home() {
         </a>
       </footer>
     </div>
-  )
+  );
 }
