@@ -3,15 +3,18 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 
 import Navigation from '../components/Navigation';
+import { Grid } from '@material-ui/core';
+import { getMenu } from '../lib/api';
 
-export default function Home() {
+export default function Home({ menuItems }) {
   return (
-    <div className={styles.container}>
+    <Grid container direction="row">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navigation></Navigation>
+
+      <Navigation menuItems={menuItems}></Navigation>
       <main className={styles.main}>
         <h1 className={styles.title}>Welcome to our demo blog</h1>
         <p>
@@ -32,6 +35,15 @@ export default function Home() {
           <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
-    </div>
+    </Grid>
   );
+}
+
+export async function getStaticProps() {
+  const menuItems = await getMenu();
+  return {
+    props: {
+      menuItems,
+    },
+  };
 }

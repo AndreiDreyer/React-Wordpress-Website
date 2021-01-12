@@ -3,7 +3,7 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import { getAllPosts } from '../../lib/api';
+import { getAllPosts, getMenu } from '../../lib/api';
 import styles from '../../styles/Home.module.css';
 import blogStyles from '../../styles/Blog.module.css';
 
@@ -11,17 +11,17 @@ import Navigation from '../../components/Navigation';
 
 import Container from '@material-ui/core/Container';
 
-const Blog = ({ allPosts: { edges } }) => (
+const Blog = ({ allPosts, menuItems }) => (
   <React.Fragment>
     <Head>
       <title>The Salty Zebra</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <Navigation />
+    <Navigation menuItems={menuItems} />
     <Container maxWidth="lg">
       <h1 className={styles.title}>Latest Blog Articles</h1>
       <section>
-        {edges.map(({ node }) => (
+        {allPosts.edges.map(({ node }) => (
           <div className={blogStyles.listitem} key={node.id}>
             <div className={blogStyles.listitem__thumbnail}>
               <figure>
@@ -49,9 +49,11 @@ export default Blog;
 
 export async function getStaticProps() {
   const allPosts = await getAllPosts();
+  const menuItems = await getMenu();
   return {
     props: {
       allPosts,
+      menuItems,
     },
   };
 }
