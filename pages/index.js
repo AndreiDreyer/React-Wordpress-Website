@@ -21,7 +21,6 @@ const useStyles = makeStyles({
   },
   menuGrid: {
     height: '100vh',
-    display: 'flex',
   },
 });
 
@@ -29,14 +28,7 @@ export default function Home({ menuItems }) {
   const classes = useStyles();
 
   return (
-    <Grid
-      container
-      sapcing={0}
-      alignItems="center"
-      justify="center"
-      direction="row"
-      className={classes.menuGrid}
-    >
+    <Grid container sapcing={0} direction="row" className={classes.menuGrid}>
       <Navigation menuItems={menuItems} />
     </Grid>
   );

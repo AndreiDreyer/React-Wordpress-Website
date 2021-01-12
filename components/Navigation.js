@@ -48,7 +48,6 @@ export default function Navigation(props) {
 
   const classes = useStyles();
   const theme = useTheme();
-
   const navNodes = props.menuItems.menuItems.nodes;
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -76,6 +75,8 @@ export default function Navigation(props) {
     </div>
   );
 
+  console.log(theme.breakpoints);
+
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
@@ -90,7 +91,7 @@ export default function Navigation(props) {
           onClick={handleDrawerToggle}
           className={classes.menuButton}
         >
-          <MenuIcon />
+          <MenuIcon fontSize="large" />
         </IconButton>
       </Toolbar>
       <nav className={classes.drawer} aria-label="navigation menu">
