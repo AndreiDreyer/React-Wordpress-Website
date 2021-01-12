@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-const drawerWidth = 180;
+const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,6 +59,7 @@ export default function Navigation(props) {
 
   const drawer = (
     <div>
+      <p>Logo will go here</p>
       <div className={classes.toolbar} />
       <Divider />
       <List>
