@@ -16,7 +16,7 @@ function Gallery() {
     </div>
     <main>
     <div className={styles.card}>
-        <img src="/Logo.png" alt="Logo" />;
+        <img src="/Logo.png" className={styles.cardImage}/>;
         <div className={styles.cardBody}>
             <p className={styles.cardText}>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         </div>
