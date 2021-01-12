@@ -15,7 +15,12 @@ function Gallery() {
             <h1>The Gallery</h1>
     </div>
     <main>
-        
+    <div className={styles.card}>
+        <img src="/Logo.png" alt="Logo" />;
+        <div className={styles.cardBody}>
+            <p className={styles.cardText}>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div>
     </main>
     <footer className={styles.footer}>
         <a

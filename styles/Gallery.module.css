@@ -133,4 +133,16 @@
     position:relative;
     width:100%; /*Add this*/
   }
+
+  /* This is where we will keep the css for each images card */
+  .card {
+    width: 18rem;
+  }
+  .cardBody {
+
+  }
+
+  .cardText {
+
+  }
   
