@@ -131,6 +131,7 @@
     text-align:center;
     display:inline-block;
     position:relative;
+    height: 5em;
     width:100%; /*Add this*/
   }
 

@@ -1,8 +1,10 @@
 import Head from 'next/head';
+import GridList from '../../components/GridList'
 import Link from 'next/link';
 import styles from '../../styles/Gallery.module.css';
 
 import Navigation from '../../components/Navigation';
+// import { GridList } from '@material-ui/core';
 
 function Gallery() {
     return <div>
@@ -11,17 +13,10 @@ function Gallery() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navigation></Navigation>
-      <div className={styles.banner}>
+      {/* <div className={styles.banner}>
             <h1>The Gallery</h1>
-    </div>
-    <main>
-    <div className={styles.card}>
-        <img src="/Logo.png" className={styles.cardImage}/>;
-        <div className={styles.cardBody}>
-            <p className={styles.cardText}>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-    </div>
-    </main>
+    </div> */}
+    <GridList></GridList>
     <footer className={styles.footer}>
         <a
           target="_blank"
