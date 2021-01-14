@@ -13,7 +13,6 @@ import { getMenu } from '../lib/api';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Carousel from 'react-material-ui-carousel';
-import Image from 'material-ui-image';
 
 const useStyles = makeStyles({
   appBar: {
@@ -44,9 +43,9 @@ export default function Home({ menuItems }) {
 
       <Navigation menuItems={menuItems} />
       <div className={classes.rotatingImages}>
-        <Carousel>
+        <Carousel navButtonsAlwaysInvisible={true} indicators={false}>
           <Paper>
-            <Image src="/Logo.png"></Image>
+            <p>Hello from the otherside</p>
           </Paper>
           <Paper>
             <p>Why</p>
