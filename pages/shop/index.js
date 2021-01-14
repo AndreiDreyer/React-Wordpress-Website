@@ -7,12 +7,7 @@ import { Container } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
-  shoppingItems: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
-});
+const useStyles = makeStyles({});
 
 export default function Shop({ products, menuItems }) {
   const classes = useStyles();
@@ -27,11 +22,11 @@ export default function Shop({ products, menuItems }) {
       </Head>
       <Navigation menuItems={menuItems} />
       <Container maxWidth="lg">
-        <section className={classes.shoppingItems}>
+        <section>
           {products.map((product) => {
             return (
-              <div className={classes.shoppingItems} key={product.title}>
-                <p>Product: {product.title}</p>
+              <div key={product.name}>
+                <p>Product: {product.name}</p>
               </div>
             );
           })}
