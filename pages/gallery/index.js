@@ -16,8 +16,8 @@ function Gallery() {
             <h1>The Gallery</h1>
     </div> */}
     <div>
-    <ImageList></ImageList>
-    </div>
+    <ImageList>
+    <div>
     <footer className={styles.footer}>
         <a
           target="_blank"
@@ -27,6 +27,9 @@ function Gallery() {
           <img src="../../assets/ADSolutionsLogo.jpg" alt="ADSolutions Logo" className={styles.logo} />
         </a>
       </footer>
+    </div>
+    </ImageList>
+    </div>
     </div>
   }
   

@@ -7,7 +7,7 @@ import ImageListItem from '@material-ui/core/ImageListItem';
 const useStyles = makeStyles({
   root: {
     width: 1500,
-    height: 1500,
+    height: 980,
     margin: 'auto',
     flex: 1
   },
@@ -25,7 +25,7 @@ export default function QuiltedImageList() {
   const classes = useStyles();
 
   return (
-    <ImageList variant="quilted" cols={4} rowHeight={121} className={classes.root}>
+    <ImageList variant="quilted" cols={4} rowHeight={121} className={classes.root} gap={15}>
       {itemData.map((item) => (
         <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
           <img
