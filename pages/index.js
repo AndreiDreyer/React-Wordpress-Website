@@ -1,3 +1,4 @@
+import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
@@ -5,11 +6,15 @@ import styles from '../styles/Home.module.css';
 import Navigation from '../components/Navigation';
 
 export default function Home() {
+  const [checkout, setCheckout] = React.useState(false);
+
   return (
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
+        <script src="https://www.paypal.com/sdk/js?client-id=AUsPuJjZe3gcSsc0U7mt_tCdRiCZresx96fiv1FNIoRukORqqWMVQs074sCdd41aSWqcp2mGzvp2HKbh&currency=USD"></script>
+        
       </Head>
       <Navigation></Navigation>
       <main className={styles.main}>
@@ -20,6 +25,7 @@ export default function Home() {
             <a>blog articles page</a>
           </Link>
         </p>
+        
       </main>
 
       <footer className={styles.footer}>
