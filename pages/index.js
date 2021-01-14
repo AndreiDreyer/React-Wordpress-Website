@@ -1,4 +1,5 @@
 import React from 'react';
+import { Paper } from '@material-ui/core';
 
 import Navigation from '../components/Navigation';
 
@@ -11,6 +12,9 @@ import { getMenu } from '../lib/api';
 
 import { makeStyles } from '@material-ui/core/styles';
 
+import Carousel from 'react-material-ui-carousel';
+import Image from 'material-ui-image';
+
 const useStyles = makeStyles({
   appBar: {
     background: 'transparent',
@@ -22,14 +26,27 @@ const useStyles = makeStyles({
   menuGrid: {
     height: '100vh',
   },
+  rotatingImages: {
+    margin: 'auto',
+  },
 });
 
 export default function Home({ menuItems }) {
   const classes = useStyles();
 
   return (
-    <Grid container sapcing={0} direction="row" className={classes.menuGrid}>
+    <Grid container spacing={0} direction="row" className={classes.menuGrid}>
       <Navigation menuItems={menuItems} />
+      <div className={classes.rotatingImages}>
+        <Carousel>
+          <Paper>
+            <Image src="/Logo.png"></Image>
+          </Paper>
+          <Paper>
+            <p>Why</p>
+          </Paper>
+        </Carousel>
+      </div>
     </Grid>
   );
 }

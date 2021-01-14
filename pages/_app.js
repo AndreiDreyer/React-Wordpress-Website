@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@material-ui/core/styles';
+import { MuiThemeProvider, ThemeProvider } from '@material-ui/core/styles';
 
 import { customTheme } from '../src/theme';
 
@@ -6,9 +6,9 @@ import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider theme={customTheme}>
+    <MuiThemeProvider theme={customTheme}>
       <Component {...pageProps} />
-    </ThemeProvider>
+    </MuiThemeProvider>
   );
 }
 
