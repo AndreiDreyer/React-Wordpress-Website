@@ -4,6 +4,8 @@ import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import MenuIcon from '@material-ui/icons/Menu';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -11,12 +13,23 @@ import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import Collapse from '@material-ui/core/Collapse';
+
+// TO be removed
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import SendIcon from '@material-ui/icons/Send';
+
+import StarBorder from '@material-ui/icons/StarBorder';
 
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    // display: 'flex',
+    justifyContent: 'flex-end',
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -41,6 +54,11 @@ const useStyles = makeStyles((theme) => ({
   list: {
     width: 250,
   },
+  ListItem: {
+    display: 'flex',
+    flexDirection: 'row',
+    textDecoration: "none",
+  },
 }));
 
 export default function Navigation(props) {
@@ -51,9 +69,14 @@ export default function Navigation(props) {
   const navNodes = props.menuItems.menuItems.nodes;
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const handleClick = () => {
+    setOpen(!open);
   };
 
   const drawer = (
@@ -61,17 +84,51 @@ export default function Navigation(props) {
       <p>Logo will go here</p>
       <div className={classes.toolbar} />
       <Divider />
-      <List>
+      <List 
+      component="nav"
+      aria-labelledby="nested-list-subheader"
+      // subheader={
+      //   <ListSubheader component="div" id="nested-list-subheader">
+      //     Nested List Items
+      //   </ListSubheader>
+      // }
+      className={classes.root}
+    >
         {navNodes.map((node) => {
-          return (
-            <ListItem button key={node.label}>
-              <Link href={node.path}>
-                <ListItemText primary={node.label}></ListItemText>
-              </Link>
-            </ListItem>
-          );
+          console.log(node.label)
+          var isSubMenItem = (node.label === 'Gallery')
+          var subMListItem = (node.label === 'Travel' | node.label === 'Videography')
+          if (isSubMenItem) {
+            return (
+              <ListItem button onClick={handleClick}>
+                <ListItemText primary={node.label}/>
+                {open ? <ExpandLess /> : <ExpandMore />}
+                <Collapse in={open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                <Link href={'/travel'}>
+                  <ListItem button className={classes.nested}>
+                    <ListItemText primary="Travel" />
+                  </ListItem>
+                </Link>
+                <Link href={'/videography'}>
+                  <ListItem button className={classes.nested}>
+                    <ListItemText primary="Videography" />
+                  </ListItem>
+                </Link>
+                </List>
+              </Collapse>
+              </ListItem>
+            );} else if(!isSubMenItem & !subMListItem) {
+              return (
+                <ListItem button key={node.label}>
+                <Link href={node.path}>
+                  <ListItemText primary={node.label}></ListItemText>
+                </Link>
+                </ListItem>
+              );
+            }
         })}
-      </List>
+        </List>
     </div>
   );
 
