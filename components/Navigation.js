@@ -23,13 +23,14 @@ import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 
 import StarBorder from '@material-ui/icons/StarBorder';
+import { VerticalAlignBottom } from '@material-ui/icons';
 
-const drawerWidth = 200;
+const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // display: 'flex',
-    justifyContent: 'flex-end',
+    display: 'block',
+    maxWidth: 300,
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
-      display: 'none',
+      display: 'block',
     },
   },
   toolbar: theme.mixins.toolbar,
@@ -53,12 +54,19 @@ const useStyles = makeStyles((theme) => ({
   },
   list: {
     width: 250,
-  },
-  ListItem: {
-    display: 'flex',
-    flexDirection: 'row',
+    display: 'block',
+    flexDirection: 'column',
     textDecoration: "none",
   },
+  nested: {
+    paddingLeft: theme.spacing(4),
+    textDecoration: "none",
+    minWidth: 201,
+    marginLeft: 6,
+  },
+  MuiListItemText: {
+    marginTop: 100,
+  }
 }));
 
 export default function Navigation(props) {
@@ -69,7 +77,7 @@ export default function Navigation(props) {
   const navNodes = props.menuItems.menuItems.nodes;
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -87,36 +95,31 @@ export default function Navigation(props) {
       <List 
       component="nav"
       aria-labelledby="nested-list-subheader"
-      // subheader={
-      //   <ListSubheader component="div" id="nested-list-subheader">
-      //     Nested List Items
-      //   </ListSubheader>
-      // }
       className={classes.root}
     >
         {navNodes.map((node) => {
-          console.log(node.label)
+          // console.log(node.label)
           var isSubMenItem = (node.label === 'Gallery')
           var subMListItem = (node.label === 'Travel' | node.label === 'Videography')
           if (isSubMenItem) {
             return (
-              <ListItem button onClick={handleClick}>
+              <ListItem button key={node.label} onClick={handleClick}>
                 <ListItemText primary={node.label}/>
                 {open ? <ExpandLess /> : <ExpandMore />}
-                <Collapse in={open} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                <Link href={'/travel'}>
-                  <ListItem button className={classes.nested}>
-                    <ListItemText primary="Travel" />
-                  </ListItem>
-                </Link>
-                <Link href={'/videography'}>
-                  <ListItem button className={classes.nested}>
-                    <ListItemText primary="Videography" />
-                  </ListItem>
-                </Link>
-                </List>
-              </Collapse>
+                  <Collapse in={open} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      <Link href={'/travel'}>
+                        <ListItem button className={classes.nested}>
+                          <ListItemText primary="Travel" />
+                        </ListItem>
+                      </Link>
+                      <Link href={'/videography'}>
+                        <ListItem button className={classes.nested}>
+                          <ListItemText primary="Videography" />
+                        </ListItem>
+                      </Link>
+                    </List>
+                </Collapse>
               </ListItem>
             );} else if(!isSubMenItem & !subMListItem) {
               return (
@@ -132,7 +135,7 @@ export default function Navigation(props) {
     </div>
   );
 
-  console.log(theme.breakpoints);
+  // console.log(theme.breakpoints);
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
