@@ -2,6 +2,8 @@ import React from 'react';
 import Navigation from '../../components/Navigation';
 import { getMenu, getProducts } from '../../lib/api';
 
+import Link from 'next/link';
+
 import Head from 'next/head';
 import { Grid } from '@material-ui/core';
 
@@ -83,9 +85,16 @@ export default function Shop({ products, menuItems }) {
                         __html: product.short_description,
                       }}
                     ></Typography>
-                    <Typography variant="h5" component="h5">
-                      ${product.price}
-                    </Typography>
+                    <div>
+                      <Typography variant="h5" component="h5">
+                        ${product.price}
+                      </Typography>
+                      <Button variant="outlined">
+                        <Link href={`/shop/${product.id}?slug=${product.slug}`}>
+                          Purchase
+                        </Link>
+                      </Button>
+                    </div>
                   </CardContent>
                 </CardActionArea>
               </Card>
