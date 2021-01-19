@@ -3,15 +3,17 @@ import ImageList from '../../components/ImageList'
 import Link from 'next/link';
 import styles from '../../styles/Gallery.module.css';
 
+import { getMenu } from '../../lib/api';
+
 import Navigation from '../../components/Navigation';
 
-function Gallery() {
+function Gallery({menuItems}) {
     return <div>
         <Head>
         <title>The Gallery</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navigation></Navigation>
+      <Navigation menuItems={menuItems} ></Navigation>
       {/* <div className={styles.banner}>
             <h1>The Gallery</h1>
     </div> */}
@@ -32,5 +34,15 @@ function Gallery() {
     </div>
     </div>
   }
+
+  export async function getStaticProps() {
+    const menuItems = await getMenu();
+    return {
+      props: {
+        menuItems,
+      },
+    };
+  }
+  
   
   export default Gallery
