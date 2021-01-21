@@ -65,7 +65,14 @@ export default function Shop({ products, menuItems }) {
         {products.map((product) => {
           console.log(product.images);
           return (
-            <Grid item xs={12} md={5} lg={3} className={classes.productItem}>
+            <Grid
+              item
+              xs={12}
+              md={5}
+              lg={3}
+              className={classes.productItem}
+              key={product.id}
+            >
               <Card className={classes.mediaCard}>
                 <CardActionArea>
                   <CardMedia

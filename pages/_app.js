@@ -1,4 +1,5 @@
-import { MuiThemeProvider, ThemeProvider } from '@material-ui/core/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import CartContextProvider from '../src/contexts/CartContext';
 
 import { customTheme } from '../src/theme';
 
@@ -6,9 +7,11 @@ import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <MuiThemeProvider theme={customTheme}>
-      <Component {...pageProps} />
-    </MuiThemeProvider>
+    <CartContextProvider>
+      <MuiThemeProvider theme={customTheme}>
+        <Component {...pageProps} />
+      </MuiThemeProvider>
+    </CartContextProvider>
   );
 }
 
