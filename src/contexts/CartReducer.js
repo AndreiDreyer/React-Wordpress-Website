@@ -78,6 +78,10 @@ export const CartReducer = (state, action) => {
         cartItems: [],
         ...sumItems([]),
       };
+    case 'INITIALISE':
+      return {
+        ...action.payload
+      };
     default:
       return state;
   }

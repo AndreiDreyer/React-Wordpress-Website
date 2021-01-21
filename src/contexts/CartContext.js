@@ -1,20 +1,12 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useEffect, useReducer } from 'react';
 import { CartReducer, sumItems } from './CartReducer';
 
 export const CartContext = createContext();
 
-const storage =
-  typeof window !== 'undefined' && localStorage.getItem('cart')
-    ? JSON.parse(localStorage.getItem('cart'))
-    : [];
-const initialState = {
-  cartItems: storage,
-  ...sumItems(storage),
-  checkout: false,
-};
-
 const CartContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(CartReducer, initialState);
+  const [state, dispatch] = useReducer(CartReducer, {
+    cartItems: []
+  });
 
   const increase = (payload) => {
     console.log('INCREASE');
@@ -45,6 +37,25 @@ const CartContextProvider = ({ children }) => {
     console.log('CHECKOUT', state);
     dispatch({ type: 'CHECKOUT' });
   };
+
+  const initialise = (payload) => {
+    console.log('INITIALISE', payload);
+    dispatch({ type: 'INITIALISE', payload });
+  };
+
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const cartItems = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+    const payload = {
+      cartItems,
+      ...sumItems(cartItems),
+      checkout: false
+    }
+
+    initialise(payload);
+  }, []);
 
   const contextValues = {
     removeProduct,
