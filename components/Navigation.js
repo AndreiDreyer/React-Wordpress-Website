@@ -56,17 +56,17 @@ const useStyles = makeStyles((theme) => ({
     width: 250,
     display: 'block',
     flexDirection: 'column',
-    textDecoration: "none",
+    textDecoration: 'none',
   },
   nested: {
     paddingLeft: theme.spacing(4),
-    textDecoration: "none",
+    textDecoration: 'none',
     minWidth: 201,
     marginLeft: 6,
   },
   MuiListItemText: {
     marginTop: 100,
-  }
+  },
 }));
 
 export default function Navigation(props) {
@@ -92,46 +92,51 @@ export default function Navigation(props) {
       <p>Logo will go here</p>
       <div className={classes.toolbar} />
       <Divider />
-      <List 
-      component="nav"
-      aria-labelledby="nested-list-subheader"
-      className={classes.root}
-    >
+      <List
+        component="nav"
+        aria-labelledby="nested-list-subheader"
+        className={classes.root}
+      >
         {navNodes.map((node) => {
           // console.log(node.label)
-          var isSubMenItem = (node.label === 'Gallery')
-          var subMListItem = (node.label === 'Travel' | node.label === 'Videography')
+          var isSubMenItem = node.label === 'Gallery';
+          var subMListItem =
+            (node.label === 'Travel') | (node.label === 'Videography');
           if (isSubMenItem) {
             return (
               <ListItem button key={node.label} onClick={handleClick}>
-                <ListItemText primary={node.label}/>
+                <ListItemText primary={node.label} />
                 {open ? <ExpandLess /> : <ExpandMore />}
-                  <Collapse in={open} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                      <Link href={'/travel'}>
-                        <ListItem button className={classes.nested}>
-                          <ListItemText primary="Travel" />
-                        </ListItem>
-                      </Link>
-                      <Link href={'/videography'}>
-                        <ListItem button className={classes.nested}>
-                          <ListItemText primary="Videography" />
-                        </ListItem>
-                      </Link>
-                    </List>
+                <Collapse in={open} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <Link href={'/travel'}>
+                      <ListItem button className={classes.nested}>
+                        <ListItemText primary="Travel" />
+                      </ListItem>
+                    </Link>
+                    <Link href={'/videography'}>
+                      <ListItem button className={classes.nested}>
+                        <ListItemText primary="Videography" />
+                      </ListItem>
+                    </Link>
+                  </List>
                 </Collapse>
               </ListItem>
-            );} else if(!isSubMenItem & !subMListItem) {
-              return (
-                <ListItem button key={node.label}>
+            );
+          } else if (!isSubMenItem & !subMListItem) {
+            return (
+              <ListItem button key={node.label}>
                 <Link href={node.path}>
                   <ListItemText primary={node.label}></ListItemText>
                 </Link>
-                </ListItem>
-              );
-            }
+              </ListItem>
+            );
+          }
         })}
-        </List>
+      </List>
+      <div>
+        <Link href="/cart">Cart</Link>
+      </div>
     </div>
   );
 
