@@ -47,7 +47,7 @@ export default function Product({ productData }) {
               <Button variant="outlined" onClick={() => addToCart(productData)}>
                 Add to cart
               </Button>
-              <TextField id="quantity-field" label="Quantity" type="number" InputLabelProps={{ shrink: true }} onChange={(e) => setQuantity(e.target.value)} />
+              <TextField id="quantity-field" label="Quantity" type="number" defaultValue={0} InputLabelProps={{ shrink: true }} onChange={(e) => setQuantity(e.target.value)} />
             </div>
           )}
         </div>
