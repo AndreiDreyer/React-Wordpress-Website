@@ -6,34 +6,15 @@ import CartProducts from './CartProducts';
 import Button from '@material-ui/core/Button';
 
 export default function Cart() {
-  const {
-    total,
-    cartItems,
-    itemCount,
-    clearCart,
-    checkout,
-    handleCheckout,
-  } = useContext(CartContext);
+  const { total, cartItems, itemCount, clearCart, checkout, handleCheckout } = useContext(CartContext);
 
   return (
     <div>
       <div>
         <h1>Cart Page</h1>
       </div>
-      <div>
-        {cartItems.length > 0 ? (
-          <CartProducts />
-        ) : (
-          <div>Your Cart is empty</div>
-        )}
-      </div>
-      <div>
-        {cartItems.length > 0 ? (
-          <div>Total: {total}</div>
-        ) : (
-          <div>Cart is empty </div>
-        )}
-      </div>
+      <div>{cartItems.length > 0 ? <CartProducts /> : <div>Your Cart is empty</div>}</div>
+      <div>{cartItems.length > 0 ? <div>Total: {total}</div> : <div>Cart is empty </div>}</div>
       <div>
         {cartItems.length > 0 ? (
           <div>

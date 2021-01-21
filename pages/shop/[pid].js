@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import Head from 'next/head';
@@ -9,13 +9,21 @@ import Button from '@material-ui/core/Button';
 import { CartContext } from '../../src/contexts/CartContext';
 
 import { getProducts, getProduct } from '../../lib/api';
+import TextField from '@material-ui/core/TextField';
 
 export default function Product({ productData }) {
   const { addProduct, cartItems, increase } = useContext(CartContext);
 
+  const [quantity, setQuantity] = useState(0);
+
   console.log('rendering');
   const isInCart = (product) => {
     return !!cartItems.find((item) => item.id === product.id);
+  };
+
+  const addToCart = (productData) => {
+    productData.quantity = parseInt(quantity);
+    addProduct(productData);
   };
 
   return (
@@ -35,9 +43,12 @@ export default function Product({ productData }) {
           )}
 
           {!isInCart(productData) && (
-            <Button variant="outlined" onClick={() => addProduct(productData)}>
-              Add to cart
-            </Button>
+            <div>
+              <Button variant="outlined" onClick={() => addToCart(productData)}>
+                Add to cart
+              </Button>
+              <TextField id="quantity-field" label="Quantity" type="number" InputLabelProps={{ shrink: true }} onChange={(e) => setQuantity(e.target.value)} />
+            </div>
           )}
         </div>
       </main>
