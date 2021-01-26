@@ -137,7 +137,7 @@ export default function Navigation(props) {
 
   // console.log(theme.breakpoints);
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const container = window !== undefined ? () => window.document.body : undefined;
 
   return (
     <div>
