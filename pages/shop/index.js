@@ -46,8 +46,6 @@ const useStyles = makeStyles({
 export default function Shop({ products, menuItems }) {
   const classes = useStyles();
 
-  console.log(products);
-
   return (
     <div className={classes.productSection}>
       <Head>
@@ -65,39 +63,40 @@ export default function Shop({ products, menuItems }) {
         {products.map((product) => {
           console.log(product.images);
           return (
-            <Grid item xs={12} md={5} lg={3} className={classes.productItem}>
-              <Card className={classes.mediaCard}>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.mediaItem}
-                    image={product.images[0].src}
-                    title={product.images[0].name}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {product.name}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                      dangerouslySetInnerHTML={{
-                        __html: product.short_description,
-                      }}
-                    ></Typography>
-                    <div>
-                      <Typography variant="h5" component="h5">
-                        ${product.price}
+            <Grid
+              item
+              xs={12}
+              md={5}
+              lg={3}
+              className={classes.productItem}
+              key={product.id}
+            >
+              <Link href={`/shop/${product.id}?slug=${product.slug}`}>
+                <Card className={classes.mediaCard}>
+                  <CardActionArea>
+                    <CardMedia
+                      className={classes.mediaItem}
+                      image={product.images[0].src}
+                      title={product.images[0].name}
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {product.name}
                       </Typography>
-                      <Button variant="outlined">
-                        <Link href={`/shop/${product.id}?slug=${product.slug}`}>
-                          Purchase
-                        </Link>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
+                      <div>
+                        <Typography variant="h5" component="h5">
+                          ${product.price}
+                        </Typography>
+                      </div>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions>
+                    <Link href={`/shop/${product.id}?slug=${product.slug}`}>
+                      <Button variant="outlined">Learn More</Button>
+                    </Link>
+                  </CardActions>
+                </Card>
+              </Link>
             </Grid>
           );
         })}
