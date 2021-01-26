@@ -92,16 +92,11 @@ export default function Navigation(props) {
       <p>Logo will go here</p>
       <div className={classes.toolbar} />
       <Divider />
-      <List
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-        className={classes.root}
-      >
+      <List component="nav" aria-labelledby="nested-list-subheader" className={classes.root}>
         {navNodes.map((node) => {
           // console.log(node.label)
           var isSubMenItem = node.label === 'Gallery';
-          var subMListItem =
-            (node.label === 'Travel') | (node.label === 'Videography');
+          var subMListItem = node.label === 'Travel' || node.label === 'Videography';
           if (isSubMenItem) {
             return (
               <ListItem button key={node.label} onClick={handleClick}>
@@ -142,20 +137,13 @@ export default function Navigation(props) {
 
   // console.log(theme.breakpoints);
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
     <div>
       <CssBaseline />
       <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          edge="start"
-          onClick={handleDrawerToggle}
-          className={classes.menuButton}
-        >
+        <IconButton color="inherit" aria-label="open drawer" edge="start" onClick={handleDrawerToggle} className={classes.menuButton}>
           <MenuIcon fontSize="large" />
         </IconButton>
       </Toolbar>
@@ -174,11 +162,7 @@ export default function Navigation(props) {
           </Drawer>
         </Hidden>
         <Hidden xsDown implementation="css">
-          <Drawer
-            classes={{ paper: classes.drawerPaper }}
-            variant="permanent"
-            open
-          >
+          <Drawer classes={{ paper: classes.drawerPaper }} variant="permanent" open>
             {drawer}
           </Drawer>
         </Hidden>
