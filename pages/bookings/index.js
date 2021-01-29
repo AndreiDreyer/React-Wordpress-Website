@@ -12,6 +12,7 @@ import {momentLocalizer, Views } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { makeStyles } from '@material-ui/core/styles';
+import BookingForm from '../../components/BookingForm';
 moment.locale("en-GB");
 
 
@@ -40,29 +41,15 @@ const myEventsList = [
 function Booking({menuItems}) {
     const classes = useStyles();
 
-    // con = constructor(){
-    //     //We will populate this function later
-    // }
-
-    // componentDidMount(){
-    // //We will populate this function later
-    // }
-
     return <div>
         <Head>
         <title>The Gallery</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navigation menuItems={menuItems} ></Navigation>
-    <div className = {classes.root} >
-        {/* <Calendar 
-            localizer={localizer}
-            events={myEventsList}
-            startAccessor="start"
-            endAccessor="end"
-        /> */}
-        <Calendar></Calendar>
-    </div>
+      <BookingForm
+      className={classes.root}
+      ></BookingForm>    
     </div>
   }
 
