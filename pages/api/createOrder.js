@@ -33,12 +33,4 @@ export default async (req, res) => {
   } catch (err) {
     console.log('Error ocurred: ', err);
   }
-  // const json = await res.json();
-
-  // if (json.errors) {
-  //   console.log('Error Details');
-  //   console.log(json.errors);
-  //   throw new Error('Failed to fetch API');
-  // }
-  // return json.data;
 };
