@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
+import emailjs from 'emailjs-com';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -21,7 +22,9 @@ export default function BookingForm() {
   const classes = useStyles();
   // constructor(props) {
   //     super(props);
-  const state = { feedback: '', name: '', email: '' };
+  const[{ feedback, name, email }, setEmailInformation] = useState({
+    feedback: 'Hi I would like to enquire about a booking.'
+  });
   // saves the user's name entered to state
   const nameChange = (event) => {
     state = setState({ name: event.target.value });
@@ -37,6 +40,15 @@ export default function BookingForm() {
     state = setState({ feedback: event.target.value });
   };
 
+  const handleFormChange = (key) => (e) => {
+    const { value } = e.target;
+
+  setEmailInformation((old) => ({
+    ...old,
+    [key]: value,
+    }));
+  };
+
   //onSubmit of email form
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -48,17 +60,18 @@ export default function BookingForm() {
     //from the form and sends the email with the information gathered
     //and formats the email based on the templateID provided.
     sendFeedback(templateId, {
-      message: this.state.feedback,
-      name: this.state.name,
-      email: this.state.email,
+      message: feedback,
+      name: name,
+      email: email,
     });
   };
 
   //Custom EmailJS method
   const sendFeedback = (templateId, variables) => {
-    window.emailjs
-      .send('gmail', templateId, variables)
-      .then((res) => {
+    emailjs.send(
+      'service_g4avd9d', templateId,
+     variables, 'user_lC9vwp5sWdhMgCMhLtIsK'
+     ).then(res => {
         // Email successfully sent alert
         Swal.fire({
           title: 'Email Successfully Sent',
@@ -66,7 +79,7 @@ export default function BookingForm() {
         });
       })
       // Email Failed to send Error alert
-      .catch((err) => {
+      .catch(err => {
         Swal.fire({
           title: 'Email Failed to Send',
           icon: 'error',
@@ -89,7 +102,7 @@ export default function BookingForm() {
             name="user_name"
             type="text"
             id="name"
-            onChange={nameChange}
+            onChange={handleFormChange('name')}
             required
           />
         </div>
@@ -101,7 +114,7 @@ export default function BookingForm() {
             name="user_email"
             type="text"
             id="email"
-            onChange={emailChange}
+            onChange={handleFormChange('email')}
             required
           />
         </div>
@@ -111,7 +124,7 @@ export default function BookingForm() {
           <textarea
             id="message"
             name="message"
-            onChange={messageChange}
+            onChange={handleFormChange('feedback')}
             placeholder="Put your message here"
             required
             className="email-text-area form-control"
