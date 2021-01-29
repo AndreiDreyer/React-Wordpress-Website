@@ -13,6 +13,11 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Typography from '@material-ui/core/Typography';
+import InputLabel from '@material-ui/core/InputLabel';
+import { getMenu } from '../../lib/api';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,18 +27,22 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
+    width: '25ch',
   },
   gridItem: {
     marginBottom: theme.spacing(1),
+    marginTop: theme.spacing(1),
   },
 }));
 
 export default function Checkout() {
   const { total, cartItems, checkout, handleCheckout } = useContext(CartContext);
 
-  const [paymentMethod, setPaymentMethod] = useState('paypal');
+  const [paymentMethod, setPaymentMethod] = useState('cash');
 
-  const [{ firstName, surname, email, phoneNumber, address }, setCheckoutInformation] = useState({});
+  const [{ firstName, surname, address, country, province, email, phoneNumber, city }, setCheckoutInformation] = useState({
+    country: 'ZIM',
+  });
 
   const classes = useStyles();
 
@@ -41,13 +50,61 @@ export default function Checkout() {
     setPaymentMethod(e.target.value);
   };
 
-  const handleTextFieldChange = (key) => (e) => {
+  const handleFormChange = (key) => (e) => {
     const { value } = e.target;
 
     setCheckoutInformation((old) => ({
       ...old,
       [key]: value,
     }));
+  };
+
+  const submitCheckout = async (e) => {
+    e.preventDefault();
+    if (paymentMethod === 'cash') {
+      const customerData = {
+        first_name: firstName,
+        last_name: surname,
+        address_1: address,
+        address_2: '',
+        city: city,
+        state: province,
+        postcode: '0000',
+        country: country,
+        email: email,
+        phone: phoneNumber,
+      };
+
+      const lineItems = cartItems.map((item) => ({ product_id: item.id, quantity: item.quantity }));
+
+      const data = {
+        payment_method: 'cod',
+        payment_method_title: 'Cash on delivery',
+        set_paid: false,
+        billing: customerData,
+        shipping: customerData,
+        line_items: lineItems,
+        shipping_lines: [],
+      };
+
+      try {
+        const res = await fetch('./api/createOrder', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (res.status === 200 || res.status === 201) {
+          console.log('Great Success');
+        } else {
+          console.log('Great Failure');
+        }
+      } catch (err) {
+        console.log('Error Frontend: ', err);
+      }
+    }
   };
 
   return (
@@ -59,24 +116,41 @@ export default function Checkout() {
         <p>Total: {total}</p>
       </Grid>
       <Grid item xs={12} className={classes.gridItem}>
-        <TextField required id="name" label="First Name" variant="standard" className={classes.textField} onChange={handleTextFieldChange('firstName')} />
-        <TextField required id="surname" label="Surname" variant="standard" className={classes.textField} onChange={handleTextFieldChange('surname')} />
-        <TextField required id="email" label="Email Address" variant="standard" className={classes.textField} onChange={handleTextFieldChange('email')} />
-        <TextField required id="phoneNumber" label="Phone Number" variant="standard" className={classes.textField} onChange={handleTextFieldChange('phoneNumber')} />
-        <TextField required id="addressLine1" label="Address Line 1" variant="standard" className={classes.textField} onChange={handleTextFieldChange('address')} />
+        <Typography variant="h4" component="h4">
+          Shipping Address
+        </Typography>
+        <TextField required id="name" label="First Name" variant="standard" className={classes.textField} onChange={handleFormChange('firstName')} />
+        <TextField required id="surname" label="Surname" variant="standard" className={classes.textField} onChange={handleFormChange('surname')} />
+        <TextField required id="addressLine1" label="Address Line 1" variant="standard" className={classes.textField} onChange={handleFormChange('address')} />
+        <TextField required id="city" label="City" variant="standard" className={classes.textField} onChange={handleFormChange('city')} />
+        <TextField required id="province" label="Province" variant="standard" className={classes.textField} onChange={handleFormChange('province')} />
+        <TextField required select id="country" label="Country" variant="standard" className={classes.textField} value="ZIM" onChange={handleFormChange('country')}>
+          <MenuItem value="ZIM">Zimbabwe</MenuItem>
+        </TextField>
+        <TextField required id="email" label="Email Address" variant="standard" className={classes.textField} onChange={handleFormChange('email')} />
+        <TextField required id="phoneNumber" label="Phone Number" variant="standard" className={classes.textField} onChange={handleFormChange('phoneNumber')} />
       </Grid>
       <Grid item xs={12} className={classes.gridItem}>
         <FormControl component="fieldset">
           <FormLabel component="legend">Payment Method</FormLabel>
           <RadioGroup aria-label="payment-method" name="payment-method" value={paymentMethod} onChange={handlePaymentChange}>
-            <FormControlLabel value="paypal" control={<Radio />} label="Paypal" />
             <FormControlLabel value="cash" control={<Radio />} label="Cash" />
+            <FormControlLabel value="paypal" control={<Radio />} label="Paypal" />
           </RadioGroup>
         </FormControl>
       </Grid>
       <Grid item xs={12} className={classes.gridItem}>
-        <Button>Checkout</Button>
+        <Button onClick={submitCheckout}>Checkout</Button>
       </Grid>
     </Grid>
   );
+}
+
+export async function getServerSideProps() {
+  const menuItems = await getMenu();
+  return {
+    props: {
+      menuItems: menuItems,
+    },
+  };
 }
