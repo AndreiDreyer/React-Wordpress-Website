@@ -18,6 +18,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import InputLabel from '@material-ui/core/InputLabel';
 import { getMenu } from '../../lib/api';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Checkout() {
+  const router = useRouter();
   const { total, cartItems, checkout, handleCheckout } = useContext(CartContext);
 
   const [paymentMethod, setPaymentMethod] = useState('cash');
@@ -97,9 +99,9 @@ export default function Checkout() {
         });
 
         if (res.status === 200 || res.status === 201) {
-          console.log('Great Success');
+          router.push('/checkout/success');
         } else {
-          console.log('Great Failure');
+          router.push('/checkout/failure');
         }
       } catch (err) {
         console.log('Error Frontend: ', err);
