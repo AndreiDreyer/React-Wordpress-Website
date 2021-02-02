@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import emailjs from 'emailjs-com';
 
 import { makeStyles } from '@material-ui/core/styles';
+import DatePicker from '../components/DatePicker'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,25 +21,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function BookingForm() {
   const classes = useStyles();
-  // constructor(props) {
-  //     super(props);
-  const[{ feedback, name, email }, setEmailInformation] = useState({
+
+  var dateTime = new Date();
+  const[{ feedback, name, email, location}, setEmailInformation] = useState({
     feedback: 'Hi I would like to enquire about a booking.'
   });
-  // saves the user's name entered to state
-  const nameChange = (event) => {
-    state = setState({ name: event.target.value });
-  };
 
-  // saves the user's email entered to state
-  const emailChange = (event) => {
-    state = setState({ email: event.target.value });
-  };
-
-  // saves the user's message entered to state
-  const messageChange = (event) => {
-    state = setState({ feedback: event.target.value });
-  };
+  // const [startDate, setStartDate] = useState(new Date());
+  // const ExampleCustomTimeInput = ({ date, value, onChange }) => (
+  //     <input
+  //       value={value}
+  //       onChange={e => onChange(e.target.value)}
+  //       style={{ border: "solid 1px pink" }}
+  //     />
+  //   );
 
   const handleFormChange = (key) => (e) => {
     const { value } = e.target;
@@ -49,6 +45,11 @@ export default function BookingForm() {
     }));
   };
 
+  const handleDate = (e) => {
+    console.log('The method was called successfully!!!!!')
+    dateTime = e.target;
+  };
+
   //onSubmit of email form
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -56,14 +57,19 @@ export default function BookingForm() {
     //This templateId is created in EmailJS.com
     const templateId = 'template_vz2845l';
 
+    console.log(dateTime)
+
     //This is a custom method from EmailJS that takes the information
     //from the form and sends the email with the information gathered
     //and formats the email based on the templateID provided.
-    sendFeedback(templateId, {
-      message: feedback,
-      name: name,
-      email: email,
-    });
+
+    // sendFeedback(templateId, {
+    //   message: 'Location: '+location+'\n'+'Date and Time: '+dateTime+'\n'+feedback,
+    //   from_name: name,
+    //   reply_to: email,
+    //   location: location,
+    //   dateTime: dateTime,
+    // });
   };
 
   //Custom EmailJS method
@@ -88,7 +94,6 @@ export default function BookingForm() {
       });
   };
 
-  // render() {
   return (
     //Form layout that requires a Name, Email, and message
     <form className={classes.root} onSubmit={handleSubmit}>
@@ -119,6 +124,22 @@ export default function BookingForm() {
           />
         </div>
 
+        <div>
+          <label htmlFor="location">Location of Shoot</label>
+          <input
+            className="form-control email-inputs"
+            name="user_location"
+            type="text"
+            id="location"
+            onChange={handleFormChange('location')}
+            required
+          />
+        </div>
+        <div> 
+          <DatePicker
+          onChange={handleDate}
+          ></DatePicker>
+        </div>
         <label htmlFor="message">Message</label>
         <div>
           <textarea
@@ -138,6 +159,3 @@ export default function BookingForm() {
     </form>
   );
 }
-// }
-
-// export default BookingForm

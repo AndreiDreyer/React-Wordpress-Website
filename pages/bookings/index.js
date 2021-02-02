@@ -5,7 +5,6 @@ import styles from '../../styles/Gallery.module.css';
 import { getMenu } from '../../lib/api';
 
 import Navigation from '../../components/Navigation';
-import Calendar from '../../components/Calendar';
 
 import { render } from 'react-dom';
 import { momentLocalizer, Views } from 'react-big-calendar';
