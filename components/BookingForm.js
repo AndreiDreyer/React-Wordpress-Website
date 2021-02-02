@@ -3,9 +3,14 @@ import Swal from 'sweetalert2';
 import emailjs from 'emailjs-com';
 
 import { makeStyles } from '@material-ui/core/styles';
-import DatePicker from '../components/DatePicker'
 
+import TextField from '@material-ui/core/TextField';
 const useStyles = makeStyles((theme) => ({
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -22,10 +27,24 @@ const useStyles = makeStyles((theme) => ({
 export default function BookingForm() {
   const classes = useStyles();
 
-  var dateTime = new Date();
-  const[{ feedback, name, email, location}, setEmailInformation] = useState({
-    feedback: 'Hi I would like to enquire about a booking.'
+  const [{ feedback, name, email, location }, setEmailInformation] = useState({
+    feedback: 'Hi I would like to enquire about a booking.',
   });
+
+  const [dateTime, setDateTime] = useState(new Date());
+
+  const month = new Date().getUTCMonth() + 1;
+  const dateSt =
+    new Date().getFullYear() +
+    '-0' +
+    month +
+    '-0' +
+    new Date().getUTCDate() +
+    'T' +
+    new Date().getHours() +
+    ':' +
+    new Date().getMinutes();
+  var todaysDate = new Date().getUTCDate();
 
   // const [startDate, setStartDate] = useState(new Date());
   // const ExampleCustomTimeInput = ({ date, value, onChange }) => (
@@ -39,15 +58,15 @@ export default function BookingForm() {
   const handleFormChange = (key) => (e) => {
     const { value } = e.target;
 
-  setEmailInformation((old) => ({
-    ...old,
-    [key]: value,
+    setEmailInformation((old) => ({
+      ...old,
+      [key]: value,
     }));
   };
 
   const handleDate = (e) => {
-    console.log('The method was called successfully!!!!!')
-    dateTime = e.target;
+    console.log('The method was called successfully!!!!!');
+    setDateTime(e.target.value);
   };
 
   //onSubmit of email form
@@ -57,7 +76,7 @@ export default function BookingForm() {
     //This templateId is created in EmailJS.com
     const templateId = 'template_vz2845l';
 
-    console.log(dateTime)
+    console.log(dateTime);
 
     //This is a custom method from EmailJS that takes the information
     //from the form and sends the email with the information gathered
@@ -74,10 +93,14 @@ export default function BookingForm() {
 
   //Custom EmailJS method
   const sendFeedback = (templateId, variables) => {
-    emailjs.send(
-      'service_g4avd9d', templateId,
-     variables, 'user_lC9vwp5sWdhMgCMhLtIsK'
-     ).then(res => {
+    emailjs
+      .send(
+        'service_g4avd9d',
+        templateId,
+        variables,
+        'user_lC9vwp5sWdhMgCMhLtIsK',
+      )
+      .then((res) => {
         // Email successfully sent alert
         Swal.fire({
           title: 'Email Successfully Sent',
@@ -85,7 +108,7 @@ export default function BookingForm() {
         });
       })
       // Email Failed to send Error alert
-      .catch(err => {
+      .catch((err) => {
         Swal.fire({
           title: 'Email Failed to Send',
           icon: 'error',
@@ -135,10 +158,18 @@ export default function BookingForm() {
             required
           />
         </div>
-        <div> 
-          <DatePicker
-          onChange={handleDate}
-          ></DatePicker>
+        <div>
+          <TextField
+            id="datetime-local"
+            label="Next appointment"
+            type="datetime-local"
+            defaultValue={dateSt}
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={handleDate}
+          />
         </div>
         <label htmlFor="message">Message</label>
         <div>
