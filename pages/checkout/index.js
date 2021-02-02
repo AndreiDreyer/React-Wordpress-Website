@@ -77,7 +77,7 @@ export default function Checkout() {
         phone: phoneNumber,
       };
 
-      const lineItems = cartItems.map((item) => ({ product_id: item.id, quantity: item.quantity }));
+      const lineItems = cartItems.map((item) => ({ product_id: item.product_id, variation_id: item.id, quantity: item.quantity }));
 
       const data = {
         payment_method: 'cod',
