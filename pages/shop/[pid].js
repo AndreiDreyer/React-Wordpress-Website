@@ -1,29 +1,58 @@
 import React, { useContext, useState } from 'react';
-import { useRouter } from 'next/router';
 
 import Head from 'next/head';
 import Link from 'next/link';
 
-import Button from '@material-ui/core/Button';
-
 import { CartContext } from '../../src/contexts/CartContext';
+import { getProduct } from '../../lib/api';
 
-import { getProducts, getProduct } from '../../lib/api';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import { makeStyles } from '@material-ui/core/styles';
 
-export default function Product({ productData }) {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    margin: '1rem',
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '10rem',
+    },
+  },
+}));
+
+export default function Product({ productData, variationData }) {
   const { addProduct, cartItems, increase } = useContext(CartContext);
+  const classes = useStyles();
 
   const [quantity, setQuantity] = useState(0);
+  const [size, setSize] = useState('A2');
 
-  console.log('rendering');
+  let startPrice = variationData.find((item) => item.attributes[0].option === 'A2').price;
+  const [price, setPrice] = useState(startPrice);
+
   const isInCart = (product) => {
     return !!cartItems.find((item) => item.id === product.id);
   };
 
   const addToCart = (productData) => {
-    productData.quantity = parseInt(quantity);
-    addProduct(productData);
+    const selectedVariation = variationData.find((item) => item.attributes[0].option === size) || {};
+
+    selectedVariation.quantity = quantity;
+    selectedVariation.product_id = productData.id;
+
+    addProduct(selectedVariation);
+  };
+
+  const handleChange = (e) => {
+    const { target } = e;
+
+    const newPrice = variationData.find((item) => item.attributes[0].option === target.value).price;
+
+    setSize(e.target.value);
+    setPrice(newPrice);
   };
 
   return (
@@ -33,44 +62,42 @@ export default function Product({ productData }) {
         <link rel="icon" href="favicon.ico" />
       </Head>
 
-      <main>
-        <div>
+      <Grid container spacing={0} orientation="row" className={classes.root}>
+        <Grid item>
           <div>{productData.name}</div>
-          {isInCart(productData) && (
-            <Button variant="outlined" onClick={() => increase(productData)}>
-              Increase
-            </Button>
-          )}
-
+          <div>{price}</div>
+          <div>
+            <TextField id="select-variation" select label="Size" value={size} onChange={handleChange} helperText="Select Variation">
+              {variationData?.map((variation) => (
+                <MenuItem key={variation.id} value={variation.attributes[0].option}>
+                  {variation.attributes[0].option}
+                </MenuItem>
+              ))}
+            </TextField>
+          </div>
+        </Grid>
+        <Grid container className={classes.root}>
           {!isInCart(productData) && (
-            <div>
+            <Grid item>
               <Button variant="outlined" onClick={() => addToCart(productData)}>
                 Add to cart
               </Button>
               <TextField id="quantity-field" label="Quantity" type="number" defaultValue={0} InputLabelProps={{ shrink: true }} onChange={(e) => setQuantity(e.target.value)} />
-            </div>
+            </Grid>
           )}
-        </div>
-      </main>
+        </Grid>
+      </Grid>
     </div>
   );
 }
 
-export async function getStaticPaths() {
-  const allProducts = await getProducts();
-
-  return {
-    paths: allProducts.map((product) => `/shop/${product.id}`) || [],
-    fallback: true,
-  };
-}
-
-export async function getStaticProps({ params }) {
-  const data = await getProduct(params.pid);
+export async function getServerSideProps(context) {
+  const data = await getProduct(context.params.pid);
 
   return {
     props: {
-      productData: data,
+      productData: data.product,
+      variationData: data.variations,
     },
   };
 }
