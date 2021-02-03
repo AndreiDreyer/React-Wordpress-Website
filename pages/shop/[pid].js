@@ -30,7 +30,7 @@ export default function Product({ productData, variationData }) {
   const [quantity, setQuantity] = useState(0);
   const [size, setSize] = useState('A2');
 
-  let startPrice = variationData.filter((item) => item.attributes[0].option === 'A2')[0].price;
+  let startPrice = variationData.find((item) => item.attributes[0].option === 'A2').price;
   const [price, setPrice] = useState(startPrice);
 
   const isInCart = (product) => {
@@ -38,7 +38,7 @@ export default function Product({ productData, variationData }) {
   };
 
   const addToCart = (productData) => {
-    const selectedVariation = variationData.filter((item) => item.attributes[0].option === size)[0];
+    const selectedVariation = variationData.find((item) => item.attributes[0].option === size) || {};
 
     selectedVariation.quantity = quantity;
     selectedVariation.product_id = productData.id;
@@ -47,9 +47,9 @@ export default function Product({ productData, variationData }) {
   };
 
   const handleChange = (e) => {
-    const target = e.target;
+    const { target } = e;
 
-    const newPrice = variationData.filter((item) => item.attributes[0].option === target.value)[0].price;
+    const newPrice = variationData.find((item) => item.attributes[0].option === target.value).price;
 
     setSize(e.target.value);
     setPrice(newPrice);
