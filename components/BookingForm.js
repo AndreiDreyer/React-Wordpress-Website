@@ -5,6 +5,7 @@ import emailjs from 'emailjs-com';
 import { makeStyles } from '@material-ui/core/styles';
 
 import TextField from '@material-ui/core/TextField';
+import ReCaptchaComp from '../components/ReCaptchaComp'
 const useStyles = makeStyles((theme) => ({
   textField: {
     marginLeft: theme.spacing(1),
@@ -82,13 +83,13 @@ export default function BookingForm() {
     //from the form and sends the email with the information gathered
     //and formats the email based on the templateID provided.
 
-    // sendFeedback(templateId, {
-    //   message: 'Location: '+location+'\n'+'Date and Time: '+dateTime+'\n'+feedback,
-    //   from_name: name,
-    //   reply_to: email,
-    //   location: location,
-    //   dateTime: dateTime,
-    // });
+    sendFeedback(templateId, {
+      message: 'Location: '+location+'\n'+'Date and Time: '+dateTime+'\n'+'Email: '+email+' \n'+feedback,
+      from_name: name,
+      reply_to: email,
+      location: location,
+      dateTime: dateTime,
+    });
   };
 
   //Custom EmailJS method
@@ -184,9 +185,11 @@ export default function BookingForm() {
             cols="20"
           />
         </div>
+      <div>
+        <ReCaptchaComp></ReCaptchaComp>
       </div>
-
-      <input type="submit" value="Submit" className="btn btn-outline-light" />
+      </div>
+      <button type="submit" value="Submit" className="btn btn-outline-light">Send Mail</button>
     </form>
   );
 }
