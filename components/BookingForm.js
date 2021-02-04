@@ -47,15 +47,6 @@ export default function BookingForm() {
     new Date().getMinutes();
   var todaysDate = new Date().getUTCDate();
 
-  // const [startDate, setStartDate] = useState(new Date());
-  // const ExampleCustomTimeInput = ({ date, value, onChange }) => (
-  //     <input
-  //       value={value}
-  //       onChange={e => onChange(e.target.value)}
-  //       style={{ border: "solid 1px pink" }}
-  //     />
-  //   );
-
   const handleFormChange = (key) => (e) => {
     const { value } = e.target;
 
