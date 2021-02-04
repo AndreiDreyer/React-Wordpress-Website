@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import scriptLoader from 'react-async-script-loader';
-// import Car from "/bowser1.jpg";
 import Spinner from './Spinner';
 
 const CLIENT = {

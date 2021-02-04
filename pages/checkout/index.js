@@ -14,13 +14,10 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
-import InputLabel from '@material-ui/core/InputLabel';
 import { getMenu } from '../../lib/api';
 import { useRouter } from 'next/router';
-import PaypalButtons from '../../components/PaypalButtons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
