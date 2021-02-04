@@ -48,6 +48,8 @@ export default function Checkout() {
     country: 'ZIM',
   });
 
+  const [processingOrder, setProcessingOrder] = useState(false);
+
   const classes = useStyles();
 
   const handlePaymentChange = (e) => {
@@ -64,23 +66,25 @@ export default function Checkout() {
   };
 
   const submitCheckout = async (e) => {
+    setProcessingOrder(true);
     e.preventDefault();
+
+    const customerData = {
+      first_name: firstName,
+      last_name: surname,
+      address_1: address,
+      address_2: '',
+      city: city,
+      state: province,
+      postcode: '0000',
+      country: country,
+      email: email,
+      phone: phoneNumber,
+    };
+
+    const lineItems = cartItems.map((item) => ({ product_id: item.product_id, variation_id: item.id, quantity: item.quantity }));
+
     if (paymentMethod === 'cash') {
-      const customerData = {
-        first_name: firstName,
-        last_name: surname,
-        address_1: address,
-        address_2: '',
-        city: city,
-        state: province,
-        postcode: '0000',
-        country: country,
-        email: email,
-        phone: phoneNumber,
-      };
-
-      const lineItems = cartItems.map((item) => ({ product_id: item.product_id, variation_id: item.id, quantity: item.quantity }));
-
       const data = {
         payment_method: 'cod',
         payment_method_title: 'Cash on delivery',
@@ -90,24 +94,83 @@ export default function Checkout() {
         line_items: lineItems,
         shipping_lines: [],
       };
+    } else {
+      const data = {
+        payment_method: 'paypal',
+        payment_method_title: 'PayPal Standard',
+        set_paid: true,
+        billing: customerData,
+        shipping: customerData,
+        line_items: lineItems,
+        shipping_lines: [],
+      };
+    }
 
-      try {
-        const res = await fetch('./api/createOrder', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
+    try {
+      const res = await fetch('./api/createOrder', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-        if (res.status === 200 || res.status === 201) {
-          router.push('/checkout/success');
-        } else {
-          router.push('/checkout/failure');
-        }
-      } catch (err) {
-        console.log('Error Frontend: ', err);
+      if (res.status === 200 || res.status === 201) {
+        router.push('/checkout/success');
+      } else {
+        router.push('/checkout/failure');
       }
+    } catch (err) {
+      console.log('Error Frontend: ', err);
+    }
+  };
+
+  const onProcess = () => {
+    setProcessingOrder(true);
+  };
+
+  const onSuccess = async () => {
+    const customerData = {
+      first_name: firstName,
+      last_name: surname,
+      address_1: address,
+      address_2: '',
+      city: city,
+      state: province,
+      postcode: '0000',
+      country: country,
+      email: email,
+      phone: phoneNumber,
+    };
+
+    const lineItems = cartItems.map((item) => ({ product_id: item.product_id, variation_id: item.id, quantity: item.quantity }));
+
+    const data = {
+      payment_method: 'paypal',
+      payment_method_title: 'PayPal Standard',
+      set_paid: true,
+      billing: customerData,
+      shipping: customerData,
+      line_items: lineItems,
+      shipping_lines: [],
+    };
+
+    try {
+      const res = await fetch('./api/createOrder', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (res.status === 200 || res.status === 201) {
+        router.push('/checkout/success');
+      } else {
+        router.push('/checkout/failure');
+      }
+    } catch (err) {
+      console.log('Error Frontend: ', err);
     }
   };
 
@@ -119,32 +182,40 @@ export default function Checkout() {
       <Grid item xs={12} className={classes.gridItem}>
         <p>Total: {total}</p>
       </Grid>
+      {processingOrder ? (
+        <div>
+          <img src={'/spinner.gif'} style={{ width: '200px', margin: 'auto', display: 'block' }} alt="Processing Order..." />
+        </div>
+      ) : (
+        <div>
+          <Grid item xs={12} className={classes.gridItem}>
+            <Typography variant="h4" component="h4">
+              Shipping Address
+            </Typography>
+            <TextField required id="name" label="First Name" variant="standard" className={classes.textField} onChange={handleFormChange('firstName')} />
+            <TextField required id="surname" label="Surname" variant="standard" className={classes.textField} onChange={handleFormChange('surname')} />
+            <TextField required id="addressLine1" label="Address Line 1" variant="standard" className={classes.textField} onChange={handleFormChange('address')} />
+            <TextField required id="city" label="City" variant="standard" className={classes.textField} onChange={handleFormChange('city')} />
+            <TextField required id="province" label="Province" variant="standard" className={classes.textField} onChange={handleFormChange('province')} />
+            <TextField required select id="country" label="Country" variant="standard" className={classes.textField} value="ZIM" onChange={handleFormChange('country')}>
+              <MenuItem value="ZIM">Zimbabwe</MenuItem>
+            </TextField>
+            <TextField required id="email" label="Email Address" variant="standard" className={classes.textField} onChange={handleFormChange('email')} />
+            <TextField required id="phoneNumber" label="Phone Number" variant="standard" className={classes.textField} onChange={handleFormChange('phoneNumber')} />
+          </Grid>
+          <Grid item xs={12} className={classes.gridItem}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Payment Method</FormLabel>
+              <RadioGroup aria-label="payment-method" name="payment-method" value={paymentMethod} onChange={handlePaymentChange}>
+                <FormControlLabel value="cash" control={<Radio />} label="Cash" />
+                <FormControlLabel value="paypal" control={<Radio />} label="Paypal" />
+              </RadioGroup>
+            </FormControl>
+          </Grid>
+        </div>
+      )}
       <Grid item xs={12} className={classes.gridItem}>
-        <Typography variant="h4" component="h4">
-          Shipping Address
-        </Typography>
-        <TextField required id="name" label="First Name" variant="standard" className={classes.textField} onChange={handleFormChange('firstName')} />
-        <TextField required id="surname" label="Surname" variant="standard" className={classes.textField} onChange={handleFormChange('surname')} />
-        <TextField required id="addressLine1" label="Address Line 1" variant="standard" className={classes.textField} onChange={handleFormChange('address')} />
-        <TextField required id="city" label="City" variant="standard" className={classes.textField} onChange={handleFormChange('city')} />
-        <TextField required id="province" label="Province" variant="standard" className={classes.textField} onChange={handleFormChange('province')} />
-        <TextField required select id="country" label="Country" variant="standard" className={classes.textField} value="ZIM" onChange={handleFormChange('country')}>
-          <MenuItem value="ZIM">Zimbabwe</MenuItem>
-        </TextField>
-        <TextField required id="email" label="Email Address" variant="standard" className={classes.textField} onChange={handleFormChange('email')} />
-        <TextField required id="phoneNumber" label="Phone Number" variant="standard" className={classes.textField} onChange={handleFormChange('phoneNumber')} />
-      </Grid>
-      <Grid item xs={12} className={classes.gridItem}>
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Payment Method</FormLabel>
-          <RadioGroup aria-label="payment-method" name="payment-method" value={paymentMethod} onChange={handlePaymentChange}>
-            <FormControlLabel value="cash" control={<Radio />} label="Cash" />
-            <FormControlLabel value="paypal" control={<Radio />} label="Paypal" />
-          </RadioGroup>
-        </FormControl>
-      </Grid>
-      <Grid item xs={12} className={classes.gridItem}>
-        {paymentMethod === 'cash' ? <Button onClick={submitCheckout}>Checkout</Button> : <PaypalButton paymentAmount={total} />}
+        {paymentMethod === 'cash' ? <Button onClick={submitCheckout}>Checkout</Button> : <PaypalButton paymentAmount={total} onSuccess={onSuccess} onProcess={onProcess} />}
       </Grid>
     </Grid>
   );

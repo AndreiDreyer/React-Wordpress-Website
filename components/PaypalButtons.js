@@ -69,6 +69,7 @@ class PaypalButton extends React.Component {
   };
 
   onApprove = (data, actions) => {
+    this.props.onProcess();
     actions.order.capture().then((details) => {
       console.log('Data: ', data);
       console.log('Details: ', details);
@@ -78,6 +79,8 @@ class PaypalButton extends React.Component {
       };
       console.log('Payment Approved: ', paymentData);
       this.setState({ showButtons: false, paid: true });
+
+      this.props.onSuccess();
     });
   };
 
