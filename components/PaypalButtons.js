@@ -54,7 +54,7 @@ class PaypalButton extends React.Component {
     return actions.order.create({
       purchase_units: [
         {
-          description: +'Mercedes G-Wagon',
+          description: 'Shop Order',
           amount: {
             currency_code: 'USD',
             value: this.props.paymentAmount,

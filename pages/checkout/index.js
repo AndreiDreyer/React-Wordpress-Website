@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 
 import { CartContext } from '../../src/contexts/CartContext';
 import PaypalButton from '../../components/PaypalButtons';
+import { getMenu } from '../../lib/api';
+import { fetchHelper } from '../../src/utils';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -16,7 +18,6 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
-import { getMenu } from '../../lib/api';
 import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) => ({
@@ -104,13 +105,7 @@ export default function Checkout() {
     }
 
     try {
-      const res = await fetch('./api/createOrder', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+      const res = await fetchHelper('./api/createOrder', 'POST', data);
 
       if (res.status === 200 || res.status === 201) {
         router.push('/checkout/success');
@@ -153,14 +148,7 @@ export default function Checkout() {
     };
 
     try {
-      const res = await fetch('./api/createOrder', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
+      const res = await fetchHelper('./api/createOrder', 'POST', data);
       if (res.status === 200 || res.status === 201) {
         router.push('/checkout/success');
       } else {
@@ -189,16 +177,24 @@ export default function Checkout() {
             <Typography variant="h4" component="h4">
               Shipping Address
             </Typography>
-            <TextField required id="name" label="First Name" variant="standard" className={classes.textField} onChange={handleFormChange('firstName')} />
-            <TextField required id="surname" label="Surname" variant="standard" className={classes.textField} onChange={handleFormChange('surname')} />
-            <TextField required id="addressLine1" label="Address Line 1" variant="standard" className={classes.textField} onChange={handleFormChange('address')} />
-            <TextField required id="city" label="City" variant="standard" className={classes.textField} onChange={handleFormChange('city')} />
-            <TextField required id="province" label="Province" variant="standard" className={classes.textField} onChange={handleFormChange('province')} />
-            <TextField required select id="country" label="Country" variant="standard" className={classes.textField} value="ZIM" onChange={handleFormChange('country')}>
+            <TextField required id="name" label="First Name" variant="standard" className={classes.textField} value={firstName} onChange={handleFormChange('firstName')} />
+            <TextField required id="surname" label="Surname" variant="standard" className={classes.textField} value={surname} onChange={handleFormChange('surname')} />
+            <TextField required id="addressLine1" label="Address Line 1" variant="standard" className={classes.textField} value={address} onChange={handleFormChange('address')} />
+            <TextField required id="city" label="City" variant="standard" className={classes.textField} value={city} onChange={handleFormChange('city')} />
+            <TextField required id="province" label="Province" variant="standard" className={classes.textField} value={province} onChange={handleFormChange('province')} />
+            <TextField required select id="country" label="Country" variant="standard" className={classes.textField} value={country} onChange={handleFormChange('country')}>
               <MenuItem value="ZIM">Zimbabwe</MenuItem>
             </TextField>
-            <TextField required id="email" label="Email Address" variant="standard" className={classes.textField} onChange={handleFormChange('email')} />
-            <TextField required id="phoneNumber" label="Phone Number" variant="standard" className={classes.textField} onChange={handleFormChange('phoneNumber')} />
+            <TextField required id="email" label="Email Address" variant="standard" className={classes.textField} value={email} onChange={handleFormChange('email')} />
+            <TextField
+              required
+              id="phoneNumber"
+              label="Phone Number"
+              variant="standard"
+              className={classes.textField}
+              value={phoneNumber}
+              onChange={handleFormChange('phoneNumber')}
+            />
           </Grid>
           <Grid item xs={12} className={classes.gridItem}>
             <FormControl component="fieldset">
