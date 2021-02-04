@@ -4,8 +4,8 @@ import scriptLoader from 'react-async-script-loader';
 import Spinner from './Spinner';
 
 const CLIENT = {
-  sandbox: 'AUsPuJjZe3gcSsc0U7mt_tCdRiCZresx96fiv1FNIoRukORqqWMVQs074sCdd41aSWqcp2mGzvp2HKbh',
-  production: 'AUsPuJjZe3gcSsc0U7mt_tCdRiCZresx96fiv1FNIoRukORqqWMVQs074sCdd41aSWqcp2mGzvp2HKbh',
+  sandbox: process.env.PAYPAL_SANDBOX,
+  production: process.env.PAYPAL_PRODUCTION,
 };
 
 const CLIENT_ID = process.env.NODE_ENV === 'production' ? CLIENT.production : CLIENT.sandbox;
