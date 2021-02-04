@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 
 import { CartContext } from '../../src/contexts/CartContext';
+import PaypalButton from '../../components/PaypalButtons';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -19,6 +20,7 @@ import Typography from '@material-ui/core/Typography';
 import InputLabel from '@material-ui/core/InputLabel';
 import { getMenu } from '../../lib/api';
 import { useRouter } from 'next/router';
+import PaypalButtons from '../../components/PaypalButtons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -142,7 +144,7 @@ export default function Checkout() {
         </FormControl>
       </Grid>
       <Grid item xs={12} className={classes.gridItem}>
-        <Button onClick={submitCheckout}>Checkout</Button>
+        {paymentMethod === 'cash' ? <Button onClick={submitCheckout}>Checkout</Button> : <PaypalButton paymentAmount={total} />}
       </Grid>
     </Grid>
   );

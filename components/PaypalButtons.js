@@ -1,26 +1,26 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import scriptLoader from "react-async-script-loader";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import scriptLoader from 'react-async-script-loader';
 // import Car from "/bowser1.jpg";
-import Spinner from "./Spinner";
+import Spinner from './Spinner';
 
 const CLIENT = {
-  sandbox:"AUsPuJjZe3gcSsc0U7mt_tCdRiCZresx96fiv1FNIoRukORqqWMVQs074sCdd41aSWqcp2mGzvp2HKbh",
-  production:"AUsPuJjZe3gcSsc0U7mt_tCdRiCZresx96fiv1FNIoRukORqqWMVQs074sCdd41aSWqcp2mGzvp2HKbh"
+  sandbox: 'AUsPuJjZe3gcSsc0U7mt_tCdRiCZresx96fiv1FNIoRukORqqWMVQs074sCdd41aSWqcp2mGzvp2HKbh',
+  production: 'AUsPuJjZe3gcSsc0U7mt_tCdRiCZresx96fiv1FNIoRukORqqWMVQs074sCdd41aSWqcp2mGzvp2HKbh',
 };
 
-const CLIENT_ID =
-  process.env.NODE_ENV === "production" ? CLIENT.production : CLIENT.sandbox;
+const CLIENT_ID = process.env.NODE_ENV === 'production' ? CLIENT.production : CLIENT.sandbox;
 
 let PayPalButton = null;
 class PaypalButton extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this.props.paymentAmount);
 
     this.state = {
       showButtons: false,
       loading: true,
-      paid: false
+      paid: false,
     };
 
     window.React = React;
@@ -31,7 +31,7 @@ class PaypalButton extends React.Component {
     const { isScriptLoaded, isScriptLoadSucceed } = this.props;
 
     if (isScriptLoaded && isScriptLoadSucceed) {
-      PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
+      PayPalButton = window.paypal.Buttons.driver('react', { React, ReactDOM });
       this.setState({ loading: false, showButtons: true });
     }
   }
@@ -39,14 +39,13 @@ class PaypalButton extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { isScriptLoaded, isScriptLoadSucceed } = nextProps;
 
-    const scriptJustLoaded =
-      !this.state.showButtons && !this.props.isScriptLoaded && isScriptLoaded;
+    const scriptJustLoaded = !this.state.showButtons && !this.props.isScriptLoaded && isScriptLoaded;
 
     if (scriptJustLoaded) {
       if (isScriptLoadSucceed) {
-        PayPalButton = window.paypal.Buttons.driver("react", {
+        PayPalButton = window.paypal.Buttons.driver('react', {
           React,
-          ReactDOM
+          ReactDOM,
         });
         this.setState({ loading: false, showButtons: true });
       }
@@ -56,23 +55,28 @@ class PaypalButton extends React.Component {
     return actions.order.create({
       purchase_units: [
         {
-          description: +"Mercedes G-Wagon",
+          description: +'Mercedes G-Wagon',
           amount: {
-            currency_code: "USD",
-            value: 200
-          }
-        }
-      ]
+            currency_code: 'USD',
+            value: this.props.paymentAmount,
+          },
+        },
+      ],
+      application_context: {
+        shipping_preference: 'NO_SHIPPING',
+      },
     });
   };
 
   onApprove = (data, actions) => {
-    actions.order.capture().then(details => {
+    actions.order.capture().then((details) => {
+      console.log('Data: ', data);
+      console.log('Details: ', details);
       const paymentData = {
         payerID: data.payerID,
-        orderID: data.orderID
+        orderID: data.orderID,
       };
-      console.log("Payment Approved: ", paymentData);
+      console.log('Payment Approved: ', paymentData);
       this.setState({ showButtons: false, paid: true });
     });
   };
@@ -84,33 +88,7 @@ class PaypalButton extends React.Component {
       <div className="main">
         {loading && <Spinner />}
 
-        {showButtons && (
-          <div>
-            <div>
-              <h2>Items: Mercedes G-Wagon</h2>
-              <h2>Total checkout Amount $200</h2>
-            </div>
-
-            <PayPalButton
-              createOrder={(data, actions) => this.createOrder(data, actions)}
-              onApprove={(data, actions) => this.onApprove(data, actions)}
-            />
-          </div>
-        )}
-
-        {paid && (
-          <div className="main">
-            <img alt="Mercedes G-Wagon" src={"/bowser1.jpg"} />
-            <h2>
-              Congrats! you just paid for that picture. Work a little harder and
-              you'll be able to afford the car itself{" "}
-              <span role="img" aria-label="emoji">
-                {" "}
-                😉
-              </span>
-            </h2>
-          </div>
-        )}
+        {showButtons && <PayPalButton createOrder={(data, actions) => this.createOrder(data, actions)} onApprove={(data, actions) => this.onApprove(data, actions)} />}
       </div>
     );
   }
