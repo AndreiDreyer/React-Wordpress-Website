@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import ImageList from '../../components/ImageList'
+import GridList from '../../components/GridList'
 import Link from 'next/link';
 import styles from '../../styles/Gallery.module.css';
 
@@ -14,11 +14,8 @@ function Gallery({menuItems}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navigation menuItems={menuItems} ></Navigation>
-      {/* <div className={styles.banner}>
-            <h1>The Gallery</h1>
-    </div> */}
     <div>
-    <ImageList>
+    <GridList>
     <div>
     <footer className={styles.footer}>
         <a
@@ -30,7 +27,7 @@ function Gallery({menuItems}) {
         </a>
       </footer>
     </div>
-    </ImageList>
+    </GridList>
     </div>
     </div>
   }
