@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ReCaptcha } from 'react-recaptcha-google'
+import scriptLoader from "react-async-script-loader";
 
 class ReCaptchaComp extends Component {
   constructor(props, context) {
@@ -32,6 +33,7 @@ class ReCaptchaComp extends Component {
             data-badge="inline"
             render="explicit"
             //Add the site key here 
+            sitekey="6Leyz0kaAAAAAMqFBfWfsjJE5y-Mlu1o1KQvjjp3"
             onloadCallback={this.onLoadRecaptcha}
             verifyCallback={this.verifyCallback}
         />
@@ -43,4 +45,6 @@ class ReCaptchaComp extends Component {
     );
   };
 };
-export default ReCaptchaComp;
+{/* <script src="https://www.google.com/recaptcha/api.js" async defer></script> */}
+// export default ReCaptchaComp;
+export default scriptLoader(`https://www.google.com/recaptcha/api.js`)(ReCaptchaComp);

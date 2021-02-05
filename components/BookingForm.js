@@ -34,19 +34,6 @@ export default function BookingForm() {
 
   const [dateTime, setDateTime] = useState(new Date());
 
-  const month = new Date().getUTCMonth() + 1;
-  const dateSt =
-    new Date().getFullYear() +
-    '-0' +
-    month +
-    '-0' +
-    new Date().getUTCDate() +
-    'T' +
-    new Date().getHours() +
-    ':' +
-    new Date().getMinutes();
-  var todaysDate = new Date().getUTCDate();
-
   const handleFormChange = (key) => (e) => {
     const { value } = e.target;
 
@@ -122,6 +109,7 @@ export default function BookingForm() {
             name="user_name"
             type="text"
             id="name"
+            value={name}
             onChange={handleFormChange('name')}
             required
           />
@@ -134,6 +122,7 @@ export default function BookingForm() {
             name="user_email"
             type="text"
             id="email"
+            value={email}
             onChange={handleFormChange('email')}
             required
           />
@@ -144,6 +133,7 @@ export default function BookingForm() {
           <input
             className="form-control email-inputs"
             name="user_location"
+            value={location}
             type="text"
             id="location"
             onChange={handleFormChange('location')}
@@ -155,8 +145,8 @@ export default function BookingForm() {
             id="datetime-local"
             label="Next appointment"
             type="datetime-local"
-            defaultValue={dateSt}
             className={classes.textField}
+            value={dateTime}
             InputLabelProps={{
               shrink: true,
             }}
@@ -168,6 +158,7 @@ export default function BookingForm() {
           <textarea
             id="message"
             name="message"
+            value={feedback}
             onChange={handleFormChange('feedback')}
             placeholder="Put your message here"
             required
