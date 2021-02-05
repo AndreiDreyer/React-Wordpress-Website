@@ -4,6 +4,7 @@ import { CartContext } from '../../src/contexts/CartContext';
 import PaypalButton from '../../components/PaypalButtons';
 import { getMenu } from '../../lib/api';
 import { fetchHelper } from '../../src/utils';
+import Form from '../../components/CheckoutForm';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -177,24 +178,7 @@ export default function Checkout() {
             <Typography variant="h4" component="h4">
               Shipping Address
             </Typography>
-            <TextField required id="name" label="First Name" variant="standard" className={classes.textField} value={firstName} onChange={handleFormChange('firstName')} />
-            <TextField required id="surname" label="Surname" variant="standard" className={classes.textField} value={surname} onChange={handleFormChange('surname')} />
-            <TextField required id="addressLine1" label="Address Line 1" variant="standard" className={classes.textField} value={address} onChange={handleFormChange('address')} />
-            <TextField required id="city" label="City" variant="standard" className={classes.textField} value={city} onChange={handleFormChange('city')} />
-            <TextField required id="province" label="Province" variant="standard" className={classes.textField} value={province} onChange={handleFormChange('province')} />
-            <TextField required select id="country" label="Country" variant="standard" className={classes.textField} value={country} onChange={handleFormChange('country')}>
-              <MenuItem value="ZIM">Zimbabwe</MenuItem>
-            </TextField>
-            <TextField required id="email" label="Email Address" variant="standard" className={classes.textField} value={email} onChange={handleFormChange('email')} />
-            <TextField
-              required
-              id="phoneNumber"
-              label="Phone Number"
-              variant="standard"
-              className={classes.textField}
-              value={phoneNumber}
-              onChange={handleFormChange('phoneNumber')}
-            />
+            <Form amount={total} />
           </Grid>
           <Grid item xs={12} className={classes.gridItem}>
             <FormControl component="fieldset">
