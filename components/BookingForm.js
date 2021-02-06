@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import emailjs from 'emailjs-com';
 
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 import TextField from '@material-ui/core/TextField';
-import ReCaptchaComp from '../components/ReCaptchaComp'
+import ReCaptchaComp from '../components/ReCaptchaComp';
 const useStyles = makeStyles((theme) => ({
   textField: {
     marginLeft: theme.spacing(1),
@@ -30,6 +33,42 @@ export default function BookingForm() {
 
   const [{ feedback, name, email, location }, setEmailInformation] = useState({
     feedback: 'Hi I would like to enquire about a booking.',
+  });
+
+  const { values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit, handleReset, isValid, dirty } = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      location: '',
+      dateTime: new Date(),
+      feedback: '',
+    },
+
+    validationSchema: Yup.object().shape({
+      name: Yup.string().required('Please enter your name'),
+      email: Yup.string().email('Please enter a valid email').required('Please enter your email'),
+      location: Yup.string().required('Please enter your location'),
+      dateTime: Yup.date().required('Please enter a booking date'),
+      feedback: Yup.string().required('Please enter a message'),
+    }),
+
+    onSubmit: (values, { setSubmitting }) => {
+      const templateId = 'template_vz2845l';
+
+      console.log(dateTime);
+
+      //This is a custom method from EmailJS that takes the information
+      //from the form and sends the email with the information gathered
+      //and formats the email based on the templateID provided.
+
+      sendFeedback(templateId, {
+        message: values.feedback,
+        from_name: values.name,
+        reply_to: values.email,
+        location: values.location,
+        dateTime: values.dateTime,
+      });
+    },
   });
 
   const [dateTime, setDateTime] = useState(new Date());
@@ -62,7 +101,7 @@ export default function BookingForm() {
     //and formats the email based on the templateID provided.
 
     sendFeedback(templateId, {
-      message: 'Location: '+location+'\n'+'Date and Time: '+dateTime+'\n'+'Email: '+email+' \n'+feedback,
+      message: 'Location: ' + location + '\n' + 'Date and Time: ' + dateTime + '\n' + 'Email: ' + email + ' \n' + feedback,
       from_name: name,
       reply_to: email,
       location: location,
@@ -73,12 +112,7 @@ export default function BookingForm() {
   //Custom EmailJS method
   const sendFeedback = (templateId, variables) => {
     emailjs
-      .send(
-        'service_g4avd9d',
-        templateId,
-        variables,
-        'user_lC9vwp5sWdhMgCMhLtIsK',
-      )
+      .send('service_g4avd9d', templateId, variables, 'user_lC9vwp5sWdhMgCMhLtIsK')
       .then((res) => {
         // Email successfully sent alert
         Swal.fire({
@@ -104,74 +138,55 @@ export default function BookingForm() {
         <h6>You can also send me an email directly from here</h6>
         <div>
           <label htmlFor="name">Name</label>
-          <input
-            className="form-control email-inputs"
-            name="user_name"
-            type="text"
-            id="name"
-            value={name}
-            onChange={handleFormChange('name')}
-            required
-          />
+          <input className="form-control email-inputs" name="name" type="text" id="name" value={values.name} onChange={handleChange} onBlur={handleBlur} required />
         </div>
 
         <div>
           <label htmlFor="email">Email</label>
-          <input
-            className="form-control email-inputs"
-            name="user_email"
-            type="text"
-            id="email"
-            value={email}
-            onChange={handleFormChange('email')}
-            required
-          />
+          <input className="form-control email-inputs" name="email" type="text" id="email" value={values.email} onChange={handleChange} onBlur={handleBlur} required />
         </div>
 
         <div>
           <label htmlFor="location">Location of Shoot</label>
-          <input
-            className="form-control email-inputs"
-            name="user_location"
-            value={location}
-            type="text"
-            id="location"
-            onChange={handleFormChange('location')}
-            required
-          />
+          <input className="form-control email-inputs" name="location" value={values.location} type="text" id="location" onChange={handleChange} onBlur={handleBlur} required />
         </div>
         <div>
           <TextField
-            id="datetime-local"
+            id="dateTime"
             label="Next appointment"
             type="datetime-local"
+            name="dateTime"
             className={classes.textField}
-            value={dateTime}
+            value={values.dateTime}
             InputLabelProps={{
               shrink: true,
             }}
-            onChange={handleDate}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
         </div>
         <label htmlFor="message">Message</label>
         <div>
           <textarea
-            id="message"
-            name="message"
-            value={feedback}
-            onChange={handleFormChange('feedback')}
+            id="feedback"
+            name="feedback"
+            value={values.feedback}
+            onChange={handleChange}
             placeholder="Put your message here"
             required
             className="email-text-area form-control"
             rows="15"
             cols="20"
+            onBlur={handleBlur}
           />
         </div>
-      <div>
-        <ReCaptchaComp></ReCaptchaComp>
+        <div>
+          <ReCaptchaComp></ReCaptchaComp>
+        </div>
       </div>
-      </div>
-      <button type="submit" value="Submit" className="btn btn-outline-light">Send Mail</button>
+      <button type="submit" value="Submit" className="btn btn-outline-light">
+        Send Mail
+      </button>
     </form>
   );
 }
