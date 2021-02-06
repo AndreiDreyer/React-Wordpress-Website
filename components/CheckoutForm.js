@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Formik, withFormik } from 'formik';
+import { Formik, useFormik, withFormik } from 'formik';
 import * as Yup from 'yup';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { CartContext } from '../src/contexts/CartContext';
 
 import PaypalButton from './PaypalButtons';
+import { useRouter } from 'next/router';
 
 const useStyles = () => ({
   root: {
@@ -24,12 +25,44 @@ const useStyles = () => ({
     marginTop: '1rem',
   },
 });
+
 const form = (props) => {
-  const { classes, values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit, handleReset } = props;
+  const router = useRouter();
+  const { classes } = props;
+  const { values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit, handleReset, isValid, } = useFormik({
+    initialValues: {
+      firstName: '',
+      surname: '',
+      addressLine1: '',
+      city: '',
+      province: '',
+      country: '',
+      email: '',
+      phoneNumber: '',
+    },
+
+    validationSchema: Yup.object().shape({
+      firstName: Yup.string().required('Required'),
+      surname: Yup.string().required('Required'),
+      addressLine1: Yup.string().required('Required'),
+      city: Yup.string().required('Required'),
+      province: Yup.string().required('Required'),
+      country: Yup.string().required('Required'),
+      email: Yup.string().email('Enter a valid Email').required('Required'),
+      phoneNumber: Yup.number().required('Required'),
+    }),
+
+    handleSubmit: async (values, { setSubmitting }) => {
+      // TODO:  you can call useRouter here, because it's in scope
+      router.push('/');
+      console.log('Submitting');
+      console.log(values);
+    }
+  })
 
   const { total } = useContext(CartContext);
 
-  const onSuccess = () => {};
+  const onSuccess = () => { };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -141,15 +174,15 @@ const form = (props) => {
         helperText={touched.phoneNumber ? errors.phoneNumber : ''}
         error={touched.phoneNumber && Boolean(errors.phoneNumber)}
       />
-      {Form.isValid ? (
+      {isValid ? (
         <div>
           <p>Valid Form</p>
         </div>
       ) : (
-        <div>
-          <p>Invalid Form</p>
-        </div>
-      )}
+          <div>
+            <p>Invalid Form</p>
+          </div>
+        )}
       <Button type="submit" color="primary">
         Checkout
       </Button>
@@ -158,35 +191,4 @@ const form = (props) => {
   );
 };
 
-const Form = withFormik({
-  mapPropsToValues: ({ firstName, surname, addressLine1, city, province, country, email, phoneNumber }) => {
-    return {
-      firstName: firstName || '',
-      surname: surname || '',
-      addressLine1: addressLine1 || '',
-      city: city || '',
-      province: province || '',
-      country: country || '',
-      email: email || '',
-      phoneNumber: phoneNumber || '',
-    };
-  },
-
-  validationSchema: Yup.object().shape({
-    firstName: Yup.string().required('Required'),
-    surname: Yup.string().required('Required'),
-    addressLine1: Yup.string().required('Required'),
-    city: Yup.string().required('Required'),
-    province: Yup.string().required('Required'),
-    country: Yup.string().required('Required'),
-    email: Yup.string().email('Enter a valid Email').required('Required'),
-    phoneNumber: Yup.number().required('Required'),
-  }),
-
-  handleSubmit: (values, { setSubmitting }) => {
-    console.log('Submitting');
-    console.log(values);
-  },
-})(form);
-
-export default withStyles(useStyles)(Form);
+export default withStyles(useStyles)(form);
