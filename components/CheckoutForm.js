@@ -141,13 +141,13 @@ const form = (props) => {
         helperText={touched.phoneNumber ? errors.phoneNumber : ''}
         error={touched.phoneNumber && Boolean(errors.phoneNumber)}
       />
-      {!(Form.dirty && Form.isValid) ? (
+      {Form.isValid ? (
         <div>
-          <p>dirty</p>
+          <p>Valid Form</p>
         </div>
       ) : (
         <div>
-          <p>Not dirty</p>
+          <p>Invalid Form</p>
         </div>
       )}
       <Button type="submit" color="primary">
