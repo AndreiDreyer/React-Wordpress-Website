@@ -17,14 +17,6 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 
-// TO be removed
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
-
-import StarBorder from '@material-ui/icons/StarBorder';
-import { VerticalAlignBottom } from '@material-ui/icons';
-
 const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
