@@ -21,14 +21,13 @@ class PaypalButton extends React.Component {
       loading: true,
       paid: false,
     };
-
-    window.React = React;
-    window.ReactDOM = ReactDOM;
   }
 
   componentDidMount() {
     const { isScriptLoaded, isScriptLoadSucceed } = this.props;
 
+    window.React = React;
+    window.ReactDOM = ReactDOM;
     if (isScriptLoaded && isScriptLoadSucceed) {
       PayPalButton = window.paypal.Buttons.driver('react', { React, ReactDOM });
       this.setState({ loading: false, showButtons: true });
