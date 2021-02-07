@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'block',
     maxWidth: 300,
+    marginRight: 0,
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -57,6 +58,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'block',
     flexDirection: 'column',
     textDecoration: 'none',
+  },
+  toolbarStyle: {
+    width: 250,
   },
   nested: {
     paddingLeft: theme.spacing(4),
@@ -140,9 +144,9 @@ export default function Navigation(props) {
   const container = window !== undefined ? () => window.document.body : undefined;
 
   return (
-    <div>
+    <div className={classes.root}>
       <CssBaseline />
-      <Toolbar>
+      <Toolbar className={classes.toolbarStyle}>
         <IconButton color="inherit" aria-label="open drawer" edge="start" onClick={handleDrawerToggle} className={classes.menuButton}>
           <MenuIcon fontSize="large" />
         </IconButton>
