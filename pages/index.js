@@ -8,7 +8,7 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 
 import { Grid } from '@material-ui/core';
-import { getMenu } from '../lib/api';
+import { getMenu, getBackgroundImages } from '../lib/api';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -30,9 +30,10 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Home({ menuItems }) {
+export default function Home({ menuItems, backgroundImageSrcs }) {
   const classes = useStyles();
 
+  console.log('Background: ', backgroundImageSrcs);
   return (
     <Grid container spacing={0} direction="row" className={classes.menuGrid}>
       <Head>
@@ -44,12 +45,9 @@ export default function Home({ menuItems }) {
       <Navigation menuItems={menuItems} />
       <div className={classes.rotatingImages}>
         <Carousel navButtonsAlwaysInvisible={true} indicators={false}>
-          <Paper>
-            <p>Hello from the otherside</p>
-          </Paper>
-          <Paper>
-            <p>Why</p>
-          </Paper>
+          {backgroundImageSrcs.map((image) => (
+            <img src={image} />
+          ))}
         </Carousel>
       </div>
     </Grid>
@@ -58,9 +56,26 @@ export default function Home({ menuItems }) {
 
 export async function getStaticProps() {
   const menuItems = await getMenu();
+  const backgroundImages = await getBackgroundImages();
+  const backgroundImageSrcs = getSrcs(backgroundImages);
   return {
     props: {
       menuItems,
+      backgroundImageSrcs,
     },
   };
+}
+
+function getSrcs(imageHtml) {
+  console.log('Image html', typeof imageHtml);
+  let m;
+  let urls = [];
+  const regexPattern = /<img[^>]+src="(https:\/\/([^">]+))/g;
+
+  while ((m = regexPattern.exec(imageHtml))) {
+    console.log('rawr');
+    urls.push(m[1]);
+  }
+
+  return urls;
 }
