@@ -23,15 +23,29 @@ const useStyles = makeStyles({
     marginRight: 10,
   },
   menuGrid: {
-    height: '100vh',
+    height: '100%',
+    width: '100%',
     margin: 0,
   },
-  rotatingImages: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    height: '100vh',
-    width: '100vw',
+  rotatingImagesContainer: {
+    height: '100%',
+    width: '100%',
   },
+  rotatingImages: {
+    objectFit: 'cover',
+    height: '100%',
+    width: '100%',
+  },
+  carouselContainer: {
+    width: '100%',
+    height: '100%',
+    '& .CarouselItem': {
+      height: '100%',
+      '& div': {
+        height: '100%',
+      }
+    }
+  }
 });
 
 export default function Home({ menuItems, backgroundImageSrcs }) {
@@ -39,19 +53,19 @@ export default function Home({ menuItems, backgroundImageSrcs }) {
 
   console.log('Background: ', backgroundImageSrcs);
   return (
-    <Grid container spacing={0} direction="column" className={classes.menuGrid}>
+    <div className={classes.menuGrid}>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
         <script src="https://www.paypal.com/sdk/js?client-id=AUsPuJjZe3gcSsc0U7mt_tCdRiCZresx96fiv1FNIoRukORqqWMVQs074sCdd41aSWqcp2mGzvp2HKbh&currency=USD"></script>
       </Head>
-      <Grid item container>
-        <Grid item>
+      <Grid container className={classes.menuGrid}>
+        {/* <Grid item>
           <Navigation menuItems={menuItems} />
-        </Grid>
-        <Grid item>
-          <div className={classes.rotatingImages}>
-            <Carousel navButtonsAlwaysInvisible={true} indicators={false}>
+        </Grid> */}
+        <Grid item className={classes.menuGrid}>
+          <div className={classes.rotatingImagesContainer}>
+            <Carousel className={classes.carouselContainer} autoPlay={false} navButtonsAlwaysInvisible={true} indicators={false}>
               {backgroundImageSrcs.map((image) => (
                 <img key={image} src={image} className={classes.rotatingImages} />
               ))}
@@ -59,7 +73,7 @@ export default function Home({ menuItems, backgroundImageSrcs }) {
           </div>
         </Grid>
       </Grid>
-    </Grid>
+    </div>
   );
 }
 
