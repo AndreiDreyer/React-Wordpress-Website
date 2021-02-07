@@ -8,7 +8,9 @@ import * as Yup from 'yup';
 import { makeStyles } from '@material-ui/core/styles';
 
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import ReCaptchaComp from '../components/ReCaptchaComp';
+
 const useStyles = makeStyles((theme) => ({
   textField: {
     marginLeft: theme.spacing(1),
@@ -23,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     alignContent: 'center',
     height: '100%',
+    marginLeft: '2rem',
     //   overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
   },
@@ -88,26 +91,26 @@ export default function BookingForm() {
   };
 
   //onSubmit of email form
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
 
-    //This templateId is created in EmailJS.com
-    const templateId = 'template_vz2845l';
+  //   //This templateId is created in EmailJS.com
+  //   const templateId = 'template_vz2845l';
 
-    console.log(dateTime);
+  //   console.log(dateTime);
 
-    //This is a custom method from EmailJS that takes the information
-    //from the form and sends the email with the information gathered
-    //and formats the email based on the templateID provided.
+  //   //This is a custom method from EmailJS that takes the information
+  //   //from the form and sends the email with the information gathered
+  //   //and formats the email based on the templateID provided.
 
-    sendFeedback(templateId, {
-      message: 'Location: ' + location + '\n' + 'Date and Time: ' + dateTime + '\n' + 'Email: ' + email + ' \n' + feedback,
-      from_name: name,
-      reply_to: email,
-      location: location,
-      dateTime: dateTime,
-    });
-  };
+  //   sendFeedback(templateId, {
+  //     message: 'Location: ' + location + '\n' + 'Date and Time: ' + dateTime + '\n' + 'Email: ' + email + ' \n' + feedback,
+  //     from_name: name,
+  //     reply_to: email,
+  //     location: location,
+  //     dateTime: dateTime,
+  //   });
+  // };
 
   //Custom EmailJS method
   const sendFeedback = (templateId, variables) => {
@@ -136,57 +139,81 @@ export default function BookingForm() {
       <br />
       <div style={{ fontSize: '1.2rem' }}>
         <h6>You can also send me an email directly from here</h6>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input className="form-control email-inputs" name="name" type="text" id="name" value={values.name} onChange={handleChange} onBlur={handleBlur} required />
-        </div>
+        <TextField
+          name="name"
+          id="name"
+          value={values.name}
+          className={classes.textField}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          label="Name"
+          variant="standard"
+          helperText={touched.name ? errors.name : ''}
+          error={touched.name && Boolean(errors.name)}
+        />
 
-        <div>
-          <label htmlFor="email">Email</label>
-          <input className="form-control email-inputs" name="email" type="text" id="email" value={values.email} onChange={handleChange} onBlur={handleBlur} required />
-        </div>
+        <TextField
+          required
+          name="email"
+          id="email"
+          variant="standard"
+          label="Email"
+          className={classes.textField}
+          value={values.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          helperText={touched.email ? errors.email : ''}
+          error={touched.email && Boolean(errors.email)}
+        />
 
-        <div>
-          <label htmlFor="location">Location of Shoot</label>
-          <input className="form-control email-inputs" name="location" value={values.location} type="text" id="location" onChange={handleChange} onBlur={handleBlur} required />
-        </div>
-        <div>
-          <TextField
-            id="dateTime"
-            label="Next appointment"
-            type="datetime-local"
-            name="dateTime"
-            className={classes.textField}
-            value={values.dateTime}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-        </div>
-        <label htmlFor="message">Message</label>
-        <div>
-          <textarea
-            id="feedback"
-            name="feedback"
-            value={values.feedback}
-            onChange={handleChange}
-            placeholder="Put your message here"
-            required
-            className="email-text-area form-control"
-            rows="15"
-            cols="20"
-            onBlur={handleBlur}
-          />
-        </div>
+        <TextField
+          required
+          name="location"
+          id="location"
+          variant="standard"
+          label="Location of Shoot"
+          className={classes.textField}
+          value={values.location}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          helperText={touched.location ? errors.location : ''}
+          error={touched.location && Boolean(errors.location)}
+        />
+
+        <TextField
+          required
+          id="dateTime"
+          label="Next appointment"
+          type="datetime-local"
+          name="dateTime"
+          className={classes.textField}
+          value={values.dateTime}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <TextField
+          required
+          multiline
+          id="feedback"
+          name="feedback"
+          variant="standard"
+          label="Message"
+          value={values.feedback}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          helperText={touched.feedback ? errors.feedback : ''}
+          error={touched.feedback && Boolean(errors.feedback)}
+        />
         <div>
           <ReCaptchaComp></ReCaptchaComp>
         </div>
       </div>
-      <button type="submit" value="Submit" className="btn btn-outline-light">
+      <Button type="submit" color="primary">
         Send Mail
-      </button>
+      </Button>
     </form>
   );
 }

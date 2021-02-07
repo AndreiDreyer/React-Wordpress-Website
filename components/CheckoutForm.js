@@ -281,6 +281,4 @@ const form = (props) => {
   );
 };
 
-async function createOrder(values) {}
-
 export default withStyles(useStyles)(form);
