@@ -138,11 +138,11 @@ export default function Navigation(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Toolbar className={classes.toolbarStyle}>
+      {/* <Toolbar className={classes.toolbarStyle}>
         <IconButton color="inherit" aria-label="open drawer" edge="start" onClick={handleDrawerToggle} className={classes.menuButton}>
           <MenuIcon fontSize="large" />
         </IconButton>
-      </Toolbar>
+      </Toolbar> */}
       <nav className={classes.drawer} aria-label="navigation menu">
         <Hidden smUp implementation="css">
           <Drawer

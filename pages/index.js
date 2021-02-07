@@ -60,9 +60,9 @@ export default function Home({ menuItems, backgroundImageSrcs }) {
         <script src="https://www.paypal.com/sdk/js?client-id=AUsPuJjZe3gcSsc0U7mt_tCdRiCZresx96fiv1FNIoRukORqqWMVQs074sCdd41aSWqcp2mGzvp2HKbh&currency=USD"></script>
       </Head>
       <Grid container className={classes.menuGrid}>
-        {/* <Grid item>
+        <Grid item>
           <Navigation menuItems={menuItems} />
-        </Grid> */}
+        </Grid>
         <Grid item className={classes.menuGrid}>
           <div className={classes.rotatingImagesContainer}>
             <Carousel className={classes.carouselContainer} autoPlay={false} navButtonsAlwaysInvisible={true} indicators={false}>
