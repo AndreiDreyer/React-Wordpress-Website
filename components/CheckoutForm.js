@@ -96,14 +96,14 @@ const form = (props) => {
     },
 
     validationSchema: Yup.object().shape({
-      firstName: Yup.string().required('Required'),
-      surname: Yup.string().required('Required'),
-      addressLine1: Yup.string().required('Required'),
-      city: Yup.string().required('Required'),
-      province: Yup.string().required('Required'),
-      country: Yup.string().required('Required'),
-      email: Yup.string().email('Enter a valid Email').required('Required'),
-      phoneNumber: Yup.number().required('Required'),
+      firstName: Yup.string().required('Please enter your first name'),
+      surname: Yup.string().required('Please enter your surname'),
+      addressLine1: Yup.string().required('Please enter your address'),
+      city: Yup.string().required('Please enter your city'),
+      province: Yup.string().required('Please enter your province'),
+      country: Yup.string().required('Please select your country'),
+      email: Yup.string().email('Enter a valid Email').required('Please enter your email'),
+      phoneNumber: Yup.number().required('Please enter your phone number'),
     }),
 
     onSubmit: async (values, { setSubmitting }) => {
@@ -163,7 +163,7 @@ const form = (props) => {
           onChange={handleChange}
           onBlur={handleBlur}
           helperText={touched.firstName ? errors.firstName : ''}
-          error={touched.firstName && Boolean(errors.firstName)}
+          error={touched.firstName && !!errors.firstName}
         />
         <TextField
           required
@@ -176,7 +176,7 @@ const form = (props) => {
           onChange={handleChange}
           onBlur={handleBlur}
           helperText={touched.surname ? errors.surname : ''}
-          error={touched.surname && Boolean(errors.surname)}
+          error={touched.surname && !!errors.surname}
         />
         <TextField
           required
@@ -189,7 +189,7 @@ const form = (props) => {
           onChange={handleChange}
           onBlur={handleBlur}
           helperText={touched.addressLine1 ? errors.addressLine1 : ''}
-          error={touched.addressLine1 && Boolean(errors.addressLine1)}
+          error={touched.addressLine1 && !!errors.addressLine1}
         />
         <TextField
           required
@@ -202,7 +202,7 @@ const form = (props) => {
           onChange={handleChange}
           onBlur={handleBlur}
           helperText={touched.city ? errors.city : ''}
-          error={touched.city && Boolean(errors.city)}
+          error={touched.city && !!errors.city}
         />
         <TextField
           required
@@ -215,7 +215,7 @@ const form = (props) => {
           onChange={handleChange}
           onBlur={handleBlur}
           helperText={touched.province ? errors.province : ''}
-          error={touched.province && Boolean(errors.province)}
+          error={touched.province && !!errors.province}
         />
         <TextField
           required
@@ -229,7 +229,7 @@ const form = (props) => {
           onChange={handleChange}
           onBlur={handleBlur}
           helperText={touched.country ? errors.country : ''}
-          error={touched.country && Boolean(errors.country)}
+          error={touched.country && !!errors.country}
         >
           <MenuItem value="ZIM">Zimbabwe</MenuItem>
         </TextField>
@@ -245,7 +245,7 @@ const form = (props) => {
           onChange={handleChange}
           onBlur={handleBlur}
           helperText={touched.email ? errors.email : ''}
-          error={touched.email && Boolean(errors.email)}
+          error={touched.email && !!errors.email}
         />
         <TextField
           required
@@ -258,7 +258,7 @@ const form = (props) => {
           onChange={handleChange}
           onBlur={handleBlur}
           helperText={touched.phoneNumber ? errors.phoneNumber : ''}
-          error={touched.phoneNumber && Boolean(errors.phoneNumber)}
+          error={touched.phoneNumber && !!errors.phoneNumber}
         />
         {isValid && dirty ? (
           <div>

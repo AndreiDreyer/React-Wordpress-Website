@@ -31,12 +31,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const BOOKING_TEMPLATE_ID = process.env.BOOKING_TEMPLATE_ID;
+const EMAILJS_SERVICE_ID = process.env.EMAILJS_SERVICE_ID;
+const EMAILJS_USER_ID = process.env.EMAILJS_USER_ID;
+
 export default function BookingForm() {
   const classes = useStyles();
-
-  const [{ feedback, name, email, location }, setEmailInformation] = useState({
-    feedback: 'Hi I would like to enquire about a booking.',
-  });
 
   const { values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit, handleReset, isValid, dirty } = useFormik({
     initialValues: {
@@ -56,7 +56,7 @@ export default function BookingForm() {
     }),
 
     onSubmit: (values, { setSubmitting }) => {
-      const templateId = 'template_vz2845l';
+      const templateId = BOOKING_TEMPLATE_ID;
 
       console.log(dateTime);
 
@@ -74,48 +74,10 @@ export default function BookingForm() {
     },
   });
 
-  const [dateTime, setDateTime] = useState(new Date());
-
-  const handleFormChange = (key) => (e) => {
-    const { value } = e.target;
-
-    setEmailInformation((old) => ({
-      ...old,
-      [key]: value,
-    }));
-  };
-
-  const handleDate = (e) => {
-    console.log('The method was called successfully!!!!!');
-    setDateTime(e.target.value);
-  };
-
-  //onSubmit of email form
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-
-  //   //This templateId is created in EmailJS.com
-  //   const templateId = 'template_vz2845l';
-
-  //   console.log(dateTime);
-
-  //   //This is a custom method from EmailJS that takes the information
-  //   //from the form and sends the email with the information gathered
-  //   //and formats the email based on the templateID provided.
-
-  //   sendFeedback(templateId, {
-  //     message: 'Location: ' + location + '\n' + 'Date and Time: ' + dateTime + '\n' + 'Email: ' + email + ' \n' + feedback,
-  //     from_name: name,
-  //     reply_to: email,
-  //     location: location,
-  //     dateTime: dateTime,
-  //   });
-  // };
-
   //Custom EmailJS method
   const sendFeedback = (templateId, variables) => {
     emailjs
-      .send('service_g4avd9d', templateId, variables, 'user_lC9vwp5sWdhMgCMhLtIsK')
+      .send(EMAILJS_SERVICE_ID, templateId, variables, EMAILJS_USER_ID)
       .then((res) => {
         // Email successfully sent alert
         Swal.fire({
@@ -149,7 +111,7 @@ export default function BookingForm() {
           label="Name"
           variant="standard"
           helperText={touched.name ? errors.name : ''}
-          error={touched.name && Boolean(errors.name)}
+          error={touched.name && !!errors.name}
         />
 
         <TextField
@@ -163,7 +125,7 @@ export default function BookingForm() {
           onChange={handleChange}
           onBlur={handleBlur}
           helperText={touched.email ? errors.email : ''}
-          error={touched.email && Boolean(errors.email)}
+          error={touched.email && !!errors.email}
         />
 
         <TextField
@@ -177,7 +139,7 @@ export default function BookingForm() {
           onChange={handleChange}
           onBlur={handleBlur}
           helperText={touched.location ? errors.location : ''}
-          error={touched.location && Boolean(errors.location)}
+          error={touched.location && !!errors.location}
         />
 
         <TextField
@@ -205,7 +167,7 @@ export default function BookingForm() {
           onChange={handleChange}
           onBlur={handleBlur}
           helperText={touched.feedback ? errors.feedback : ''}
-          error={touched.feedback && Boolean(errors.feedback)}
+          error={touched.feedback && !!errors.feedback}
         />
         <div>
           <ReCaptchaComp></ReCaptchaComp>
