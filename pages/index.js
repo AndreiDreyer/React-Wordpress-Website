@@ -1,11 +1,8 @@
 import React from 'react';
-import { Hidden, Paper } from '@material-ui/core';
 
 import Navigation from '../components/Navigation';
 
 import Head from 'next/head';
-import Link from 'next/link';
-import styles from '../styles/Home.module.css';
 
 import { Grid } from '@material-ui/core';
 import { getMenu, getBackgroundImages } from '../lib/api';
@@ -15,6 +12,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Carousel from 'react-material-ui-carousel';
 
 const useStyles = makeStyles({
+  grow: {
+    flexGrow: 1,
+  },
   appBar: {
     background: 'transparent',
     boxShadow: 'none',
@@ -26,6 +26,7 @@ const useStyles = makeStyles({
     height: '100%',
     width: '100%',
     margin: 0,
+    backgroundColor: '#F9F3DE',
   },
   rotatingImagesContainer: {
     height: '100%',
@@ -43,15 +44,14 @@ const useStyles = makeStyles({
       height: '100%',
       '& div': {
         height: '100%',
-      }
-    }
-  }
+      },
+    },
+  },
 });
 
 export default function Home({ menuItems, backgroundImageSrcs }) {
   const classes = useStyles();
 
-  console.log('Background: ', backgroundImageSrcs);
   return (
     <div className={classes.menuGrid}>
       <Head>
