@@ -10,24 +10,35 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ReCaptchaComp from '../components/ReCaptchaComp';
+import { ColorLensOutlined } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
+    marginTop: '2rem',
+    // marginLeft: theme.spacing(1),
+    // marginRight: theme.spacing(1),
+    width: 500,
   },
   root: {
     display: 'flex',
     flexDirection: 'column',
-    flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
-    height: '100%',
-    marginLeft: '2rem',
-    //   overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
+    height: 900,
+  },
+  cComp: {
+    marginTop: '2rem',
+  },
+  button: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    marginTop: '2rem',
   },
 }));
 
@@ -99,81 +110,88 @@ export default function BookingForm() {
     //Form layout that requires a Name, Email, and message
     <form className={classes.root} onSubmit={handleSubmit}>
       <br />
-      <div style={{ fontSize: '1.2rem' }}>
-        <h6>You can also send me an email directly from here</h6>
-        <TextField
-          name="name"
-          id="name"
-          value={values.name}
-          className={classes.textField}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          label="Name"
-          variant="standard"
-          helperText={touched.name ? errors.name : ''}
-          error={touched.name && !!errors.name}
-        />
-
-        <TextField
-          required
-          name="email"
-          id="email"
-          variant="standard"
-          label="Email"
-          className={classes.textField}
-          value={values.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          helperText={touched.email ? errors.email : ''}
-          error={touched.email && !!errors.email}
-        />
-
-        <TextField
-          required
-          name="location"
-          id="location"
-          variant="standard"
-          label="Location of Shoot"
-          className={classes.textField}
-          value={values.location}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          helperText={touched.location ? errors.location : ''}
-          error={touched.location && !!errors.location}
-        />
-
-        <TextField
-          required
-          id="dateTime"
-          label="Next appointment"
-          type="datetime-local"
-          name="dateTime"
-          className={classes.textField}
-          value={values.dateTime}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        <TextField
-          required
-          multiline
-          id="feedback"
-          name="feedback"
-          variant="standard"
-          label="Message"
-          value={values.feedback}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          helperText={touched.feedback ? errors.feedback : ''}
-          error={touched.feedback && !!errors.feedback}
-        />
+      <div style={{ fontSize: '1.3rem' }}>
+        <h6>Book a shoot by simply filling in the following form and we will get in contact with you</h6>
         <div>
+          <TextField
+            name="name"
+            id="name"
+            value={values.name}
+            className={classes.textField}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            label="Name"
+            variant="standard"
+            helperText={touched.name ? errors.name : ''}
+            error={touched.name && !!errors.name}
+          />
+        </div>
+        <div>
+          <TextField
+            required
+            name="email"
+            id="email"
+            variant="standard"
+            label="Email"
+            className={classes.textField}
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            helperText={touched.email ? errors.email : ''}
+            error={touched.email && !!errors.email}
+          />
+        </div>
+        <div>
+          <TextField
+            required
+            name="location"
+            id="location"
+            variant="standard"
+            label="Location of Shoot"
+            className={classes.textField}
+            value={values.location}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            helperText={touched.location ? errors.location : ''}
+            error={touched.location && !!errors.location}
+          />
+        </div>
+        <div>
+          <TextField
+            required
+            id="dateTime"
+            label="Next appointment"
+            type="datetime-local"
+            name="dateTime"
+            className={classes.textField}
+            value={values.dateTime}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+        </div>
+        <div>
+          <TextField
+            required
+            multiline
+            id="feedback"
+            name="feedback"
+            variant="standard"
+            label="Message"
+            value={values.feedback}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            helperText={touched.feedback ? errors.feedback : ''}
+            error={touched.feedback && !!errors.feedback}
+          />
+        </div>
+        <div className={classes.cComp}>
           <ReCaptchaComp></ReCaptchaComp>
         </div>
       </div>
-      <Button type="submit" color="primary">
+      <Button className={classes.button} type="submit" color="primary">
         Send Mail
       </Button>
     </form>

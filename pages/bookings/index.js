@@ -1,29 +1,30 @@
 import Head from 'next/head';
-import Link from 'next/link';
-import styles from '../../styles/Gallery.module.css';
 
 import { getMenu } from '../../lib/api';
 
 import Navigation from '../../components/Navigation';
 
-import { render } from 'react-dom';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { makeStyles } from '@material-ui/core/styles';
 import BookingForm from '../../components/BookingForm';
 
-import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
-    height: '100%',
-    //   overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
+    height: 900,
+    maxWidth: 1300,
+    verticalAlign: "middle",
+    marginLeft: 480,
   },
 }));
 
@@ -33,17 +34,15 @@ function Booking({ menuItems }) {
   return (
     <div>
       <Head>
-        <title>The Gallery</title>
+        <title>Book a Shoot</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Grid container spacing={0} orientation="column">
-        <Grid item>
-          <Navigation menuItems={menuItems}></Navigation>
-        </Grid>
-        <Grid item>
-          <BookingForm className={classes.root}></BookingForm>
-        </Grid>
-      </Grid>
+      <Navigation menuItems={menuItems}></Navigation>
+      <Card className={classes.root}>
+        <CardContent>
+          <BookingForm></BookingForm>
+        </CardContent>
+      </Card>
     </div>
   );
 }
