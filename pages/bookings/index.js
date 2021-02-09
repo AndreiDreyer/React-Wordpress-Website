@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
       alignContent: 'center',
       verticalAlign: "middle",
       backgroundColor: "#252525",
-      height: '90%',
+      maxHeight: '90%',
     },
     [theme.breakpoints.up("sm")]: {
       top: 100,

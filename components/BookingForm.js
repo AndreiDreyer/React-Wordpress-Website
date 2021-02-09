@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -19,14 +20,52 @@ import { customTheme } from '../src/theme';
 
 const useStyles = makeStyles((theme) => ({
   textField: {
-    marginTop: '2rem',
-    // marginLeft: theme.spacing(1),
-    // marginRight: theme.spacing(1),
-    minWidth: 280,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignContent: 'center',
+    [theme.breakpoints.up("xs")]: {
+      // marginTop: '0.5rem',
+      marginTop: 0,
+      minWidth: 280,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignContent: 'center',
+      color: '#f7f2df',
+    },
+    [theme.breakpoints.up("sm")]: {
+      marginTop: '0.5rem',
+      minWidth: 280,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignContent: 'center',
+      color: '#f7f2df',
+    },
+    [theme.breakpoints.up("md")]: {
+      marginTop: '2rem',
+      minWidth: 280,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignContent: 'center',
+      color: '#f7f2df',
+    },
+    [theme.breakpoints.up("lg")]: {
+      marginTop: '2rem',
+      minWidth: 280,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignContent: 'center',
+      color: '#f7f2df',
+    },
+    [theme.breakpoints.up("xl")]: {
+      marginTop: '2rem',
+      minWidth: 280,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignContent: 'center',
+      color: '#f7f2df',
+    },
   },
   root: {
     display: 'flex',
@@ -34,25 +73,84 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
+    color: 'red',
     // height: 900,
   },
   cComp: {
+    display: 'flex',
+    flexDirection: 'column',
     marginTop: '1rem',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
   },
   button: {
-    background: '#ffd065',
+    [theme.breakpoints.up("xs")]: {
+      background: '#ffd065',
     borderRadius: 3,
     border: 0,
     color: 'white',
     height: 48,
     padding: '0 30px',
     // boxShadow: '0 3px 5px 2px #ffd065',
-    marginTop: '1rem',
+    marginTop: 0.2,
+    },
+    [theme.breakpoints.up("sm")]: {
+      background: '#ffd065',
+      borderRadius: 3,
+      border: 0,
+      color: 'white',
+      height: 48,
+      padding: '0 30px',
+      // boxShadow: '0 3px 5px 2px #ffd065',
+      marginTop: '2rem',
+    },
+    [theme.breakpoints.up("md")]: {
+      background: '#ffd065',
+      borderRadius: 3,
+      border: 0,
+      color: 'white',
+      height: 48,
+      padding: '0 30px',
+      // boxShadow: '0 3px 5px 2px #ffd065',
+      marginTop: '2rem',
+    },
+    [theme.breakpoints.up("lg")]: {
+      background: '#ffd065',
+      borderRadius: 3,
+      border: 0,
+      color: 'white',
+      height: 48,
+      padding: '0 30px',
+      // boxShadow: '0 3px 5px 2px #ffd065',
+      marginTop: '2rem',
+    },
+    [theme.breakpoints.up("xl")]: {
+      background: '#ffd065',
+      borderRadius: 3,
+      border: 0,
+      color: 'white',
+      height: 48,
+      padding: '0 30px',
+      // boxShadow: '0 3px 5px 2px #ffd065',
+      marginTop: '2rem',
+    },
+    
   },
   text: {
-     fontFamily: 'Whitefeather',
+    //  fontFamily: 'Whitefeather',
+     fontFamily: 'Oswald Regular',
+     fontSize: 1,
+     color: '#f7f2df',
+     marginTop: 0,
+    //  fontFamily: 'Loves',
+  },
+  formHeader: {
+    fontFamily: 'Oswald Regular',
+    fontSize: '2rem',
   },
 }));
+
 
 const BOOKING_TEMPLATE_ID = process.env.BOOKING_TEMPLATE_ID;
 const EMAILJS_SERVICE_ID = process.env.EMAILJS_SERVICE_ID;
@@ -121,16 +219,19 @@ export default function BookingForm() {
   return (
     //Form layout that requires a Name, Email, and message
     <form className={classes.root} onSubmit={handleSubmit} border={1} borderColor={'#f7f2df'}>
+      <Typography className={classes.formHeader} variant="h1" />
       <br />
       <div className={classes.text} style={{ fontSize: '1.3rem'}}>
-        <h3>Book a shoot by filling out the following</h3>
-        <h3> and we will get in contact with you</h3>
+        <Typography>Book a shoot by filling out the following and we will get in contact with you</Typography>
         <div>
           <TextField
             name="name"
             id="name"
             value={values.name}
-            className={classes.textField}
+            className= {classes.textField}
+            InputProps={{
+              className: classes.textField
+            }}
             onChange={handleChange}
             onBlur={handleBlur}
             label="Name"
@@ -147,6 +248,9 @@ export default function BookingForm() {
             variant="standard"
             label="Email"
             className={classes.textField}
+            InputProps={{
+              className: classes.textField
+            }}
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -162,6 +266,9 @@ export default function BookingForm() {
             variant="standard"
             label="Location of Shoot"
             className={classes.textField}
+            InputProps={{
+              className: classes.textField
+            }}
             value={values.location}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -177,6 +284,9 @@ export default function BookingForm() {
             type="datetime-local"
             name="dateTime"
             className={classes.textField}
+            InputProps={{
+              className: classes.textField
+            }}
             value={values.dateTime}
             InputLabelProps={{
               shrink: true,
@@ -193,6 +303,10 @@ export default function BookingForm() {
             name="feedback"
             variant="standard"
             label="Message"
+            className={classes.textField}
+            InputProps={{
+              className: classes.textField
+            }}
             value={values.feedback}
             onChange={handleChange}
             onBlur={handleBlur}
