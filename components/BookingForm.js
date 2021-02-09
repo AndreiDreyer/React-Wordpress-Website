@@ -92,7 +92,6 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     height: 48,
     padding: '0 30px',
-    // boxShadow: '0 3px 5px 2px #ffd065',
     marginTop: 0.2,
     },
     [theme.breakpoints.up("sm")]: {
@@ -102,7 +101,6 @@ const useStyles = makeStyles((theme) => ({
       color: 'white',
       height: 48,
       padding: '0 30px',
-      // boxShadow: '0 3px 5px 2px #ffd065',
       marginTop: '2rem',
     },
     [theme.breakpoints.up("md")]: {
@@ -112,7 +110,6 @@ const useStyles = makeStyles((theme) => ({
       color: 'white',
       height: 48,
       padding: '0 30px',
-      // boxShadow: '0 3px 5px 2px #ffd065',
       marginTop: '2rem',
     },
     [theme.breakpoints.up("lg")]: {
@@ -122,7 +119,6 @@ const useStyles = makeStyles((theme) => ({
       color: 'white',
       height: 48,
       padding: '0 30px',
-      // boxShadow: '0 3px 5px 2px #ffd065',
       marginTop: '2rem',
     },
     [theme.breakpoints.up("xl")]: {
@@ -132,7 +128,6 @@ const useStyles = makeStyles((theme) => ({
       color: 'white',
       height: 48,
       padding: '0 30px',
-      // boxShadow: '0 3px 5px 2px #ffd065',
       marginTop: '2rem',
     },
     
@@ -307,6 +302,8 @@ export default function BookingForm() {
             InputProps={{
               className: classes.textField
             }}
+            multiline="True"
+            rowsMax="5"
             value={values.feedback}
             onChange={handleChange}
             onBlur={handleBlur}
