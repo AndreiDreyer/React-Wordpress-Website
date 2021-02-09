@@ -21,51 +21,27 @@ import { customTheme } from '../src/theme';
 const useStyles = makeStyles((theme) => ({
   textField: {
     [theme.breakpoints.up("xs")]: {
-      // marginTop: '0.5rem',
       marginTop: 0,
-      minWidth: 280,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      alignContent: 'center',
-      color: '#f7f2df',
     },
     [theme.breakpoints.up("sm")]: {
       marginTop: '0.5rem',
       minWidth: 280,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      alignContent: 'center',
-      color: '#f7f2df',
     },
     [theme.breakpoints.up("md")]: {
       marginTop: '2rem',
-      minWidth: 280,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      alignContent: 'center',
-      color: '#f7f2df',
     },
     [theme.breakpoints.up("lg")]: {
       marginTop: '2rem',
-      minWidth: 280,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      alignContent: 'center',
-      color: '#f7f2df',
     },
     [theme.breakpoints.up("xl")]: {
       marginTop: '2rem',
+    },
       minWidth: 280,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       alignContent: 'center',
       color: '#f7f2df',
-    },
   },
   root: {
     display: 'flex',
@@ -74,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     alignContent: 'center',
     color: 'red',
-    // height: 900,
   },
   cComp: {
     display: 'flex',
@@ -86,51 +61,15 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     [theme.breakpoints.up("xs")]: {
-      background: '#ffd065',
+      marginTop: '2rem',
+    },
+    background: '#ffd065',
     borderRadius: 3,
     border: 0,
     color: 'white',
     height: 48,
     padding: '0 30px',
-    marginTop: 0.2,
-    },
-    [theme.breakpoints.up("sm")]: {
-      background: '#ffd065',
-      borderRadius: 3,
-      border: 0,
-      color: 'white',
-      height: 48,
-      padding: '0 30px',
-      marginTop: '2rem',
-    },
-    [theme.breakpoints.up("md")]: {
-      background: '#ffd065',
-      borderRadius: 3,
-      border: 0,
-      color: 'white',
-      height: 48,
-      padding: '0 30px',
-      marginTop: '2rem',
-    },
-    [theme.breakpoints.up("lg")]: {
-      background: '#ffd065',
-      borderRadius: 3,
-      border: 0,
-      color: 'white',
-      height: 48,
-      padding: '0 30px',
-      marginTop: '2rem',
-    },
-    [theme.breakpoints.up("xl")]: {
-      background: '#ffd065',
-      borderRadius: 3,
-      border: 0,
-      color: 'white',
-      height: 48,
-      padding: '0 30px',
-      marginTop: '2rem',
-    },
-    
+    marginTop: '2rem',
   },
   text: {
     //  fontFamily: 'Whitefeather',
@@ -213,7 +152,7 @@ export default function BookingForm() {
 
   return (
     //Form layout that requires a Name, Email, and message
-    <form className={classes.root} onSubmit={handleSubmit} border={1} borderColor={'#f7f2df'}>
+    <form className={classes.root} onSubmit={handleSubmit} border={1}>
       <Typography className={classes.formHeader} variant="h1" />
       <br />
       <div className={classes.text} style={{ fontSize: '1.3rem'}}>

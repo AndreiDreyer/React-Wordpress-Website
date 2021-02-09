@@ -88,3 +88,7 @@ a:active {
   font-family: 'Oswald SemiBold';
   color: black;
 }
+
+.MuiFormLabel-root {
+  color: white !important;
+}
