@@ -20,20 +20,14 @@ import { customTheme } from '../src/theme';
 
 const useStyles = makeStyles((theme) => ({
   textField: {
-    [theme.breakpoints.up("xs")]: {
+    [theme.breakpoints.down("xs")]: {
       marginTop: 0,
     },
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.down("sm")]: {
       marginTop: '0.5rem',
       minWidth: 280,
     },
     [theme.breakpoints.up("md")]: {
-      marginTop: '2rem',
-    },
-    [theme.breakpoints.up("lg")]: {
-      marginTop: '2rem',
-    },
-    [theme.breakpoints.up("xl")]: {
       marginTop: '2rem',
     },
       minWidth: 280,

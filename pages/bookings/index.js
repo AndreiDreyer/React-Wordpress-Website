@@ -18,7 +18,18 @@ import { customTheme } from '../../src/theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    [theme.breakpoints.up("xs")]: {
+    top: 100,
+    left: 300,
+    right: 100,
+    bottom: 100,
+    position: 'absolute',
+    margin: 'auto',
+    alignItems: 'center',
+    alignContent: 'center',
+    verticalAlign: "middle",
+    backgroundColor: "#252525",  
+
+    [theme.breakpoints.down("xs")]: {
       top: 20,
       left: 20,
       right: 20,
@@ -31,24 +42,6 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#252525",
       maxHeight: '90%',
     },
-    [theme.breakpoints.up("sm")]: {
-    },
-    [theme.breakpoints.up("md")]: {
-    },
-    [theme.breakpoints.up("lg")]: {
-    },
-    [theme.breakpoints.up("xl")]: {
-    },
-    top: 100,
-    left: 400,
-    right: 100,
-    bottom: 100,
-    position: 'absolute',
-    margin: 'auto',
-    alignItems: 'center',
-    alignContent: 'center',
-    verticalAlign: "middle",
-    backgroundColor: "#252525",  
   },
 }));
 
