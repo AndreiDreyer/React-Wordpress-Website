@@ -1,14 +1,58 @@
 html,
 body {
   padding: 0;
-  margin: none;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+#__next {
+  height: 100%;
 }
 
 a {
   color: #0070f3;
   text-decoration: none;
+}
+
+@font-face {
+  font-family: 'LOVES';
+  src: url('../fonts/LOVES-REG.woff2') format('woff2'), url('../fonts/LOVES-REG.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whitefeather';
+  src: url('../fonts/Whitefeather-Regular.woff2') format('woff2'), url('../fonts/Whitefeather-Regular.woff') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oswald Regular';
+  src: url('../fonts/Oswald-Regular.woff2') format('woff2'), url('../fonts/Oswald-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oswald Bold';
+  src: url('../fonts/Oswald-Bold.woff2') format('woff2'), url('../fonts/Oswald-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oswald SemiBold';
+  src: url('../fonts/Oswald-SemiBold.woff2') format('woff2'), url('../fonts/Oswald-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
 a:hover,
@@ -19,4 +63,28 @@ a:active {
 
 * {
   box-sizing: border-box;
+}
+
+.MuiPaper-root.topNavBar {
+  z-index: 999;
+  background-color: transparent;
+  box-shadow: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  outline: 2px solid red;
+  max-height: 50px;
+}
+
+.topNavBarItem {
+  flex-grow: 1;
+  left: 85%;
+  background-color: transparent;
+}
+
+.topNavBarItem > h1 {
+  background-color: transparent;
+  left: 85%;
+  font-family: 'Oswald SemiBold';
+  color: black;
 }
