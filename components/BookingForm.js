@@ -12,12 +12,21 @@ import Button from '@material-ui/core/Button';
 import ReCaptchaComp from '../components/ReCaptchaComp';
 import { ColorLensOutlined } from '@material-ui/icons';
 
+import { borders } from '@material-ui/system';
+
+import { customTheme } from '../src/theme';
+
+
 const useStyles = makeStyles((theme) => ({
   textField: {
     marginTop: '2rem',
     // marginLeft: theme.spacing(1),
     // marginRight: theme.spacing(1),
-    width: 500,
+    minWidth: 280,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
   },
   root: {
     display: 'flex',
@@ -25,20 +34,29 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
-    height: 900,
+    // height: 900,
   },
   cComp: {
-    marginTop: '2rem',
+    marginTop: '1rem',
   },
   button: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    background: '#ffd065',
     borderRadius: 3,
     border: 0,
     color: 'white',
     height: 48,
     padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    marginTop: '2rem',
+    // boxShadow: '0 3px 5px 2px #ffd065',
+    marginTop: '1rem',
+  },
+  text: {
+     fontFamily: 'Oswald',
+    fontSize: '17px',
+    fontStyle: 'normal',
+    fontVariant: 'normal',
+    fontWeight: 700,
+    lineHeight: '23px', 
+    textAlign: 'center',
   },
 }));
 
@@ -108,10 +126,11 @@ export default function BookingForm() {
 
   return (
     //Form layout that requires a Name, Email, and message
-    <form className={classes.root} onSubmit={handleSubmit}>
+    <form className={classes.root} onSubmit={handleSubmit} border={1} borderColor={'#f7f2df'}>
       <br />
-      <div style={{ fontSize: '1.3rem' }}>
-        <h6>Book a shoot by simply filling in the following form and we will get in contact with you</h6>
+      <div className={classes.text} style={{ fontSize: '1.3rem'}}>
+        <h3>Book a shoot by filling out the following</h3>
+        <h3> and we will get in contact with you</h3>
         <div>
           <TextField
             name="name"

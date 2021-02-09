@@ -9,22 +9,76 @@ import { makeStyles } from '@material-ui/core/styles';
 import BookingForm from '../../components/BookingForm';
 
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 
+import Container from '@material-ui/core/Container';
+import {Helmet} from 'react-helmet';
+
+import { customTheme } from '../../src/theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    alignItems: 'center',
-    alignContent: 'center',
-    height: 900,
-    maxWidth: 1300,
-    verticalAlign: "middle",
-    marginLeft: 480,
+    [theme.breakpoints.up("xs")]: {
+      top: 20,
+      left: 20,
+      right: 20,
+      bottom: 20,
+      position: 'absolute',
+      margin: 'auto',
+      alignItems: 'center',
+      alignContent: 'center',
+      verticalAlign: "middle",
+      backgroundColor: "#252525",
+      height: '90%',
+    },
+    [theme.breakpoints.up("sm")]: {
+      top: 100,
+      left: 400,
+      right: 100,
+      bottom: 100,
+      position: 'absolute',
+      margin: 'auto',
+      alignItems: 'center',
+      alignContent: 'center',
+      verticalAlign: "middle",
+      backgroundColor: "#252525",
+    },
+    [theme.breakpoints.up("md")]: {
+      top: 100,
+      left: 400,
+      right: 100,
+      bottom: 100,
+      position: 'absolute',
+      margin: 'auto',
+      alignItems: 'center',
+      alignContent: 'center',
+      verticalAlign: "middle",
+      backgroundColor: "#252525",
+    },
+    [theme.breakpoints.up("lg")]: {
+      top: 100,
+      left: 400,
+      right: 100,
+      bottom: 100,
+      position: 'absolute',
+      margin: 'auto',
+      alignItems: 'center',
+      alignContent: 'center',
+      verticalAlign: "middle",
+      backgroundColor: "#252525",
+    },
+    [theme.breakpoints.up("xl")]: {
+      top: 100,
+      left: 400,
+      right: 100,
+      bottom: 100,
+      position: 'absolute',
+      margin: 'auto',
+      alignItems: 'center',
+      alignContent: 'center',
+      verticalAlign: "middle",
+      backgroundColor: "#252525",
+    },  
   },
 }));
 
@@ -33,16 +87,21 @@ function Booking({ menuItems }) {
 
   return (
     <div>
+      <Helmet>
+                <style>{'body { background-color: #f7f2df; }'}</style>
+            </Helmet>
       <Head>
         <title>Book a Shoot</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navigation menuItems={menuItems}></Navigation>
+      <Container maxWidth="lg">
       <Card className={classes.root}>
         <CardContent>
           <BookingForm></BookingForm>
         </CardContent>
       </Card>
+      </Container>
     </div>
   );
 }
