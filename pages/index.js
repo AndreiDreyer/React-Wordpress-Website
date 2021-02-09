@@ -65,7 +65,7 @@ export default function Home({ menuItems, backgroundImageSrcs }) {
         </Grid>
         <Grid item className={classes.menuGrid}>
           <div className={classes.rotatingImagesContainer}>
-            <Carousel className={classes.carouselContainer} autoPlay={false} navButtonsAlwaysInvisible={true} indicators={false}>
+            <Carousel className={classes.carouselContainer} autoPlay={true} navButtonsAlwaysInvisible={true} indicators={false} interval={6000}>
               {backgroundImageSrcs.map((image) => (
                 <img key={image} src={image} className={classes.rotatingImages} />
               ))}

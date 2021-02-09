@@ -3,7 +3,11 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import InstagramIcon from '@material-ui/icons/Instagram';
 import Typography from '@material-ui/core/Typography';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 export default class MyDocument extends Document {
   render() {
@@ -15,12 +19,14 @@ export default class MyDocument extends Document {
         </Head>
         <body>
           <AppBar className="topNavBar" elevation={0}>
-            <Toolbar>
-              <div className="topNavBarItem" />
-              <div className="topNavBarItem">
-                <Typography align="right" color="primary" variant="h1">
-                  PP
-                </Typography>
+            <CssBaseline />
+            <Toolbar disableGutters={true} className="topNavBar">
+              <div className="topNavBarContainer">
+                <div className="topNavBarItem">
+                  <ShoppingCartIcon fontSize="large" className="topNavBarIcon" />
+                  <FacebookIcon fontSize="large" className="topNavBarIcon" />
+                  <InstagramIcon fontSize="large" className="topNavBarIcon" />
+                </div>
               </div>
             </Toolbar>
           </AppBar>

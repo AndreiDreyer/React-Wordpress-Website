@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    color: 'white',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
@@ -53,6 +54,10 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
   },
   toolbarStyle: {
+    zIndex: 1000,
+    position: 'absolute',
+    top: 0,
+    backgroundColor: 'transparent',
     [theme.breakpoints.up('sm')]: {
       display: 'none',
       minHeight: 0,
@@ -73,6 +78,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     fontFamily: 'Whitefeather',
     fontSize: '6rem',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+      minHeight: 0,
+    },
   },
   logoTop: {
     margin: '2rem auto 0 auto',
@@ -163,8 +172,8 @@ function Navigation(props) {
       <CssBaseline />
       {!lgThanMd && (
         <Toolbar className={classes.toolbarStyle}>
-          <IconButton color="inherit" aria-label="open drawer" edge="start" onClick={handleDrawerToggle} className={classes.menuButton}>
-            <MenuIcon fontSize="large" />
+          <IconButton aria-label="open drawer" edge="start" onClick={handleDrawerToggle} className={classes.menuButton}>
+            <MenuIcon fontSize="large" color="white" />
           </IconButton>
         </Toolbar>
       )}
