@@ -50,13 +50,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '1rem',
   },
   text: {
-     fontFamily: 'Oswald',
-    fontSize: '17px',
-    fontStyle: 'normal',
-    fontVariant: 'normal',
-    fontWeight: 700,
-    lineHeight: '23px', 
-    textAlign: 'center',
+     fontFamily: 'Whitefeather',
   },
 }));
 
