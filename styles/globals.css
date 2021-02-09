@@ -17,7 +17,7 @@ a {
 
 @font-face {
   font-family: 'LOVES';
-  src: url('../fonts/LOVES-REG.woff2') format('woff2'), url('../fonts/LOVES-REG.woff') format('woff');
+  src: url('../fonts/LOVES-REG.woff2') format('woff2'), url('../fonts/LOVES-REG.woff') format('woff'), url('../fonts/LOVES.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -25,7 +25,7 @@ a {
 
 @font-face {
   font-family: 'Whitefeather';
-  src: url('../fonts/Whitefeather-Regular.woff2') format('woff2'), url('../fonts/Whitefeather-Regular.woff') format('woff2');
+  src: url('../fonts/Whitefeather-Regular.woff2') format('woff2'), url('../fonts/Whitefeather-Regular.woff') format('woff2'), url('../fonts/Whitefeather.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -33,7 +33,7 @@ a {
 
 @font-face {
   font-family: 'Oswald Regular';
-  src: url('../fonts/Oswald-Regular.woff2') format('woff2'), url('../fonts/Oswald-Regular.woff') format('woff');
+  src: url('../fonts/Oswald-Regular.woff2') format('woff2'), url('../fonts/Oswald-Regular.woff') format('woff'), url('../fonts/Oswald-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -41,7 +41,7 @@ a {
 
 @font-face {
   font-family: 'Oswald Bold';
-  src: url('../fonts/Oswald-Bold.woff2') format('woff2'), url('../fonts/Oswald-Bold.woff') format('woff');
+  src: url('../fonts/Oswald-Bold.woff2') format('woff2'), url('../fonts/Oswald-Bold.woff') format('woff'), url('../fonts/Oswald-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -49,7 +49,7 @@ a {
 
 @font-face {
   font-family: 'Oswald SemiBold';
-  src: url('../fonts/Oswald-SemiBold.woff2') format('woff2'), url('../fonts/Oswald-SemiBold.woff') format('woff');
+  src: url('../fonts/Oswald-SemiBold.woff2') format('woff2'), url('../fonts/Oswald-SemiBold.woff') format('woff'), url('../fonts/Oswald-SemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
