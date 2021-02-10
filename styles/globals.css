@@ -93,6 +93,8 @@ a:active {
   flex-grow: 1;
   background-color: transparent;
   min-height: 50px;
+  padding-top: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .topNavBarIcon {
@@ -104,8 +106,39 @@ a:active {
   color: white;
 }
 
+.footer {
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  position: fixed;
+  background-color: transparent;
+  bottom: 0;
+  height: 3rem;
+  width: 100%;
+  margin: auto;
+}
+
+.footerIcon {
+  color: white;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  font-size: 24px;
+}
+
 @media only screen and (min-width: 768px) {
   .MuiToolbar-regular.topNavBar {
     min-height: 50px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .MuiSvgIcon-root.mediaIcon {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .footer {
+    display: none;
   }
 }

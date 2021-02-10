@@ -24,12 +24,18 @@ export default class MyDocument extends Document {
               <div className="topNavBarContainer">
                 <div className="topNavBarItem">
                   <ShoppingCartIcon fontSize="large" className="topNavBarIcon" />
-                  <FacebookIcon fontSize="large" className="topNavBarIcon" />
-                  <InstagramIcon fontSize="large" className="topNavBarIcon" />
+                  <FacebookIcon fontSize="large" className="topNavBarIcon mediaIcon" />
+                  <InstagramIcon fontSize="large" className="topNavBarIcon mediaIcon" />
                 </div>
               </div>
             </Toolbar>
           </AppBar>
+          <div className="footer">
+            <div>
+              <FacebookIcon className="footerIcon" />
+              <InstagramIcon className="footerIcon" />
+            </div>
+          </div>
           <Main />
           <NextScript />
         </body>

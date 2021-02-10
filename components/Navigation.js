@@ -58,6 +58,9 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     top: 0,
     backgroundColor: 'transparent',
+    width: '100%',
+    minHeight: '75px',
+    height: '75px',
     [theme.breakpoints.up('sm')]: {
       display: 'none',
       minHeight: 0,
@@ -78,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     fontFamily: 'Whitefeather',
     fontSize: '6rem',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down(768)]: {
       display: 'none',
       minHeight: 0,
     },
@@ -88,6 +91,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     fontFamily: 'Whitefeather',
     fontSize: '6rem',
+    [theme.breakpoints.down('sm')]: {
+      color: 'white',
+      fontSize: '3.5rem',
+      margin: '0 auto 0 1rem',
+    },
   },
   logoBottom: {
     margin: '0 auto 2rem auto',
@@ -95,6 +103,13 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'LOVES',
     fontSize: '3rem',
     color: '#28443E',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '2rem',
+      color: 'white',
+      margin: 'auto auto auto 1rem',
+      position: 'absolute',
+      top: '3rem',
+    },
   },
 }));
 
@@ -174,6 +189,9 @@ function Navigation(props) {
         <Toolbar className={classes.toolbarStyle}>
           <IconButton aria-label="open drawer" edge="start" onClick={handleDrawerToggle} className={classes.menuButton}>
             <MenuIcon fontSize="large" color="white" />
+            <p>
+              <span className={classes.logoTop}>Salty</span> <span className={classes.logoBottom}>Zebra</span>
+            </p>
           </IconButton>
         </Toolbar>
       )}
