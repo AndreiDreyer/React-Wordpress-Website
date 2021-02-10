@@ -41,13 +41,6 @@ const useStyles = makeStyles((theme) => ({
       bottom: 30,
       // maxHeight: '90%',
     },
-    [theme.breakpoints.up("md")]: {
-      top: 260,
-      left: 220,
-      right: 20,
-      bottom: 260,
-      maxHeight: '90%',
-    },
     [theme.breakpoints.up("lg")]: {
       top: 100,
       left: 500,
@@ -59,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Booking({ menuItems }) {
   const classes = useStyles();
-
+// f7f2df
   return (
     <div>
       <Helmet>
