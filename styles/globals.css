@@ -1,14 +1,58 @@
 html,
 body {
   padding: 0;
-  margin: none;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+#__next {
+  height: 100%;
 }
 
 a {
   color: #0070f3;
   text-decoration: none;
+}
+
+@font-face {
+  font-family: 'LOVES';
+  src: url('../fonts/LOVES-REG.woff2') format('woff2'), url('../fonts/LOVES-REG.woff') format('woff'), url('../fonts/LOVES.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whitefeather';
+  src: url('../fonts/Whitefeather-Regular.woff2') format('woff2'), url('../fonts/Whitefeather-Regular.woff') format('woff2'), url('../fonts/Whitefeather.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oswald Regular';
+  src: url('../fonts/Oswald-Regular.woff2') format('woff2'), url('../fonts/Oswald-Regular.woff') format('woff'), url('../fonts/Oswald-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oswald Bold';
+  src: url('../fonts/Oswald-Bold.woff2') format('woff2'), url('../fonts/Oswald-Bold.woff') format('woff'), url('../fonts/Oswald-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oswald SemiBold';
+  src: url('../fonts/Oswald-SemiBold.woff2') format('woff2'), url('../fonts/Oswald-SemiBold.woff') format('woff'), url('../fonts/Oswald-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
 a:hover,
@@ -19,4 +63,95 @@ a:active {
 
 * {
   box-sizing: border-box;
+}
+
+.MuiPaper-root.topNavBar {
+  z-index: 999;
+  background-color: transparent;
+  box-shadow: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  /* outline: 2px solid red; */
+  max-height: 75px;
+}
+
+.topNavBarContainer {
+  flex-grow: 1;
+  background-color: transparent;
+  height: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  min-height: 75px;
+}
+
+.topNavBarItem {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+  background-color: transparent;
+  min-height: 75px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.topNavBarIcon {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 2rem;
+  margin-right: 1rem;
+
+  color: white;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  position: fixed;
+  background-color: transparent;
+  bottom: 0;
+  height: 3rem;
+  width: 100%;
+  margin: auto;
+}
+
+.footerIcon {
+  color: white;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  font-size: 24px;
+}
+
+@media only screen and (min-width: 768px) {
+  .MuiToolbar-regular.topNavBar {
+    min-height: 75px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .MuiSvgIcon-root.mediaIcon {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .footer {
+    display: none;
+  }
+
+  .topNavBarItem {
+    padding-top: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .MuiSvgIcon-root.topNavBarIcon {
+    font-size: 24px;
+  }
+
+  .MuiSvgIcon-root.hamburgerIcon {
+    font-size: 24px;
+  }
 }

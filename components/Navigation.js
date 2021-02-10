@@ -16,21 +16,15 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
+import { withWidth } from '@material-ui/core';
 
-// TO be removed
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
-
-import StarBorder from '@material-ui/icons/StarBorder';
-import { VerticalAlignBottom } from '@material-ui/icons';
-
-const drawerWidth = 300;
+const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'block',
-    maxWidth: 300,
+    maxWidth: drawerWidth,
+    marginRight: 0,
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -40,12 +34,13 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    color: 'white',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
   },
-  toolbar: theme.mixins.toolbar,
   drawerPaper: {
+    backgroundColor: '#F9F3DE',
     width: drawerWidth,
   },
   content: {
@@ -53,10 +48,23 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
   list: {
-    width: 250,
+    width: drawerWidth,
     display: 'block',
     flexDirection: 'column',
     textDecoration: 'none',
+  },
+  toolbarStyle: {
+    zIndex: 1000,
+    position: 'absolute',
+    top: 0,
+    backgroundColor: 'transparent',
+    width: '100%',
+    minHeight: '75px',
+    height: '75px',
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+      minHeight: 0,
+    },
   },
   nested: {
     paddingLeft: theme.spacing(4),
@@ -67,10 +75,48 @@ const useStyles = makeStyles((theme) => ({
   MuiListItemText: {
     marginTop: 100,
   },
+  logoContainer: {
+    width: '100%',
+    margin: '2rem auto',
+    textAlign: 'center',
+    fontFamily: 'Whitefeather',
+    fontSize: '6rem',
+    [theme.breakpoints.down(768)]: {
+      display: 'none',
+      minHeight: 0,
+    },
+  },
+  logoTop: {
+    margin: '2rem auto 0 auto',
+    textAlign: 'center',
+    fontFamily: 'Whitefeather',
+    fontSize: '6rem',
+    [theme.breakpoints.down('sm')]: {
+      color: 'white',
+      fontSize: '3.5rem',
+      margin: '0 auto 0 1rem',
+    },
+  },
+  logoBottom: {
+    margin: '0 auto 2rem auto',
+    textAlign: 'center',
+    fontFamily: 'LOVES',
+    fontSize: '3rem',
+    color: '#28443E',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '2rem',
+      color: 'white',
+      margin: 'auto auto auto 1rem',
+      position: 'absolute',
+      top: '3rem',
+    },
+  },
 }));
 
-export default function Navigation(props) {
-  const { window } = props;
+function Navigation(props) {
+  const { window, width } = props;
+
+  const lgThanMd = width === 'lg' || width === 'md';
 
   const classes = useStyles();
   const theme = useTheme();
@@ -88,13 +134,15 @@ export default function Navigation(props) {
   };
 
   const drawer = (
-    <div>
-      <p>Logo will go here</p>
+    <div className={classes.root}>
+      <div className={classes.logoContainer}>
+        <p className={classes.logoTop}>Salty</p>
+        <p className={classes.logoBottom}>Zebra</p>
+      </div>
       <div className={classes.toolbar} />
       <Divider />
       <List component="nav" aria-labelledby="nested-list-subheader" className={classes.root}>
         {navNodes.map((node) => {
-          // console.log(node.label)
           var isSubMenItem = node.label === 'Gallery';
           var subMListItem = node.label === 'Travel' || node.label === 'Videography';
           if (isSubMenItem) {
@@ -129,24 +177,24 @@ export default function Navigation(props) {
           }
         })}
       </List>
-      <div>
-        <Link href="/cart">Cart</Link>
-      </div>
     </div>
   );
-
-  // console.log(theme.breakpoints);
 
   const container = window !== undefined ? () => window.document.body : undefined;
 
   return (
-    <div>
+    <div className={classes.root}>
       <CssBaseline />
-      <Toolbar>
-        <IconButton color="inherit" aria-label="open drawer" edge="start" onClick={handleDrawerToggle} className={classes.menuButton}>
-          <MenuIcon fontSize="large" />
-        </IconButton>
-      </Toolbar>
+      {!lgThanMd && (
+        <Toolbar className={classes.toolbarStyle}>
+          <IconButton aria-label="open drawer" edge="start" onClick={handleDrawerToggle} className={classes.menuButton}>
+            <MenuIcon className="hamburgerIcon" color="white" />
+            <p>
+              <span className={classes.logoTop}>Salty</span> <span className={classes.logoBottom}>Zebra</span>
+            </p>
+          </IconButton>
+        </Toolbar>
+      )}
       <nav className={classes.drawer} aria-label="navigation menu">
         <Hidden smUp implementation="css">
           <Drawer
@@ -170,3 +218,4 @@ export default function Navigation(props) {
     </div>
   );
 }
+export default withWidth()(Navigation);
