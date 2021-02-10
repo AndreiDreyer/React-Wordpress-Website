@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'center',
       alignItems: 'center',
       alignContent: 'center',
-      color: '#f7f2df',
+      color: 'black',
   },
   root: {
     [theme.breakpoints.down("xs")]: {
@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     background: '#ffd065',
     borderRadius: 3,
     border: 0,
-    color: 'white',
+    color: 'black',
     height: 48,
     padding: '0 30px',
     marginTop: '2rem',
@@ -208,7 +208,7 @@ export default function BookingForm() {
             name="location"
             id="location"
             variant="standard"
-            label="Location of Shoot"
+            label="Shoot Location"
             className={classes.textField}
             InputProps={{
               className: classes.textField
@@ -224,7 +224,7 @@ export default function BookingForm() {
           <TextField
             required
             id="dateTime"
-            label="Next appointment"
+            label="Date and Time"
             type="datetime-local"
             name="dateTime"
             className={classes.textField}
