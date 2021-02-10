@@ -188,7 +188,7 @@ function Navigation(props) {
       {!lgThanMd && (
         <Toolbar className={classes.toolbarStyle}>
           <IconButton aria-label="open drawer" edge="start" onClick={handleDrawerToggle} className={classes.menuButton}>
-            <MenuIcon fontSize="large" color="white" />
+            <MenuIcon className="hamburgerIcon" color="white" />
             <p>
               <span className={classes.logoTop}>Salty</span> <span className={classes.logoBottom}>Zebra</span>
             </p>

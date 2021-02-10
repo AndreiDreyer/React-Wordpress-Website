@@ -146,4 +146,12 @@ a:active {
     padding-top: 1.5rem;
     padding-right: 1.5rem;
   }
+
+  .MuiSvgIcon-root.topNavBarIcon {
+    font-size: 24px;
+  }
+
+  .MuiSvgIcon-root.hamburgerIcon {
+    font-size: 24px;
+  }
 }

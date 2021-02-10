@@ -23,9 +23,9 @@ export default class MyDocument extends Document {
             <Toolbar disableGutters={true} className="topNavBar">
               <div className="topNavBarContainer">
                 <div className="topNavBarItem">
-                  <ShoppingCartIcon fontSize="large" className="topNavBarIcon" />
-                  <FacebookIcon fontSize="large" className="topNavBarIcon mediaIcon" />
-                  <InstagramIcon fontSize="large" className="topNavBarIcon mediaIcon" />
+                  <ShoppingCartIcon className="topNavBarIcon" />
+                  <FacebookIcon className="topNavBarIcon mediaIcon" />
+                  <InstagramIcon className="topNavBarIcon mediaIcon" />
                 </div>
               </div>
             </Toolbar>
