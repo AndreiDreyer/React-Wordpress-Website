@@ -73,7 +73,7 @@ a:active {
   top: 0;
   width: 100%;
   /* outline: 2px solid red; */
-  max-height: 50px;
+  max-height: 75px;
 }
 
 .topNavBarContainer {
@@ -82,7 +82,7 @@ a:active {
   height: 100%;
   margin-top: auto;
   margin-bottom: auto;
-  min-height: 50px;
+  min-height: 75px;
 }
 
 .topNavBarItem {
@@ -92,9 +92,9 @@ a:active {
   height: 100%;
   flex-grow: 1;
   background-color: transparent;
-  min-height: 50px;
-  padding-top: 1.5rem;
-  padding-right: 1.5rem;
+  min-height: 75px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .topNavBarIcon {
@@ -127,7 +127,7 @@ a:active {
 
 @media only screen and (min-width: 768px) {
   .MuiToolbar-regular.topNavBar {
-    min-height: 50px;
+    min-height: 75px;
   }
 }
 
@@ -140,5 +140,10 @@ a:active {
 @media only screen and (min-width: 769px) {
   .footer {
     display: none;
+  }
+
+  .topNavBarItem {
+    padding-top: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
