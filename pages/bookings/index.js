@@ -18,29 +18,41 @@ import { customTheme } from '../../src/theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    top: 100,
-    left: 300,
-    right: 100,
-    bottom: 100,
     position: 'absolute',
     margin: 'auto',
     alignItems: 'center',
     alignContent: 'center',
     verticalAlign: "middle",
-    backgroundColor: "#252525",  
+    backgroundImage: 'url(./compressedBookingForm.jpg)',
+    backgroundRepeat: 'no-repeat',
+    WebkitBackgroundSize: 'cover',
 
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.up("sm")]: {
       top: 20,
       left: 20,
       right: 20,
       bottom: 20,
-      position: 'absolute',
-      margin: 'auto',
-      alignItems: 'center',
-      alignContent: 'center',
-      verticalAlign: "middle",
-      backgroundColor: "#252525",
       maxHeight: '90%',
+    },
+    [theme.breakpoints.down("md")]: {
+      top: 50,
+      left: 20,
+      right: 20,
+      bottom: 30,
+      // maxHeight: '90%',
+    },
+    [theme.breakpoints.up("md")]: {
+      top: 260,
+      left: 220,
+      right: 20,
+      bottom: 260,
+      maxHeight: '90%',
+    },
+    [theme.breakpoints.up("lg")]: {
+      top: 100,
+      left: 500,
+      right: 300,
+      bottom: 100,
     },
   },
 }));

@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
       marginTop: '0.5rem',
       minWidth: 280,
     },
+    [theme.breakpoints.down("md")]: {
+      marginTop: '1rem',
+    },
     [theme.breakpoints.up("md")]: {
       marginTop: '2rem',
     },
@@ -38,24 +41,37 @@ const useStyles = makeStyles((theme) => ({
       color: '#f7f2df',
   },
   root: {
+    [theme.breakpoints.down("xs")]: {
+    },
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: 0,
+    },
+    // [theme.breakpoints.down("md")]: {
+    //   paddingTop: 100,
+    // },
+    [theme.breakpoints.up("md")]: {
+      paddingLeft: 100,
+    },
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'right',
     alignItems: 'center',
     alignContent: 'center',
-    color: 'red',
   },
   cComp: {
     display: 'flex',
     flexDirection: 'column',
     marginTop: '1rem',
-    justifyContent: 'center',
+    justifyContent: 'right',
     alignItems: 'center',
     alignContent: 'center',
   },
   button: {
-    [theme.breakpoints.up("xs")]: {
-      marginTop: '2rem',
+    // [theme.breakpoints.up("xs")]: {
+    //   marginTop: '2rem',
+    // },
+    [theme.breakpoints.down("md")]: {
+      marginTop: '0.5rem',
     },
     background: '#ffd065',
     borderRadius: 3,
@@ -69,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     //  fontFamily: 'Whitefeather',
      fontFamily: 'Oswald Regular',
      fontSize: 1,
-     color: '#f7f2df',
+    //  color: '#f7f2df',
      marginTop: 0,
     //  fontFamily: 'Loves',
   },

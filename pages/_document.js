@@ -18,9 +18,9 @@ export default class MyDocument extends Document {
             <Toolbar>
               <div className="topNavBarItem" />
               <div className="topNavBarItem">
-                <Typography align="right" color="primary" variant="h1">
+                {/* <Typography align="right" color="primary" variant="h1">
                   PP
-                </Typography>
+                </Typography> */}
               </div>
             </Toolbar>
           </AppBar>
