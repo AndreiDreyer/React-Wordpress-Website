@@ -4,10 +4,12 @@ body {
   height: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #f9f3de;
 }
 
 #__next {
   height: 100%;
+  background-color: #f9f3de;
 }
 
 a {
@@ -65,7 +67,7 @@ a:active {
   box-sizing: border-box;
 }
 
-.MuiPaper-root.topNavBar {
+.MuiPaper-root.homeTopNavBar {
   z-index: 999;
   background-color: transparent;
   box-shadow: none;
@@ -76,7 +78,7 @@ a:active {
   max-height: 75px;
 }
 
-.topNavBarContainer {
+.homeTopNavBarContainer {
   flex-grow: 1;
   background-color: transparent;
   height: 100%;
@@ -85,7 +87,7 @@ a:active {
   min-height: 75px;
 }
 
-.topNavBarItem {
+.homeTopNavBarItem {
   display: flex;
   justify-content: flex-end;
   width: 100%;
@@ -97,7 +99,7 @@ a:active {
   margin-bottom: auto;
 }
 
-.topNavBarIcon {
+.homeTopNavBarIcon {
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 2rem;
@@ -126,7 +128,7 @@ a:active {
 }
 
 @media only screen and (min-width: 768px) {
-  .MuiToolbar-regular.topNavBar {
+  .MuiToolbar-regular.homeTopNavBar {
     min-height: 75px;
   }
 }
@@ -142,12 +144,12 @@ a:active {
     display: none;
   }
 
-  .topNavBarItem {
+  .homeTopNavBarItem {
     padding-top: 1.5rem;
     padding-right: 1.5rem;
   }
 
-  .MuiSvgIcon-root.topNavBarIcon {
+  .MuiSvgIcon-root.homeTopNavBarIcon {
     font-size: 24px;
   }
 
