@@ -125,7 +125,7 @@ const BOOKING_TEMPLATE_ID = process.env.BOOKING_TEMPLATE_ID;
 const EMAILJS_SERVICE_ID = process.env.EMAILJS_SERVICE_ID;
 const EMAILJS_USER_ID = process.env.EMAILJS_USER_ID;
 
-export default function BookingForm(props) {
+function BookingForm(props) {
   const classes = useStyles();
   const { width } = props;
   console.log(width)
@@ -299,3 +299,4 @@ export default function BookingForm(props) {
     </form>
   );
 }
+export default withWidth() (BookingForm)
