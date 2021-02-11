@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ReCaptchaComp from '../components/ReCaptchaComp';
+import { withWidth } from '@material-ui/core';
 import { ColorLensOutlined } from '@material-ui/icons';
 
 import { borders } from '@material-ui/system';
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("sm")]: {
       marginTop: '0.5rem',
-      minWidth: 280,
+      minWidth: 20,
     },
     [theme.breakpoints.down("md")]: {
       marginTop: '1rem',
@@ -39,6 +40,28 @@ const useStyles = makeStyles((theme) => ({
       alignItems: 'center',
       alignContent: 'center',
       color: 'black',
+      fontSize: 20,
+  },
+  dateField: {
+    [theme.breakpoints.down("xs")]: {
+      marginTop: 0,
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: '0.5rem',
+      // width: 200, 
+    },
+    [theme.breakpoints.down("md")]: {
+      marginTop: '1rem',
+    },
+    [theme.breakpoints.up("md")]: {
+      marginTop: '2rem',
+    },
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignContent: 'center',
+      color: 'black',
+      fontSize: 20,
   },
   root: {
     [theme.breakpoints.down("xs")]: {
@@ -50,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     //   paddingTop: 100,
     // },
     [theme.breakpoints.up("md")]: {
-      paddingLeft: 100,
+      // paddingLeft: 100,
     },
     display: 'flex',
     flexDirection: 'column',
@@ -72,6 +95,7 @@ const useStyles = makeStyles((theme) => ({
     // },
     [theme.breakpoints.down("md")]: {
       marginTop: '0.5rem',
+      marginBottom: '0.5rem',
     },
     background: '#ffd065',
     borderRadius: 3,
@@ -80,6 +104,7 @@ const useStyles = makeStyles((theme) => ({
     height: 48,
     padding: '0 30px',
     marginTop: '2rem',
+    marginBottom: '2rem',
   },
   text: {
     //  fontFamily: 'Whitefeather',
@@ -100,8 +125,12 @@ const BOOKING_TEMPLATE_ID = process.env.BOOKING_TEMPLATE_ID;
 const EMAILJS_SERVICE_ID = process.env.EMAILJS_SERVICE_ID;
 const EMAILJS_USER_ID = process.env.EMAILJS_USER_ID;
 
-export default function BookingForm() {
+export default function BookingForm(props) {
   const classes = useStyles();
+  const { width } = props;
+  console.log(width)
+  const lgThanMd = width === 'sm' || width === 'xs';
+  console.log(lgThanMd)
 
   const { values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit, handleReset, isValid, dirty } = useFormik({
     initialValues: {
@@ -227,13 +256,13 @@ export default function BookingForm() {
             label="Date and Time"
             type="datetime-local"
             name="dateTime"
-            className={classes.textField}
+            className={classes.dateField}
             InputProps={{
-              className: classes.textField
+              className: classes.dateField
             }}
             value={values.dateTime}
             InputLabelProps={{
-              shrink: true,
+              shrink: lgThanMd,
             }}
             onChange={handleChange}
             onBlur={handleBlur}

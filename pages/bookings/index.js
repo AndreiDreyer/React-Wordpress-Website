@@ -19,7 +19,6 @@ import { customTheme } from '../../src/theme';
 const useStyles = makeStyles((theme) => ({
   root: {
     position: 'absolute',
-    margin: 'auto',
     alignItems: 'center',
     alignContent: 'center',
     verticalAlign: "middle",
@@ -48,6 +47,34 @@ const useStyles = makeStyles((theme) => ({
       bottom: 100,
     },
   },
+  second: {
+    [theme.breakpoints.up("xs")]: {
+    },
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: 90,
+      maxWidth: '75%',
+      marginTop: 200,
+      minHeight: '75%',
+      alignContent: 'right',
+    },
+    [theme.breakpoints.up("md")]: {
+      marginLeft: 200,
+      maxWidth: '75%',
+      marginTop: 200,
+      minHeight: '75%',
+    },
+    [theme.breakpoints.up("lg")]: {
+      marginLeft: 200,
+      marginTop: 200,
+      maxWidth: '75%',
+    },
+    [theme.breakpoints.up("xl")]: {
+      marginLeft: 300,
+      marginTop: 10,
+      maxWidth: '50%',
+    },
+    background: 'rgba(31,65,69, 0.2)',
+  },
 }));
 
 function Booking({ menuItems }) {
@@ -66,7 +93,9 @@ function Booking({ menuItems }) {
       <Container maxWidth="lg">
       <Card className={classes.root}>
         <CardContent>
-          <BookingForm></BookingForm>
+          <Card className={classes.second}>
+            <BookingForm></BookingForm>
+          </Card>
         </CardContent>
       </Card>
       </Container>
