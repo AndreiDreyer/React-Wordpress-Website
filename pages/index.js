@@ -5,6 +5,14 @@ import Navigation from '../components/Navigation';
 import Head from 'next/head';
 
 import { Grid } from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Typography from '@material-ui/core/Typography';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 import { getMenu, getBackgroundImages } from '../lib/api';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -59,9 +67,22 @@ export default function Home({ menuItems, backgroundImageSrcs }) {
         <link rel="icon" href="/favicon.ico" />
         <script src="https://www.paypal.com/sdk/js?client-id=AUsPuJjZe3gcSsc0U7mt_tCdRiCZresx96fiv1FNIoRukORqqWMVQs074sCdd41aSWqcp2mGzvp2HKbh&currency=USD"></script>
       </Head>
+
+      <AppBar className="homeTopNavBar" elevation={0}>
+        <CssBaseline />
+        <Toolbar disableGutters={true} className="homeTopNavBar">
+          <div className="homeTopNavBarContainer">
+            <div className="homeTopNavBarItem">
+              <ShoppingCartIcon className="homeTopNavBarIcon" />
+              <FacebookIcon className="homeTopNavBarIcon mediaIcon" />
+              <InstagramIcon className="homeTopNavBarIcon mediaIcon" />
+            </div>
+          </div>
+        </Toolbar>
+      </AppBar>
       <Grid container className={classes.menuGrid}>
         <Grid item>
-          <Navigation menuItems={menuItems} />
+          <Navigation menuItems={menuItems} color="white" />
         </Grid>
         <Grid item className={classes.menuGrid}>
           <div className={classes.rotatingImagesContainer}>

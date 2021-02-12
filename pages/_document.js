@@ -1,13 +1,8 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
-import Typography from '@material-ui/core/Typography';
-import CssBaseline from '@material-ui/core/CssBaseline';
 
 export default class MyDocument extends Document {
   render() {
@@ -18,18 +13,6 @@ export default class MyDocument extends Document {
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         </Head>
         <body>
-          <AppBar className="topNavBar" elevation={0}>
-            <CssBaseline />
-            <Toolbar disableGutters={true} className="topNavBar">
-              <div className="topNavBarContainer">
-                <div className="topNavBarItem">
-                  <ShoppingCartIcon className="topNavBarIcon" />
-                  <FacebookIcon className="topNavBarIcon mediaIcon" />
-                  <InstagramIcon className="topNavBarIcon mediaIcon" />
-                </div>
-              </div>
-            </Toolbar>
-          </AppBar>
           <div className="footer">
             <div>
               <FacebookIcon className="footerIcon" />
