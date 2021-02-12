@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 'auto',
     justifyContent: 'space-between',
     width: '85%',
+    backgroundColor: '#f9f3de',
     [theme.breakpoints.down(1025)]: {
       justifyContent: 'center',
     },
@@ -56,6 +57,8 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 375,
     marginLeft: 'auto',
     marginRight: 'auto',
+    border: '1px solid black',
+    // backgroundColor: '#f9f3de',
     [theme.breakpoints.up('sm')]: {
       marginLeft: 'auto',
       marginRight: '0',
@@ -72,6 +75,13 @@ const useStyles = makeStyles((theme) => ({
   cardButton: {
     marginLeft: 'auto',
     marginRight: 'auto',
+    backgroundColor: '#252525',
+    color: 'white',
+    width: '70%',
+    marginBottom: '1.5rem',
+  },
+  cardContent: {
+    textAlign: 'left',
   },
 }));
 
@@ -90,24 +100,32 @@ export default function Shop({ products, menuItems }) {
         <Grid item xs={12} className={classes.productItem}>
           <Grid container spacing={1} className={classes.someGrid}>
             {products.map((product) => {
-              console.log(product);
               return product.stock_quantity > -10 ? (
                 <Grid item xs={12} md={6} lg={3} className={classes.productItem} key={product.id}>
                   <Link href={`/shop/${product.id}?slug=${product.slug}`}>
                     <Card className={classes.mediaCard}>
                       <CardActionArea>
                         <CardMedia className={classes.mediaItem} image={product.images[0].src} title={product.images[0].name} />
-                        <CardContent>
-                          <Typography gutterBottom variant="h5" component="h2">
+                        <CardContent className={classes.cardContent}>
+                          <Typography gutterBottom variant="h4" component="h3">
                             {product.name}
                           </Typography>
+                          {product.priceRange.length >= 2 && (
+                            <Typography gutterBottom variant="h5" component="h4">
+                              From: {product.priceRange[0]} - {product.priceRange[1]}
+                            </Typography>
+                          )}
+
+                          {product.priceRange.length === 1 && (
+                            <Typography gutterBottom variant="h5" component="h4">
+                              {product.priceRange[0]}
+                            </Typography>
+                          )}
                         </CardContent>
                       </CardActionArea>
                       <CardActions>
                         <Link href={`/shop/${product.id}?slug=${product.slug}`}>
-                          <Button variant="outlined" className={classes.cardButton}>
-                            View Product
-                          </Button>
+                          <Button className={classes.cardButton}>View Product</Button>
                         </Link>
                       </CardActions>
                     </Card>
@@ -125,12 +143,33 @@ export default function Shop({ products, menuItems }) {
 }
 
 export async function getStaticProps() {
-  const products = await getProducts();
+  const productsRaw = await getProducts();
   const menuItems = await getMenu();
+  const products = getPriceRange(productsRaw);
   return {
     props: {
       products,
       menuItems,
     },
   };
+}
+
+function getPriceRange(products) {
+  let m;
+  const regexPattern = /;<\/span[^>]*>(.+?)<\/bdi>/g;
+
+  const rangeProducts = products.map((product) => {
+    let priceRange = [];
+    while ((m = regexPattern.exec(product.price_html))) {
+      priceRange.push(m[1]);
+    }
+
+    return {
+      ...product,
+      priceRange: priceRange,
+    };
+  });
+
+  console.log(rangeProducts);
+  return rangeProducts;
 }
