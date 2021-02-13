@@ -90,9 +90,9 @@ const useStyles = makeStyles((theme) => ({
     alignContent: 'center',
   },
   button: {
-    // [theme.breakpoints.up("xs")]: {
-    //   marginTop: '2rem',
-    // },
+    [theme.breakpoints.down("xs")]: {
+      marginTop: '0.2rem',
+    },
     [theme.breakpoints.down("md")]: {
       marginTop: '0.5rem',
       marginBottom: '0.5rem',

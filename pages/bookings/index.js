@@ -14,6 +14,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Container from '@material-ui/core/Container';
 import {Helmet} from 'react-helmet';
 
+import { shadows } from '@material-ui/system';
 import { customTheme } from '../../src/theme';
 
 const useStyles = makeStyles((theme) => ({
@@ -25,22 +26,42 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: 'url(./compressedBookingForm.jpg)',
     backgroundRepeat: 'no-repeat',
     WebkitBackgroundSize: 'cover',
+    boxShadow: "0 5px 8px 0 rgba(0, 0, 0, 0.3)",
 
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.down("xs")]: {
       top: 20,
       left: 20,
       right: 20,
       bottom: 20,
-      maxHeight: '90%',
+      minHeight: '90%',
     },
-    [theme.breakpoints.down("md")]: {
-      top: 50,
+    [theme.breakpoints.down("380")]: {
+      top: 20,
+      left: 20,
+      right: 20,
+      bottom: 20,
+      maxHeight: '100%',
+    },
+    [theme.breakpoints.down("770")]: {
+      top: 60,
       left: 20,
       right: 20,
       bottom: 30,
-      // maxHeight: '90%',
+      maxHeight: '90%',
+    },
+    [theme.breakpoints.up("1020")]: {
+      top: 100,
+      left: 220,
+      right: 20,
+      bottom: 100,
     },
     [theme.breakpoints.up("lg")]: {
+      top: 100,
+      left: 220,
+      right: 20,
+      bottom: 100,
+    },
+    [theme.breakpoints.up("xl")]: {
       top: 100,
       left: 500,
       right: 300,
@@ -48,23 +69,19 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   second: {
-    [theme.breakpoints.up("xs")]: {
+    [theme.breakpoints.down("365")]: {
+      // minHeight: '90%',
+      // alignContent: 'right',
     },
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: 90,
-      maxWidth: '75%',
-      marginTop: 200,
+    [theme.breakpoints.down("380")]: {
       minHeight: '75%',
       alignContent: 'right',
     },
-    [theme.breakpoints.up("md")]: {
-      marginLeft: 200,
-      maxWidth: '75%',
-      marginTop: 200,
-      minHeight: '75%',
+    [theme.breakpoints.down("770")]: {
+      // marginTop: 100,  
     },
-    [theme.breakpoints.up("lg")]: {
-      marginLeft: 200,
+    [theme.breakpoints.up("1020")]: {
+      marginLeft: 100,
       marginTop: 200,
       maxWidth: '75%',
     },
@@ -74,6 +91,7 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: '50%',
     },
     background: 'rgba(31,65,69, 0.2)',
+    boxShadow: "0 1px 4px 0 rgba(0, 0, 0, 0.3)",
   },
 }));
 
