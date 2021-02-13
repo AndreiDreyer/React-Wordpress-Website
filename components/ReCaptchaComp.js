@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ReCaptcha } from 'react-recaptcha-google'
+import { ReCaptcha } from 'react-recaptcha-google';
 import scriptLoader from "react-async-script-loader";
 
 class ReCaptchaComp extends Component {
@@ -37,10 +37,6 @@ class ReCaptchaComp extends Component {
             onloadCallback={this.onLoadRecaptcha}
             verifyCallback={this.verifyCallback}
         />
-        <code>
-          1. Add <strong>your site key</strong> in the ReCaptcha component. <br/>
-          2. Check <strong>console</strong> to see the token.
-        </code>
       </div>
     );
   };
