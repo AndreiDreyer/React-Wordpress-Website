@@ -4,10 +4,12 @@ body {
   height: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #f9f3de;
 }
 
 #__next {
   height: 100%;
+  background-color: #f9f3de;
 }
 
 a {
@@ -65,7 +67,7 @@ a:active {
   box-sizing: border-box;
 }
 
-.MuiPaper-root.topNavBar {
+.MuiPaper-root.homeTopNavBar {
   z-index: 999;
   background-color: transparent;
   box-shadow: none;
@@ -91,4 +93,86 @@ a:active {
 
 .MuiFormLabel-root {
   color: black !important;
+  /* outline: 2px solid red; */
+  max-height: 75px;
+}
+
+.homeTopNavBarContainer {
+  flex-grow: 1;
+  background-color: transparent;
+  height: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  min-height: 75px;
+}
+
+.homeTopNavBarItem {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+  background-color: transparent;
+  min-height: 75px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.homeTopNavBarIcon {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 2rem;
+  margin-right: 1rem;
+
+  color: white;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  position: fixed;
+  background-color: transparent;
+  bottom: 0;
+  height: 3rem;
+  width: 100%;
+  margin: auto;
+}
+
+.footerIcon {
+  color: white;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  font-size: 24px;
+}
+
+@media only screen and (min-width: 768px) {
+  .MuiToolbar-regular.homeTopNavBar {
+    min-height: 75px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .MuiSvgIcon-root.mediaIcon {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .footer {
+    display: none;
+  }
+
+  .homeTopNavBarItem {
+    padding-top: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .MuiSvgIcon-root.homeTopNavBarIcon {
+    font-size: 24px;
+  }
+
+  .MuiSvgIcon-root.hamburgerIcon {
+    font-size: 24px;
+  }
 }
