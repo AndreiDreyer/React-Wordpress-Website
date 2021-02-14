@@ -6,23 +6,46 @@ import TopNavBar from '../../components/TopNavbar';
 import Link from 'next/link';
 import Head from 'next/head';
 
-import { Grid } from '@material-ui/core';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
 
-import { makeStyles } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
+import Carousel from 'react-material-ui-carousel';
+
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   productSection: {
     display: 'flex',
     marginLeft: 'auto',
     marginRight: 'auto',
+  },
+  productsContainer: {
+    marginLeft: '1rem',
+    marginRight: '1rem',
     marginTop: '75px',
+    [theme.breakpoints.up('lg')]: {
+      marginLeft: '8rem',
+      marginRight: '8rem',
+    },
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: 768,
+    },
+  },
+  promotionContainer: {
+    width: '100%',
+    paddingLeft: '12px',
+    paddingRight: '12px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  promotionItem: {
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   productItem: {
     margin: '1rem 3rem 4rem 3rem',
@@ -32,61 +55,45 @@ const useStyles = makeStyles((theme) => ({
       marginRight: 'auto',
     },
   },
-  unEventProductItem: {
-    marginLeft: 0,
-    marginRight: 'auto',
-  },
-  gridContainer: {
-    width: '100%',
-  },
-  productGrid: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
-  someGrid: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    justifyContent: 'space-between',
-    width: '85%',
-    backgroundColor: '#f9f3de',
-    [theme.breakpoints.down(1025)]: {
-      justifyContent: 'center',
-    },
-  },
-  mediaCard: {
-    maxWidth: 375,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    border: '1px solid black',
-    // backgroundColor: '#f9f3de',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: 'auto',
-      marginRight: '0',
-    },
-    [theme.breakpoints.up('lg')]: {
-      maxWidth: 500,
-      maxHeight: 500,
-    },
-  },
-  mediaItem: {
-    height: 200,
-    objectFit: 'contain',
-  },
-  cardButton: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    backgroundColor: '#252525',
+  productButton: {
     color: 'white',
-    width: '70%',
-    marginBottom: '1.5rem',
   },
-  cardContent: {
-    textAlign: 'left',
+  gridItem: {
+    width: '100%',
+    marginLeft: 'auto !important',
+    marginRight: 'auto !important',
   },
 }));
 
 export default function Shop({ products, menuItems }) {
   const classes = useStyles();
+  const theme = useTheme();
+
+  const sm = useMediaQuery(theme.breakpoints.down('sm'));
+  const md = useMediaQuery(theme.breakpoints.down('md'));
+  const xlg = useMediaQuery(theme.breakpoints.down('xl'));
+
+  const mdUp = useMediaQuery(theme.breakpoints.up('md'));
+  const ipad = useMediaQuery(theme.breakpoints.down(769));
+  const ipadUp = useMediaQuery(theme.breakpoints.up(768));
+
+  const numCols = () => {
+    if (ipad && ipadUp) {
+      return 2;
+    } else if (sm) {
+      return 1;
+    } else if (md) {
+      return 2;
+    } else if (xlg) {
+      return 3;
+    }
+  };
+
+  const productBtn = (id, slug) => (
+    <Link href={`/shop/${id}?slug=${slug}`}>
+      <Button className={classes.productButton}>View Product</Button>
+    </Link>
+  );
 
   return (
     <div className={classes.productSection}>
@@ -96,48 +103,35 @@ export default function Shop({ products, menuItems }) {
       </Head>
       <TopNavBar />
       <Navigation menuItems={menuItems} />
-      <Grid container spacing={6} className={classes.productGrid} alignItems="center" justify="space-between">
-        <Grid item xs={12} className={classes.productItem}>
-          <Grid container spacing={1} className={classes.someGrid}>
+      <div className={classes.productsContainer}>
+        <Carousel autoPlay={false} interval={2000} className={classes.promotionContainer}>
+          <Button className={classes.promotionItem}>A</Button>
+        </Carousel>
+        {ipadUp ? (
+          <GridList cellHeight={250} cols={numCols()} spacing={24} className={classes.gridItem}>
             {products.map((product) => {
-              return product.stock_quantity > -10 ? (
-                <Grid item xs={12} md={6} lg={3} className={classes.productItem} key={product.id}>
-                  <Link href={`/shop/${product.id}?slug=${product.slug}`}>
-                    <Card className={classes.mediaCard}>
-                      <CardActionArea>
-                        <CardMedia className={classes.mediaItem} image={product.images[0].src} title={product.images[0].name} />
-                        <CardContent className={classes.cardContent}>
-                          <Typography gutterBottom variant="h4" component="h3">
-                            {product.name}
-                          </Typography>
-                          {product.priceRange.length >= 2 && (
-                            <Typography gutterBottom variant="h5" component="h4">
-                              From: {product.priceRange[0]} - {product.priceRange[1]}
-                            </Typography>
-                          )}
-
-                          {product.priceRange.length === 1 && (
-                            <Typography gutterBottom variant="h5" component="h4">
-                              {product.priceRange[0]}
-                            </Typography>
-                          )}
-                        </CardContent>
-                      </CardActionArea>
-                      <CardActions>
-                        <Link href={`/shop/${product.id}?slug=${product.slug}`}>
-                          <Button className={classes.cardButton}>View Product</Button>
-                        </Link>
-                      </CardActions>
-                    </Card>
-                  </Link>
-                </Grid>
-              ) : (
-                <div></div>
+              console.log(product.images);
+              return (
+                <GridListTile key={product.id}>
+                  <img src={product.images[0].src} className={classes.productImage} />
+                  <GridListTileBar title={product.name} subtitle={`From ${product.priceRange[0]} - ${product.priceRange[1]}`} actionIcon={productBtn(product.id, product.slug)} />
+                </GridListTile>
               );
             })}
-          </Grid>
-        </Grid>
-      </Grid>
+          </GridList>
+        ) : (
+          <GridList cellHeight={200} cols={numCols()} spacing={24}>
+            {products.map((product) => {
+              return (
+                <GridListTile key={product.id} cols={1}>
+                  <img src={product.images[0].src} className={classes.productImage} />
+                  <GridListTileBar title={product.name} subtitle={`From ${product.priceRange[0]} - ${product.priceRange[1]}`} actionIcon={productBtn(product.id, product.slug)} />
+                </GridListTile>
+              );
+            })}
+          </GridList>
+        )}
+      </div>
     </div>
   );
 }
@@ -170,6 +164,5 @@ function getPriceRange(products) {
     };
   });
 
-  console.log(rangeProducts);
   return rangeProducts;
 }
