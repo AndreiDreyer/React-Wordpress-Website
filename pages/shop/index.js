@@ -45,8 +45,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'block',
     width: '100%',
     height: '100%',
-    // paddingLeft: '12px',
-    // paddingRight: '12px',
     margin: 'auto',
     '& .CarouselItem': {
       height: '100%',
