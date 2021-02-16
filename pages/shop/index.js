@@ -236,7 +236,7 @@ export default function Shop({ products, menuItems }) {
                 {products.map((product) => {
                   if (product.featured) {
                     return (
-                      <div>
+                      <div key={product.id}>
                         <h2>{product.name}</h2>
                         <Grid container alignItems="center" justify="center" className={classes.videoInfo}>
                           <div className={classes.videoLocation}>
