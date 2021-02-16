@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { getMenu } from '../../lib/api';
 
 import Navigation from '../../components/Navigation';
+import TopNavBar from '../../components/TopNavbar';
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { makeStyles } from '@material-ui/core/styles';
@@ -107,6 +108,7 @@ function Booking({ menuItems }) {
         <title>Book a Shoot</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <TopNavBar></TopNavBar>
       <Navigation menuItems={menuItems}></Navigation>
       <Container maxWidth="lg">
       <Card className={classes.root}>
