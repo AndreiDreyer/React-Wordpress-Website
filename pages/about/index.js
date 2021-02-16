@@ -7,13 +7,14 @@ import Head from 'next/head';
 import { Grid } from '@material-ui/core';
 import { getMenu } from '../../lib/api';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import Paper from '@material-ui/core/Paper';
 
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -173,6 +174,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function About({ menuItems }) {
   const classes = useStyles();
+  const theme = useTheme();
 
   const tileData = [
     {
@@ -188,6 +190,26 @@ export default function About({ menuItems }) {
       title: 'title'
     }
     ];
+
+  const sm = useMediaQuery(theme.breakpoints.down('sm'));
+  const md = useMediaQuery(theme.breakpoints.down('md'));
+  const xlg = useMediaQuery(theme.breakpoints.down('xl'));
+
+  const mdUp = useMediaQuery(theme.breakpoints.up('md'));
+  const ipad = useMediaQuery(theme.breakpoints.down(769));
+  const ipadUp = useMediaQuery(theme.breakpoints.up(768));
+
+  const numCols = () => {
+    if (ipad && ipadUp) {
+      return 2;
+    } else if (sm) {
+      return 1;
+    } else if (md) {
+      return 2;
+    } else if (xlg) {
+      return 3;
+    }
+  };
 
   return (
     <Grid container spacing={0} direction="row" className={classes.menuGrid}>
@@ -226,7 +248,7 @@ export default function About({ menuItems }) {
       </div>
       
       <div className={classes.grid}>
-        <GridList className={classes.gridList} cols={3} rows={2}>
+        <GridList className={classes.gridList} cols={numCols()} rows={2}>
           {tileData.map((tile) => (
             <GridListTile className={classes.tile} rows={2} key={tile.img}>
               <img src={tile.img} alt={tile.title} />            
