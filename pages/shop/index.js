@@ -184,6 +184,7 @@ export default function Shop({ products, menuItems }) {
               </div>
               <Carousel autoPlay={false} interval={2000} className={classes.promotionContainer}>
                 {products.map((product) => {
+                  console.log(product);
                   if (product.featured) {
                     return (
                       <div className={classes.promotionItem}>
@@ -215,7 +216,6 @@ export default function Shop({ products, menuItems }) {
               </div>
             </GridListTile>
             {products.map((product) => {
-              console.log(product.images);
               if (!product.featured) {
                 return (
                   <GridListTile key={product.id}>
@@ -325,11 +325,6 @@ function getPriceRange(products) {
         shortDescription = m[1];
       }
 
-      console.log('Description: ', description);
-      console.log('Date: ', date);
-      console.log('Location: ', location);
-      console.log('Short Description: ', shortDescription);
-
       return {
         ...product,
         videoId: videoId,
@@ -349,8 +344,6 @@ function getPriceRange(products) {
       priceRange: priceRange,
     };
   });
-
-  // console.log(rangeProducts);
 
   return rangeProducts;
 }

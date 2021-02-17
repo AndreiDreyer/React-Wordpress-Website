@@ -122,6 +122,24 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: '1rem',
     },
   },
+  productDescription: {
+    [theme.breakpoints.down(1025)]: {
+      display: 'none',
+    },
+  },
+  productDescriptionSmall: {
+    [theme.breakpoints.up(1025)]: {
+      display: 'none',
+    },
+  },
+  productShortDescription: {
+    [theme.breakpoints.up(1025)]: {
+      display: 'none',
+    },
+    [theme.breakpoints.down(765)]: {
+      display: 'none',
+    },
+  },
 }));
 
 export default function Product({ productData, variationData, menuItems }) {
@@ -148,13 +166,15 @@ export default function Product({ productData, variationData, menuItems }) {
   };
 
   const handleChange = (e) => {
-    console.log('Slap me daddy');
     const { target } = e;
 
     const newPrice = variationData.find((item) => item.attributes[0].option === target.value).price;
 
     setSize(e.target.value);
-    setPrice(newPrice);
+
+    const newestPrice = newPrice * quantity;
+
+    setPrice(newestPrice);
   };
 
   const handleQuantity = (e) => {
@@ -162,6 +182,11 @@ export default function Product({ productData, variationData, menuItems }) {
       setQuantity('');
     } else if (isInteger(e.target.value)) {
       setQuantity(parseInt(e.target.value));
+
+      const unitPrice = variationData.find((item) => item.attributes[0].option === size).price || {};
+      const newPrice = parseInt(unitPrice) * parseInt(e.target.value);
+
+      setPrice(newPrice);
     }
   };
 
@@ -205,11 +230,15 @@ export default function Product({ productData, variationData, menuItems }) {
               Add to Cart
             </Button>
             <div dangerouslySetInnerHTML={{ __html: productData.short_description }} className={classes.productShortDescription} />
+            <div className={classes.productDescription}>
+              <h1>Description:</h1>
+              <div dangerouslySetInnerHTML={{ __html: productData.description }} />
+            </div>
           </div>
         </Grid>
         <Grid item xs={12} className={classes.cartButtonContainer}></Grid>
         <Grid item xs={12} className={classes.productInfo}>
-          <div>
+          <div className={classes.productDescriptionSmall}>
             <h1>Description:</h1>
             <div dangerouslySetInnerHTML={{ __html: productData.description }} />
           </div>
