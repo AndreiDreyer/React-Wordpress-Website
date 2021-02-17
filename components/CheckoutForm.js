@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, withTheme } from '@material-ui/core/styles';
 
 import { CartContext } from '../src/contexts/CartContext';
 
@@ -28,6 +28,16 @@ const useStyles = () => ({
   gridItem: {
     marginBottom: '1rem',
     marginTop: '1rem',
+  },
+  button: {
+    background: '#252525',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    marginTop: '2rem',
+    marginBottom: '2rem',
   },
 });
 
@@ -263,7 +273,7 @@ const form = (props) => {
         />
         {isValid && dirty ? (
           <div>
-            <Button type="submit" color="primary">
+            <Button type="submit" color="primary" className={classes.button}>
               Checkout
             </Button>
             <PaypalButton paymentAmount={total} onSuccess={onSuccess} onProcess={onProcessing}></PaypalButton>
