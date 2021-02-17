@@ -97,7 +97,7 @@ export default function Checkout({menuItems}) {
                 </Typography>
               </Grid>
               <Grid item xs={12} className={classes.gridItem}>
-                <p>Total: {total}</p>
+                <p>Total:&nbsp;{total}</p>
               </Grid>
               <div>
                 <Grid item xs={12} className={classes.gridItem}>
