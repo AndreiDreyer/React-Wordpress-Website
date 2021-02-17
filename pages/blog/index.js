@@ -19,7 +19,6 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
-// import tileData from './tileData';
 
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
@@ -128,7 +127,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   tile: {
-    // width: '100%',
     boxShadow: '10px !important'
   },
   icon: {
@@ -208,9 +206,6 @@ function Blog({ allPosts, menuItems }) {
     <div className={classes.root}>
     <Grow in={true} timeout={'auto'}>
       <GridList cellHeight={600} spacing={10} cols={numCols()} className={classes.gridList}>
-        {/* <GridListTile key="Subheader" cols={tile.featured ? 2 : 1} cols={1} style={{ height: 'auto' ,width:'100%'}}>
-          <ListSubheader component="div">December</ListSubheader>
-        </GridListTile> */}
         {allPosts.edges.map(({ node }) => (
             <GridListTile key={node.extraPostInfo.thumbImage.mediaItemUrl}  cols={1} className={classes.tile} >
               <img src={node.extraPostInfo.thumbImage.mediaItemUrl} alt={node.title}/>
