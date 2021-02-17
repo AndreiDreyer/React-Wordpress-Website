@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     alignContent: 'center',
     verticalAlign: "middle",
-    backgroundImage: 'url(./compressedBookingForm.jpg)',
+    backgroundImage: 'url(./_MG_0509.jpg)',
     backgroundRepeat: 'no-repeat',
     WebkitBackgroundSize: 'cover',
     boxShadow: "0 5px 8px 0 rgba(0, 0, 0, 0.3)",
@@ -62,11 +62,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   second: {
-    background: 'rgba(31,65,69, 0.2)',
-    boxShadow: "0 1px 4px 0 rgba(0, 0, 0, 0.3)",
+    background: 'rgba(31,65,69, 0.0)',
+    // boxShadow: "0 1px 4px 0 rgba(0, 0, 0, 0.3)",
+    border: 0,
+    paddingLeft: 20,
     [theme.breakpoints.up("1020")]: {
       marginLeft: 0,
       marginTop: 20,
+    },
+    heading: {
+      fontFamily: 'Oswald Regular',
     },
   },
 }));
@@ -85,15 +90,17 @@ export default function Checkout({menuItems}) {
           <CardContent>
             <Card className={classes.second}>
               <Grid item xs={12} className={classes.gridItem}>
-                <h1>Checkout</h1>
+              <Typography className={classes.heading} variant="h2" component="h1">
+                Checkout
+                </Typography>
               </Grid>
               <Grid item xs={12} className={classes.gridItem}>
                 <p>Total: {total}</p>
               </Grid>
               <div>
                 <Grid item xs={12} className={classes.gridItem}>
-                  <Typography variant="h4" component="h4">
-                    Shipping Address
+                  <Typography className={classes.heading} variant="h4" component="h4">
+                    Address
                   </Typography>
                   <Form />
                 </Grid>
