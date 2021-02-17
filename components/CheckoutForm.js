@@ -23,6 +23,7 @@ const useStyles = () => ({
   textField: {
     margin: '1rem',
     width: '25ch',
+    alignItems: 'center',
   },
   gridItem: {
     marginBottom: '1rem',
