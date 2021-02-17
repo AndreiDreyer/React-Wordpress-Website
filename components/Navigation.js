@@ -17,6 +17,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 import { withWidth } from '@material-ui/core';
+import Card from '@material-ui/core/Card';
 
 const drawerWidth = 200;
 
@@ -42,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     backgroundColor: '#F9F3DE',
     width: drawerWidth,
+    boxShadow: "8px 5px 8px 5px rgba(0, 0, 0, 0.1)",
   },
   content: {
     flexGrow: 1,

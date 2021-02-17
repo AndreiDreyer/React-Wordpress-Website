@@ -180,3 +180,7 @@ a:active {
 .MuiFormLabel-root {
   color: black !important;
 }
+
+.MuiDrawer-paperAnchorDockedLeft {
+  border: 0 !important;
+}
