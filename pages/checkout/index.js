@@ -18,6 +18,7 @@ import TopNavBar from '../../components/TopNavbar';
 import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import { PlayCircleFilledWhite } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: 'url(./_MG_0509.jpg)',
     backgroundRepeat: 'no-repeat',
     WebkitBackgroundSize: 'cover',
-    boxShadow: "0 5px 8px 0 rgba(0, 0, 0, 0.3)",
+    // boxShadow: "0 5px 8px 0 rgba(0, 0, 0, 0.3)",
     [theme.breakpoints.down("768")]: {
       marginTop: 75,
     },
@@ -63,9 +64,10 @@ const useStyles = makeStyles((theme) => ({
   },
   second: {
     background: 'rgba(31,65,69, 0.0)',
-    // boxShadow: "0 1px 4px 0 rgba(0, 0, 0, 0.3)",
     border: 0,
     paddingLeft: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    boxShadow: "0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);",
     [theme.breakpoints.up("1020")]: {
       marginLeft: 0,
       marginTop: 20,
