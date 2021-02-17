@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 
 import Head from 'next/head';
-import Link from 'next/link';
 
 import Navigation from '../../components/Navigation';
 import TopNavBar from '../../components/TopNavbar';
@@ -41,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: '1',
     flexWrap: 'wrap',
     '& img': {
+      boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
       width: '60%',
       [theme.breakpoints.down(768)]: {
         width: '100%',
@@ -143,7 +143,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Product({ productData, variationData, menuItems }) {
-  const { addProduct, cartItems, increase } = useContext(CartContext);
+  const { addProduct, cartItems } = useContext(CartContext);
   const classes = useStyles();
 
   const [quantity, setQuantity] = useState(1);
