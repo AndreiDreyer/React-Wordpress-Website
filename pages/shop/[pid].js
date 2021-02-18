@@ -160,6 +160,7 @@ export default function Product({ productData, variationData, menuItems }) {
 
     selectedVariation.quantity = quantity;
     selectedVariation.product_id = productData.id;
+    selectedVariation.name = productData.name;
 
     addProduct(selectedVariation);
   };
