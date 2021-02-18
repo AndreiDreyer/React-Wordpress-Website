@@ -1,10 +1,15 @@
 import React from 'react';
+
+import Link from 'next/link';
+
+import clsx from 'clsx';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -38,6 +43,19 @@ const useStyles = makeStyles((theme) => ({
   topNavBarIcon: {
     margin: 'auto 1rem auto 2rem',
     color: 'black',
+    width: '24px',
+    height: '24px',
+    padding: 0,
+  },
+  iconButton: {
+    padding: '35px 3rem 0 1rem',
+    width: '30px',
+    height: '30px',
+  },
+  iconLink: {
+    [theme.breakpoints.down(768)]: {
+      display: 'none',
+    },
   },
 }));
 
@@ -50,9 +68,21 @@ function TopNavBar(props) {
       <Toolbar disableGutters={true} className={classes.topAppBar}>
         <div className={classes.topNavBarContainer}>
           <div className={classes.topNavBarItem}>
-            <FacebookIcon className={classes.topNavBarIcon} />
-            <InstagramIcon className={classes.topNavBarIcon} />
-            <ShoppingCartIcon className={classes.topNavBarIcon} />
+            <Link href="">
+              <IconButton className={clsx(classes.iconButton, classes.iconLink)}>
+                <FacebookIcon className={classes.topNavBarIcon} />
+              </IconButton>
+            </Link>
+            <Link href="">
+              <IconButton className={clsx(classes.iconButton, classes.iconLink)}>
+                <InstagramIcon className={classes.topNavBarIcon} />
+              </IconButton>
+            </Link>
+            <Link href="/cart">
+              <IconButton className={classes.iconButton}>
+                <ShoppingCartIcon className={classes.topNavBarIcon} />
+              </IconButton>
+            </Link>
           </div>
         </div>
       </Toolbar>
