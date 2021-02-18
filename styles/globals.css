@@ -74,7 +74,7 @@ a:active {
   position: fixed;
   top: 0;
   width: 100%;
-  outline: 2px solid red;
+  /* outline: 2px solid red; */
   max-height: 50px;
 }
 
@@ -179,4 +179,8 @@ a:active {
 
 .MuiFormLabel-root {
   color: black !important;
+}
+
+.MuiDrawer-paperAnchorDockedLeft {
+  border: 0 !important;
 }
