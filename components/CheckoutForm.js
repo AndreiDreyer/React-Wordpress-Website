@@ -274,7 +274,7 @@ const form = (props) => {
         {isValid && dirty ? (
           <div>
             <Button type="submit" color="primary" className={classes.button}>
-              Checkout
+              Pay Cash
             </Button>
             <PaypalButton paymentAmount={total} onSuccess={onSuccess} onProcess={onProcessing}></PaypalButton>
           </div>
