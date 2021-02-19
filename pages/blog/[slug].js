@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Post({ postData, allPosts }) {
+export default function Post({ postData }) {
   const router = useRouter();
   const classes = useStyles();
 
@@ -168,7 +168,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const data = await getPost(params.slug);
-  const allPosts = await getAllPosts();
 
   return {
     props: {
