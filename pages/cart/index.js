@@ -22,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '10%',
     marginRight: '10%',
     width: '100%',
+    [theme.breakpoints.down(765)]: {
+      marginLeft: '1rem',
+      marginRight: '1rem',
+    },
   },
 }));
 
