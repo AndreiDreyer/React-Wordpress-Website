@@ -10,6 +10,8 @@ import blogStyles from '../../styles/Blog.module.css';
 
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 import TopNavBar from '../../components/TopNavbar';
 
@@ -35,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("1024")]: {
       height: 215,
       marginBottom: 86, 
-      marginLeft: 200,
     },
     [theme.breakpoints.up("lg")]: {
       height: 215,
@@ -49,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     textAlign: 'center',
     fontFamily: 'Whitefeather',
+    textDecoration: 'underline',
     [theme.breakpoints.down("376")]: {
       fontSize: '50px !important'
     },
@@ -63,11 +65,28 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   card: {
-    height: 300,
+    height: 600,
     marginBottom: 1,
   },
   media: {
     height: '100%',
+  },
+  main: {
+    width: '100%',
+  },
+  container: {
+    marginTop: 0,
+  },
+  backButton: {
+    marginTop: 300,
+    color: 'white',
+    backgroundColor: '#252525',
+  },
+  paper: {
+    marginTop: -10,
+    padding: 20,
+    color: '#f7f2df',
+    backgroundColor: '#252525',
   },
 }));
 
@@ -86,57 +105,54 @@ export default function Post({ postData, allPosts }) {
       newDate.getMonth() + 1
     }/${newDate.getFullYear()}`;
   };
-
+  console.log(postData)
   return (
-    <div className={styles.container}>
+    <div className={classes.container}>
       <Head>
         <title>{postData.title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <TopNavBar></TopNavBar>
-      {allPosts.edges.map(({ node }) => (
-      <main className={styles.main}>
+      <main className={classes.main}>
       <div className={classes.bannerDiv}>
         <Box style={{ margin: 0}}>
           <FiCard className={classes.card}>
             <FiCardActionArea className={classes.card}>
               <FiCardMedia
                 media="picture"
-                alt="Contemplative Reptile"
-                image={node.extraPostInfo.thumbImage.mediaItemUrl}
-                title="Contemplative Reptile"
+                alt="Blog Post"
+                image={postData.featuredImage.node.sourceUrl}
+                title={postData.title}
                 className={classes.media}
               />
-              <FiCardContent className={classes.fiCardContent}>
-                <Typography className={classes.heading} variant="h5" component="h2">
-                Ramblings While We Roam
-                </Typography>
-              </FiCardContent>
             </FiCardActionArea>
           </FiCard>
         </Box>
       </div>
+        <Button variant='outlined' href="/blog" className={classes.backButton} >
+            Back
+        </Button>
         {router.isFallback ? (
           <h2>Loading...</h2>
         ) : (
           <article className={blogStyles.article}>
+            <Paper elevation={3} className={classes.paper}>
             <div className={blogStyles.postmeta}>
-              <h1 className={styles.title}>{postData.title}</h1>
+              <Typography className={classes.heading} variant="h1" component="h2">
+                {postData.title}
+              </Typography>
               <p>{formatDate(postData.date)}</p>
             </div>
+            
             <div
               className="post-content content"
               dangerouslySetInnerHTML={{ __html: postData.content }}
             />
+            </Paper>
           </article>
         )}
-        <p>
-          <Link href="/blog">
-            <a>Back to articles</a>
-          </Link>
-        </p>
+        
       </main>
-      ))}
     </div>
   );
 }
