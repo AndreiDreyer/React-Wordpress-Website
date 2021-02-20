@@ -13,9 +13,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     position: 'absolute',
     bottom: 0,
-    margin: 'auto',
     justifyContent: 'center',
     height: 75,
+    backgroundColor: '#f9f3de',
     [theme.breakpoints.up(768)]: {
       display: 'none',
     },

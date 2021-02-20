@@ -14,11 +14,17 @@ import { getMenu } from '../../lib/api';
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
-    height: '100vh',
-    minHeight: '100vh',
+    [theme.breakpoints.down(765)]: {
+      position: 'relative',
+      minHeight: '100%',
+    },
   },
   root: {
     display: 'flex',
+
+    [theme.breakpoints.down(765)]: {
+      paddingBottom: '75px',
+    },
   },
   cartContainer: {
     marginTop: '75px',
@@ -52,10 +58,7 @@ export default function Cart({ menuItems }) {
           <div>{cartItems.length > 0 ? <CartProducts /> : <div>Your Cart is empty</div>}</div>
         </div>
       </div>
-
-      <div className={classes.footer}>
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }

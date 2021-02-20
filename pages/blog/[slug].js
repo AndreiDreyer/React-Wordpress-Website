@@ -8,20 +8,15 @@ import styles from '../../styles/Home.module.css';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import blogStyles from '../../styles/Blog.module.css';
 
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
 import TopNavBar from '../../components/TopNavbar';
+import Footer from '../../components/Footer';
 
-import {
-  FiCard,
-  FiCardActionArea,
-  FiCardActions,
-  FiCardContent,
-  FiCardMedia
-} from "../../components/ImageCard";
+import { FiCard, FiCardActionArea, FiCardActions, FiCardContent, FiCardMedia } from '../../components/ImageCard';
 
 const useStyles = makeStyles((theme) => ({
   topBanner: {
@@ -30,37 +25,37 @@ const useStyles = makeStyles((theme) => ({
   bannerDiv: {
     flexGrow: 1,
     width: '100%',
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down('sm')]: {
       height: 215,
-      marginBottom: 86, 
+      marginBottom: 86,
     },
-    [theme.breakpoints.up("1024")]: {
+    [theme.breakpoints.up('1024')]: {
       height: 215,
-      marginBottom: 86, 
+      marginBottom: 86,
     },
-    [theme.breakpoints.up("lg")]: {
+    [theme.breakpoints.up('lg')]: {
       height: 215,
-      marginBottom: 86, 
+      marginBottom: 86,
     },
-    [theme.breakpoints.up("xl")]: {
+    [theme.breakpoints.up('xl')]: {
       height: 215,
-      marginBottom: 86, 
+      marginBottom: 86,
     },
   },
   heading: {
     textAlign: 'center',
     fontFamily: 'Whitefeather',
     textDecoration: 'underline',
-    [theme.breakpoints.down("376")]: {
-      fontSize: '50px !important'
+    [theme.breakpoints.down('376')]: {
+      fontSize: '50px !important',
     },
-    [theme.breakpoints.down("420")]: {
+    [theme.breakpoints.down('420')]: {
       fontSize: 60,
     },
-    [theme.breakpoints.up("760")]: {
+    [theme.breakpoints.up('760')]: {
       fontSize: 100,
     },
-    [theme.breakpoints.up("lg")]: {
+    [theme.breakpoints.up('lg')]: {
       fontSize: 200,
     },
   },
@@ -73,9 +68,13 @@ const useStyles = makeStyles((theme) => ({
   },
   main: {
     width: '100%',
+    marginBottom: '1rem',
   },
   container: {
     marginTop: 0,
+    [theme.breakpoints.down(765)]: {
+      position: 'relative',
+    },
   },
   backButton: {
     marginTop: 300,
@@ -101,11 +100,9 @@ export default function Post({ postData }) {
   const formatDate = (date) => {
     const newDate = new Date(date);
 
-    return `${newDate.getDate()}/${
-      newDate.getMonth() + 1
-    }/${newDate.getFullYear()}`;
+    return `${newDate.getDate()}/${newDate.getMonth() + 1}/${newDate.getFullYear()}`;
   };
-  console.log(postData)
+  console.log(postData);
   return (
     <div className={classes.container}>
       <Head>
@@ -114,45 +111,36 @@ export default function Post({ postData }) {
       </Head>
       <TopNavBar></TopNavBar>
       <main className={classes.main}>
-      <div className={classes.bannerDiv}>
-        <Box style={{ margin: 0}}>
-          <FiCard className={classes.card}>
-            <FiCardActionArea className={classes.card}>
-              <FiCardMedia
-                media="picture"
-                alt="Blog Post"
-                image={postData.featuredImage.node.sourceUrl}
-                title={postData.title}
-                className={classes.media}
-              />
-            </FiCardActionArea>
-          </FiCard>
-        </Box>
-      </div>
-        <Button variant='outlined' href="/blog" className={classes.backButton} >
-            Back
+        <div className={classes.bannerDiv}>
+          <Box style={{ margin: 0 }}>
+            <FiCard className={classes.card}>
+              <FiCardActionArea className={classes.card}>
+                <FiCardMedia media="picture" alt="Blog Post" image={postData.featuredImage.node.sourceUrl} title={postData.title} className={classes.media} />
+              </FiCardActionArea>
+            </FiCard>
+          </Box>
+        </div>
+        <Button variant="outlined" href="/blog" className={classes.backButton}>
+          Back
         </Button>
         {router.isFallback ? (
           <h2>Loading...</h2>
         ) : (
           <article className={blogStyles.article}>
             <Paper elevation={3} className={classes.paper}>
-            <div className={blogStyles.postmeta}>
-              <Typography className={classes.heading} variant="h1" component="h2">
-                {postData.title}
-              </Typography>
-              <p>{formatDate(postData.date)}</p>
-            </div>
-            
-            <div
-              className="post-content content"
-              dangerouslySetInnerHTML={{ __html: postData.content }}
-            />
+              <div className={blogStyles.postmeta}>
+                <Typography className={classes.heading} variant="h1" component="h2">
+                  {postData.title}
+                </Typography>
+                <p>{formatDate(postData.date)}</p>
+              </div>
+
+              <div className="post-content content" dangerouslySetInnerHTML={{ __html: postData.content }} />
             </Paper>
           </article>
         )}
-        
       </main>
+      <Footer />
     </div>
   );
 }
@@ -172,7 +160,6 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       postData: data.post,
-      allPosts,
     },
   };
 }
