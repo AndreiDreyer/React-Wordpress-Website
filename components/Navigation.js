@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(4),
     textDecoration: 'none',
     minWidth: 201,
-    marginLeft: 6,
+    marginLeft: 20,
   },
   MuiListItemText: {
     marginTop: 100,
@@ -126,6 +126,7 @@ function Navigation(props) {
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [openVid, setOpenVid] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -133,6 +134,10 @@ function Navigation(props) {
 
   const handleClick = () => {
     setOpen(!open);
+  };
+
+  const handleClickVid = () => {
+    setOpenVid(!openVid);
   };
 
   const drawer = (
@@ -145,23 +150,54 @@ function Navigation(props) {
       <Divider />
       <List component="nav" aria-labelledby="nested-list-subheader" className={classes.root}>
         {navNodes.map((node) => {
-          var isSubMenItem = node.label === 'Gallery';
-          var subMListItem = node.label === 'Travel' || node.label === 'Videography';
-          if (isSubMenItem) {
+          var isSubMenItem = node.label === 'Photo' || node.label === 'Video';
+          var subMListItem = node.label === 'Travel' || node.label === 'Weddings';
+          if (isSubMenItem && node.label === 'Photo') {
             return (
               <ListItem button key={node.label} onClick={handleClick}>
                 <ListItemText primary={node.label} />
                 {open ? <ExpandLess /> : <ExpandMore />}
-                <Collapse in={open} timeout="auto" unmountOnExit>
+                <Collapse in={open} timeout="auto" entered={classes.nested} unmountOnExit>
                   <List component="div" disablePadding>
-                    <Link href={'/travel'}>
+                    <Link href={'/photo-travel'}>
                       <ListItem button className={classes.nested}>
                         <ListItemText primary="Travel" />
                       </ListItem>
                     </Link>
-                    <Link href={'/videography'}>
+                    <Link href={'/photo-exhibitions'}>
                       <ListItem button className={classes.nested}>
-                        <ListItemText primary="Videography" />
+                        <ListItemText primary="Exhibitions" />
+                      </ListItem>
+                    </Link>
+                    <Link href={'/photo-weddings'}>
+                      <ListItem button className={classes.nested}>
+                        <ListItemText primary="Weddings" />
+                      </ListItem>
+                    </Link>
+                  </List>
+                </Collapse>
+              </ListItem>
+            );
+          } else if (isSubMenItem && node.label === 'Video') {
+            return (
+              <ListItem button key={node.label} onClick={handleClickVid}>
+                <ListItemText primary={node.label} />
+                {openVid ? <ExpandLess /> : <ExpandMore />}
+                <Collapse in={openVid} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <Link href={'/video-travel'}>
+                      <ListItem button className={classes.nested}>
+                        <ListItemText primary="Travel" />
+                      </ListItem>
+                    </Link>
+                    <Link href={'/video-exhibitions'}>
+                      <ListItem button className={classes.nested}>
+                        <ListItemText primary="Exhibitions" />
+                      </ListItem>
+                    </Link>
+                    <Link href={'/video-weddings'}>
+                      <ListItem button className={classes.nested}>
+                        <ListItemText primary="Weddings" />
                       </ListItem>
                     </Link>
                   </List>
