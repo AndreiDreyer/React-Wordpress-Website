@@ -30,22 +30,30 @@ const useStyles = makeStyles((theme) => ({
   tableContainer: {
     width: '100%',
     backgroundColor: 'white',
-    marginBottom: '72px',
+    marginBottom: 150,
   },
   checkoutBtn: {
     backgroundColor: '#252525 !important',
     color: 'white',
 
     [theme.breakpoints.down(765)]: {
-      width: '315px',
-      // marginBottom: '1rem',
+      display: 'block',
+      position: 'relative',
+      width: '275px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      marginBottom: '1rem',
       // marginTop: '1rem',
     },
   },
   clearCartBtn: {
     color: 'red',
     [theme.breakpoints.down(765)]: {
-      width: '315px',
+      display: 'block',
+      position: 'relative',
+      width: '275px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
       // marginBottom: '1rem',
     },
   },
@@ -68,12 +76,23 @@ const useStyles = makeStyles((theme) => ({
     padding: '16px 16px 0 16px',
   },
   buttonContainer: {
-    width: '85%',
     position: 'fixed',
-    bottom: '0',
+    width: 'calc(100% - 2rem)',
+    display: 'flex',
+    justifyContent: 'center',
+    bottom: 0,
     background: 'white',
-    left: '52.5%',
-    marginLeft: '-45%',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    height: 150,
+  },
+  buttonDiv: {
+    position: 'relative',
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '100%',
+    height: '72px',
   },
 }));
 
@@ -344,27 +363,26 @@ export default function CartProducts() {
                     <TableRow></TableRow>
                   </React.Fragment>
                 ))}
-                {/* <Table stickyHeader className={(classes.stickyFooter, classes.table)}>
                 <TableRow>
-                  <TableCell colSpan={3} align="center" className={classes.btnRow}>
+                  <TableCell colSpan={1} className={classes.productPrice}>
+                    <b>Cart Total:</b>
+                  </TableCell>
+                  <TableCell align="right" className={classes.productPrice}>
+                    <b>${total}</b>
                   </TableCell>
                 </TableRow>
-
-                <TableRow>
-                  <TableCell colSpan={3} align="center">
-                  </TableCell>
-                </TableRow>
-              </Table> */}
               </TableBody>
             </Table>
           </TableContainer>
           <div className={classes.buttonContainer}>
-            <Link href="/checkout">
-              <Button className={classes.checkoutBtn}>Checkout</Button>
-            </Link>
-            <Button variant="outlined" color="secondary" className={classes.clearCartBtn} onClick={() => clearCart()}>
-              Clear
-            </Button>
+            <div className={classes.buttonDiv}>
+              <Link href="/checkout">
+                <Button className={classes.checkoutBtn}>Checkout</Button>
+              </Link>
+              <Button variant="outlined" color="secondary" className={classes.clearCartBtn} onClick={() => clearCart()}>
+                Clear
+              </Button>
+            </div>
           </div>
         </React.Fragment>
       )}
