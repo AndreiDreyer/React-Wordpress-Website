@@ -11,7 +11,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import TableFooter from '@material-ui/core/TableFooter';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -21,16 +20,19 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    // display: 'flex',
     width: '100%',
-    overflow: 'auto',
+    // overflow: 'auto',
     position: 'relative',
     backgroundColor: 'white',
+    [theme.breakpoints.up(768)]: {
+      display: 'flex',
+    },
   },
   tableContainer: {
     width: '100%',
     backgroundColor: 'white',
-    marginBottom: 150,
+    marginBottom: 0,
   },
   checkoutBtn: {
     backgroundColor: '#252525 !important',
@@ -43,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: 'auto',
       marginRight: 'auto',
       marginBottom: '1rem',
-      // marginTop: '1rem',
     },
   },
   clearCartBtn: {
@@ -54,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
       width: '275px',
       marginLeft: 'auto',
       marginRight: 'auto',
-      // marginBottom: '1rem',
+      marginBottom: '1rem',
     },
   },
   productImage: {
@@ -62,7 +63,6 @@ const useStyles = makeStyles((theme) => ({
     width: '100px',
   },
   tableCell: {
-    // paddingLeft: '0.5rem !important',
     padding: '0 0 0 0.5rem',
   },
   productName: {
@@ -71,28 +71,27 @@ const useStyles = makeStyles((theme) => ({
   productPrice: {
     fontSize: '16px',
   },
-  btnRow: {
-    borderBottom: 'none',
-    padding: '16px 16px 0 16px',
+  finalRow: {
+    border: 'none',
   },
   buttonContainer: {
-    position: 'fixed',
-    width: 'calc(100% - 2rem)',
-    display: 'flex',
-    justifyContent: 'center',
+    position: '-webkit-sticky',
+    position: 'sticky',
     bottom: 0,
-    background: 'white',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    height: 150,
+    marginTop: '0.5rem',
+    borderTop: '1px solid rgba(224, 224, 224, 1)',
+    boxShadow: '0px -7px 10px -8px rgba(128,128,128, 0.5)',
+    marginBottom: 75,
+    backgroundColor: 'white',
+    minHeight: '175px',
   },
-  buttonDiv: {
-    position: 'relative',
-    display: 'block',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    width: '100%',
-    height: '72px',
+  cartTotalContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginLeft: '2rem',
+    marginRight: '2rem',
+    fontWeight: 'bold',
+    fontSize: '16px',
   },
 }));
 
@@ -203,189 +202,24 @@ export default function CartProducts() {
                     <TableRow></TableRow>
                   </React.Fragment>
                 ))}
-                {cartItems.map((product) => (
-                  <React.Fragment>
-                    <TableRow key={product.id}>
-                      <TableCell className={classes.productImage} rowSpan={3}>
-                        <img src={product.image.src} className={classes.productImage} />
-                      </TableCell>
-                      <TableCell>
-                        <TableRow>
-                          <TableCell colSpan={2} padding="none" className={classes.productName}>
-                            {product.name}
-                          </TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell padding="none">Size:</TableCell>
-                          <TableCell className={classes.tableCell}>{product.attributes[0].option}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell padding="none">Qty x Price:</TableCell>
-                          <TableCell className={classes.tableCell}>
-                            {product.quantity} x ${product.price}
-                          </TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell padding="none">Total:</TableCell>
-                          <TableCell className={classes.tableCell}>${product.price * product.quantity}</TableCell>
-                        </TableRow>
-                      </TableCell>
-                    </TableRow>
-                    <TableRow></TableRow>
-                    <TableRow></TableRow>
-                  </React.Fragment>
-                ))}
-                {cartItems.map((product) => (
-                  <React.Fragment>
-                    <TableRow key={product.id}>
-                      <TableCell className={classes.productImage} rowSpan={3}>
-                        <img src={product.image.src} className={classes.productImage} />
-                      </TableCell>
-                      <TableCell>
-                        <TableRow>
-                          <TableCell colSpan={2} padding="none" className={classes.productName}>
-                            {product.name}
-                          </TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell padding="none">Size:</TableCell>
-                          <TableCell className={classes.tableCell}>{product.attributes[0].option}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell padding="none">Qty x Price:</TableCell>
-                          <TableCell className={classes.tableCell}>
-                            {product.quantity} x ${product.price}
-                          </TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell padding="none">Total:</TableCell>
-                          <TableCell className={classes.tableCell}>${product.price * product.quantity}</TableCell>
-                        </TableRow>
-                      </TableCell>
-                    </TableRow>
-                    <TableRow></TableRow>
-                    <TableRow></TableRow>
-                  </React.Fragment>
-                ))}
-                {cartItems.map((product) => (
-                  <React.Fragment>
-                    <TableRow key={product.id}>
-                      <TableCell className={classes.productImage} rowSpan={3}>
-                        <img src={product.image.src} className={classes.productImage} />
-                      </TableCell>
-                      <TableCell>
-                        <TableRow>
-                          <TableCell colSpan={2} padding="none" className={classes.productName}>
-                            {product.name}
-                          </TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell padding="none">Size:</TableCell>
-                          <TableCell className={classes.tableCell}>{product.attributes[0].option}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell padding="none">Qty x Price:</TableCell>
-                          <TableCell className={classes.tableCell}>
-                            {product.quantity} x ${product.price}
-                          </TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell padding="none">Total:</TableCell>
-                          <TableCell className={classes.tableCell}>${product.price * product.quantity}</TableCell>
-                        </TableRow>
-                      </TableCell>
-                    </TableRow>
-                    <TableRow></TableRow>
-                    <TableRow></TableRow>
-                  </React.Fragment>
-                ))}
-                {cartItems.map((product) => (
-                  <React.Fragment>
-                    <TableRow key={product.id}>
-                      <TableCell className={classes.productImage} rowSpan={3}>
-                        <img src={product.image.src} className={classes.productImage} />
-                      </TableCell>
-                      <TableCell>
-                        <TableRow>
-                          <TableCell colSpan={2} padding="none" className={classes.productName}>
-                            {product.name}
-                          </TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell padding="none">Size:</TableCell>
-                          <TableCell className={classes.tableCell}>{product.attributes[0].option}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell padding="none">Qty x Price:</TableCell>
-                          <TableCell className={classes.tableCell}>
-                            {product.quantity} x ${product.price}
-                          </TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell padding="none">Total:</TableCell>
-                          <TableCell className={classes.tableCell}>${product.price * product.quantity}</TableCell>
-                        </TableRow>
-                      </TableCell>
-                    </TableRow>
-                    <TableRow></TableRow>
-                    <TableRow></TableRow>
-                  </React.Fragment>
-                ))}
-                {cartItems.map((product) => (
-                  <React.Fragment>
-                    <TableRow key={product.id}>
-                      <TableCell className={classes.productImage} rowSpan={3}>
-                        <img src={product.image.src} className={classes.productImage} />
-                      </TableCell>
-                      <TableCell>
-                        <TableRow>
-                          <TableCell colSpan={2} padding="none" className={classes.productName}>
-                            {product.name}
-                          </TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell padding="none">Size:</TableCell>
-                          <TableCell className={classes.tableCell}>{product.attributes[0].option}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell padding="none">Qty x Price:</TableCell>
-                          <TableCell className={classes.tableCell}>
-                            {product.quantity} x ${product.price}
-                          </TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell padding="none">Total:</TableCell>
-                          <TableCell className={classes.tableCell}>${product.price * product.quantity}</TableCell>
-                        </TableRow>
-                      </TableCell>
-                    </TableRow>
-                    <TableRow></TableRow>
-                    <TableRow></TableRow>
-                  </React.Fragment>
-                ))}
-                <TableRow>
-                  <TableCell colSpan={1} className={classes.productPrice}>
-                    <b>Cart Total:</b>
-                  </TableCell>
-                  <TableCell align="right" className={classes.productPrice}>
-                    <b>${total}</b>
-                  </TableCell>
-                </TableRow>
               </TableBody>
             </Table>
           </TableContainer>
-          <div className={classes.buttonContainer}>
-            <div className={classes.buttonDiv}>
-              <Link href="/checkout">
-                <Button className={classes.checkoutBtn}>Checkout</Button>
-              </Link>
-              <Button variant="outlined" color="secondary" className={classes.clearCartBtn} onClick={() => clearCart()}>
-                Clear
-              </Button>
-            </div>
-          </div>
         </React.Fragment>
       )}
+
+      <div className={classes.buttonContainer}>
+        <div className={classes.cartTotalContainer}>
+          <p>Cart Total:</p>
+          <p>${total}</p>
+        </div>
+        <Link href="/checkout">
+          <Button className={classes.checkoutBtn}>Checkout</Button>
+        </Link>
+        <Button variant="outlined" color="secondary" className={classes.clearCartBtn} onClick={() => clearCart()}>
+          Clear
+        </Button>
+      </div>
     </div>
   );
 }
