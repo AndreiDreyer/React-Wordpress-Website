@@ -68,6 +68,7 @@ function TopNavBar(props) {
       <Toolbar disableGutters={true} className={classes.topAppBar}>
         <div className={classes.topNavBarContainer}>
           <div className={classes.topNavBarItem}>
+            {/* TODO: Link Social Media buttons */}
             <Link href="">
               <IconButton className={clsx(classes.iconButton, classes.iconLink)}>
                 <FacebookIcon className={classes.topNavBarIcon} />
