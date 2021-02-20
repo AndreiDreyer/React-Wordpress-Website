@@ -72,17 +72,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   second: {
-    [theme.breakpoints.down('365')]: {
-      // minHeight: '90%',
-      // alignContent: 'right',
-    },
+    [theme.breakpoints.down('365')]: {},
     [theme.breakpoints.down('380')]: {
       minHeight: '75%',
       alignContent: 'right',
     },
-    [theme.breakpoints.down('770')]: {
-      // marginTop: 100,
-    },
+    [theme.breakpoints.down('770')]: {},
     [theme.breakpoints.up('1020')]: {
       marginLeft: 100,
       marginTop: 200,
