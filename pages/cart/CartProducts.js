@@ -20,9 +20,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // display: 'flex',
     width: '100%',
-    // overflow: 'auto',
     position: 'relative',
     backgroundColor: 'white',
     [theme.breakpoints.up(768)]: {
@@ -205,21 +203,20 @@ export default function CartProducts() {
               </TableBody>
             </Table>
           </TableContainer>
+          <div className={classes.buttonContainer}>
+            <div className={classes.cartTotalContainer}>
+              <p>Cart Total:</p>
+              <p>${total}</p>
+            </div>
+            <Link href="/checkout">
+              <Button className={classes.checkoutBtn}>Checkout</Button>
+            </Link>
+            <Button variant="outlined" color="secondary" className={classes.clearCartBtn} onClick={() => clearCart()}>
+              Clear
+            </Button>
+          </div>
         </React.Fragment>
       )}
-
-      <div className={classes.buttonContainer}>
-        <div className={classes.cartTotalContainer}>
-          <p>Cart Total:</p>
-          <p>${total}</p>
-        </div>
-        <Link href="/checkout">
-          <Button className={classes.checkoutBtn}>Checkout</Button>
-        </Link>
-        <Button variant="outlined" color="secondary" className={classes.clearCartBtn} onClick={() => clearCart()}>
-          Clear
-        </Button>
-      </div>
     </div>
   );
 }
