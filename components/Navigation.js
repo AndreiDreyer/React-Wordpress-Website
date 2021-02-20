@@ -18,6 +18,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 import { withWidth } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
+import StarBorder from '@material-ui/icons/StarBorder';
 
 const drawerWidth = 200;
 
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'block',
     maxWidth: drawerWidth,
     marginRight: 0,
+    width: '100%',
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -70,9 +72,6 @@ const useStyles = makeStyles((theme) => ({
   },
   nested: {
     paddingLeft: theme.spacing(4),
-    textDecoration: 'none',
-    minWidth: 201,
-    marginLeft: 20,
   },
   MuiListItemText: {
     marginTop: 100,
@@ -154,9 +153,11 @@ function Navigation(props) {
           var subMListItem = node.label === 'Travel' || node.label === 'Weddings';
           if (isSubMenItem && node.label === 'Photo') {
             return (
+              <List>
               <ListItem button key={node.label} onClick={handleClick}>
                 <ListItemText primary={node.label} />
                 {open ? <ExpandLess /> : <ExpandMore />}
+              </ListItem>
                 <Collapse in={open} timeout="auto" entered={classes.nested} unmountOnExit>
                   <List component="div" disablePadding>
                     <Link href={'/photo-travel'}>
@@ -176,20 +177,23 @@ function Navigation(props) {
                     </Link>
                   </List>
                 </Collapse>
-              </ListItem>
+              </List>
             );
           } else if (isSubMenItem && node.label === 'Video') {
             return (
+              <List>
               <ListItem button key={node.label} onClick={handleClickVid}>
                 <ListItemText primary={node.label} />
                 {openVid ? <ExpandLess /> : <ExpandMore />}
-                <Collapse in={openVid} timeout="auto" unmountOnExit>
+              </ListItem>
+
+                <Collapse in={openVid} timeout="auto" entered={classes.nested} unmountOnExit>
                   <List component="div" disablePadding>
-                    <Link href={'/video-travel'}>
                       <ListItem button className={classes.nested}>
+                    <Link href={'/video-travel'}>
                         <ListItemText primary="Travel" />
-                      </ListItem>
                     </Link>
+                      </ListItem>
                     <Link href={'/video-exhibitions'}>
                       <ListItem button className={classes.nested}>
                         <ListItemText primary="Exhibitions" />
@@ -202,7 +206,7 @@ function Navigation(props) {
                     </Link>
                   </List>
                 </Collapse>
-              </ListItem>
+                </List>
             );
           } else if (!isSubMenItem & !subMListItem) {
             return (
