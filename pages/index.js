@@ -94,6 +94,12 @@ export default function Home({ menuItems, backgroundImageSrcs }) {
           </div>
         </Grid>
       </Grid>
+      <div className="footer">
+        <div>
+          <FacebookIcon className="footerIcon" />
+          <InstagramIcon className="footerIcon" />
+        </div>
+      </div>
     </div>
   );
 }
