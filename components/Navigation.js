@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     top: 0,
     backgroundColor: 'transparent',
-    width: '100%',
+    width: '50%',
     minHeight: '75px',
     height: '75px',
     [theme.breakpoints.up('sm')]: {
