@@ -48,9 +48,11 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
   },
   iconButton: {
-    padding: '35px 3rem 0 1rem',
+    padding: '0px 3rem 0 1rem',
     width: '30px',
     height: '30px',
+    marginTop: 'auto',
+    marginBottom: 'auto',
   },
   iconLink: {
     [theme.breakpoints.down(768)]: {
