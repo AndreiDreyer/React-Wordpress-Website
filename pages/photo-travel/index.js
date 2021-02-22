@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
     [theme.breakpoints.down("1025")]: {
-      marginLeft: '10.5%',
       width: '100%',
     },
     [theme.breakpoints.up("1100")]: {
@@ -79,16 +78,36 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     fontFamily: 'Whitefeather',
     [theme.breakpoints.down("376")]: {
-      fontSize: '50px !important'
+      marginTop: '0px !important',
+      fontSize: '30px !important'
     },
     [theme.breakpoints.down("420")]: {
-      fontSize: 60,
+      marginTop: '0px !important',
+      fontSize: 30,
     },
     [theme.breakpoints.up("760")]: {
-      fontSize: 100,
+      marginTop: 50,
+      fontSize: 60,
     },
     [theme.breakpoints.up("lg")]: {
-      fontSize: 200,
+      marginTop: 50,
+      fontSize: 100,
+    },
+  },
+  subHeading: {
+    textAlign: 'center',
+    fontFamily: 'Whitefeather',
+    [theme.breakpoints.down("376")]: {
+      fontSize: '30px !important'
+    },
+    [theme.breakpoints.down("420")]: {
+      fontSize: 30,
+    },
+    [theme.breakpoints.up("760")]: {
+      fontSize: 60,
+    },
+    [theme.breakpoints.up("lg")]: {
+      fontSize: 70,
     },
   },
   card: {
@@ -109,10 +128,11 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: '-5px !important',
     },
     [theme.breakpoints.up("1023")]: {
-      marginLeft: '210px !important',
+      marginLeft: '200px !important',
+      marginRight: '0.5px !important',
     },
     [theme.breakpoints.up("1100")]: {
-      marginLeft: '0px !important',
+      marginLeft: '-1px !important',
     },
   },
   tile: {
@@ -124,31 +144,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const tileData = [
-  { img: "RR1.jpg", title: "1", author: "john smith", rows: 2, cols: 1},
-    { img: "tortoise1.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "warthog1.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "RR1.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
-    { img: "tortoise1.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "warthog1.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "RR1.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
-    { img: "Gin1.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "tortoise1.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "warthog1.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "RR1.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
-    { img: "Gin1.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "warthog1.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "RR1.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
-    { img: "tortoise1.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "warthog1.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "RR1.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
-    { img: "tortoise1.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "warthog1.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "RR1.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
-    { img: "tortoise1.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "warthog1.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "bowser1.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
-    { img: "Gin1.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "warthog1.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1}
+  { img: "1.jpg", title: "1", author: "john smith", rows: 2, cols: 1},
+    { img: "2.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
+    { img: "3.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
+    { img: "4.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
+    { img: "5.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
+    { img: "6.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
+    { img: "7.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
+    { img: "8.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
+    { img: "9.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
+    { img: "10.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
+    { img: "11.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
+    { img: "12.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
+    { img: "13.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
+    { img: "14.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
+    { img: "15.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
+    { img: "16.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
+    { img: "17.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
+    { img: "18.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
+    { img: "19.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
+    { img: "20.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
+    { img: "21.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
+    { img: "22.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
+    { img: "23.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
+    { img: "24.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
+    { img: "25.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1}
   ];
 
 function Gallery({menuItems}) {
@@ -178,7 +198,7 @@ function Gallery({menuItems}) {
     return (
         <React.Fragment>
             <Head>
-                <title>The Gallery</title>
+                <title>Travel Gallery</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <TopNavBar></TopNavBar>
@@ -191,13 +211,16 @@ function Gallery({menuItems}) {
                             <FiCardMedia
                                 media="picture"
                                 alt="Contemplative Reptile"
-                                image='./banner.jpg'
+                                image='./_MG_0496.jpg'
                                 title="Contemplative Reptile"
                                 className={classes.media}
                             />
                             <FiCardContent className={classes.fiCardContent}>
                                 <Typography className={classes.heading} variant="h5" component="h2">
-                                Ramblings While We Roam
+                                “Photography is the story I fail to put into words.” 
+                                </Typography>
+                                <Typography className={classes.subHeading} variant="h5" component="h2">
+                                - DESTIN SPARKS 
                                 </Typography>
                             </FiCardContent>
                         </FiCardActionArea>
@@ -205,6 +228,7 @@ function Gallery({menuItems}) {
                 </Box>
             </div>
             <div className={classes.root}>
+            <Grow in={true} timeout={'auto'}>
                 <GridList cellHeight={600} spacing={10} cols={numCols()} className={classes.gridList}>
                     {tileData.map((tile) => (
                         <GridListTile key={tile.img} cols={1}>
@@ -212,6 +236,7 @@ function Gallery({menuItems}) {
                         </GridListTile>
                     ))}
                 </GridList>
+            </Grow>
             </div>
         </React.Fragment>
     );
