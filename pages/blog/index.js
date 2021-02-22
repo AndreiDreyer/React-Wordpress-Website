@@ -67,7 +67,6 @@ const useStyles = makeStyles((theme) => ({
   },
   bannerDiv: {
     flexGrow: 1,
-    width: '100%',
     [theme.breakpoints.down("sm")]: {
       height: 215,
       marginBottom: 86, 
