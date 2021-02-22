@@ -65,7 +65,6 @@ export default function Home({ menuItems, backgroundImageSrcs }) {
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
-        <script src="https://www.paypal.com/sdk/js?client-id=AUsPuJjZe3gcSsc0U7mt_tCdRiCZresx96fiv1FNIoRukORqqWMVQs074sCdd41aSWqcp2mGzvp2HKbh&currency=USD"></script>
       </Head>
 
       <AppBar className="homeTopNavBar" elevation={0}>
@@ -94,6 +93,12 @@ export default function Home({ menuItems, backgroundImageSrcs }) {
           </div>
         </Grid>
       </Grid>
+      <div className="footer">
+        <div>
+          <FacebookIcon className="footerIcon" />
+          <InstagramIcon className="footerIcon" />
+        </div>
+      </div>
     </div>
   );
 }

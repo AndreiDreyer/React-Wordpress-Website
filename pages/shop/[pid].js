@@ -4,6 +4,7 @@ import Head from 'next/head';
 
 import Navigation from '../../components/Navigation';
 import TopNavBar from '../../components/TopNavbar';
+import Footer from '../../components/Footer';
 
 import { CartContext } from '../../src/contexts/CartContext';
 import { getMenu, getProduct } from '../../lib/api';
@@ -19,10 +20,13 @@ import { isInteger } from 'formik';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    [theme.breakpoints.down(765)]: {
+      position: 'relative',
+      minHeight: '100%',
+    },
     display: 'flex',
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginTop: '75px',
     '& .MuiTextField-root': {
       [theme.breakpoints.down(768)]: {
         marginTop: theme.spacing(1),
@@ -34,6 +38,11 @@ const useStyles = makeStyles((theme) => ({
   productContainer: {
     marginLeft: '1rem',
     marginRight: '1rem',
+
+    [theme.breakpoints.down(765)]: {
+      marginTop: '75px',
+      marginBottom: '75px',
+    },
   },
   imageContainer: {
     display: 'flex',
@@ -244,6 +253,7 @@ export default function Product({ productData, variationData, menuItems }) {
           </div>
         </Grid>
       </Grid>
+      <Footer />
     </div>
   );
 }
