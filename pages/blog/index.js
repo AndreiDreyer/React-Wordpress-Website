@@ -40,8 +40,7 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: '0% !important',
       width: '100%',
     },
-    [theme.breakpoints.down('1025')]: {
-      marginLeft: '10.5%',
+    [theme.breakpoints.down("1025")]: {
       width: '100%',
     },
     [theme.breakpoints.up('1100')]: {
@@ -66,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
   },
   bannerDiv: {
     flexGrow: 1,
-    width: '100%',
     [theme.breakpoints.down('sm')]: {
       height: 215,
       marginBottom: 86,
@@ -119,6 +117,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up('1023')]: {
       marginLeft: '210px !important',
+      marginRight: '0.5px !important',
     },
     [theme.breakpoints.up('1100')]: {
       marginLeft: '0px !important',
