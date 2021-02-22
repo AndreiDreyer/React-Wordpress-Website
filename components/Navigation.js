@@ -23,7 +23,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'block',
     maxWidth: drawerWidth,
     marginRight: 0,
-    width: '100%',
+    [theme.breakpoints.up(769)]: {
+      width: '100%',
+    },
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -41,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     backgroundColor: '#F9F3DE',
     width: drawerWidth,
-    boxShadow: "8px 5px 8px 3px rgba(0, 0, 0, 0.1)",
+    boxShadow: '8px 5px 8px 3px rgba(0, 0, 0, 0.1)',
   },
   content: {
     flexGrow: 1,
@@ -58,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     top: 0,
     backgroundColor: 'transparent',
-    width: '100%',
+    width: '50%',
     minHeight: '75px',
     height: '75px',
     [theme.breakpoints.up('sm')]: {
@@ -150,10 +152,10 @@ function Navigation(props) {
           if (isSubMenItem && node.label === 'Photo') {
             return (
               <List>
-              <ListItem button key={node.label} onClick={handleClick}>
-                <ListItemText primary={node.label} />
-                {open ? <ExpandLess /> : <ExpandMore />}
-              </ListItem>
+                <ListItem button key={node.label} onClick={handleClick}>
+                  <ListItemText primary={node.label} />
+                  {open ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
                 <Collapse in={open} timeout="auto" entered={classes.nested} unmountOnExit>
                   <List component="div" disablePadding>
                     <Link href={'/photo-travel'}>
@@ -178,18 +180,18 @@ function Navigation(props) {
           } else if (isSubMenItem && node.label === 'Video') {
             return (
               <List>
-              <ListItem button key={node.label} onClick={handleClickVid}>
-                <ListItemText primary={node.label} />
-                {openVid ? <ExpandLess /> : <ExpandMore />}
-              </ListItem>
+                <ListItem button key={node.label} onClick={handleClickVid}>
+                  <ListItemText primary={node.label} />
+                  {openVid ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
 
                 <Collapse in={openVid} timeout="auto" entered={classes.nested} unmountOnExit>
                   <List component="div" disablePadding>
-                      <ListItem button className={classes.nested}>
-                    <Link href={'/video-travel'}>
+                    <ListItem button className={classes.nested}>
+                      <Link href={'/video-travel'}>
                         <ListItemText primary="Travel" />
-                    </Link>
-                      </ListItem>
+                      </Link>
+                    </ListItem>
                     <Link href={'/video-exhibitions'}>
                       <ListItem button className={classes.nested}>
                         <ListItemText primary="Exhibitions" />
@@ -202,7 +204,7 @@ function Navigation(props) {
                     </Link>
                   </List>
                 </Collapse>
-                </List>
+              </List>
             );
           } else if (!isSubMenItem & !subMListItem) {
             return (

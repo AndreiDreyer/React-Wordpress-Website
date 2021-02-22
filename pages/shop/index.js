@@ -2,6 +2,7 @@ import React from 'react';
 import Navigation from '../../components/Navigation';
 import { getMenu, getProducts } from '../../lib/api';
 import TopNavBar from '../../components/TopNavbar';
+import Footer from '../../components/Footer';
 
 import Link from 'next/link';
 import Head from 'next/head';
@@ -25,6 +26,9 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   productSection: {
+    [theme.breakpoints.down(765)]: {
+      position: 'relative',
+    },
     display: 'flex',
     marginLeft: 'auto',
     marginRight: 'auto',
@@ -90,6 +94,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     marginLeft: 'auto !important',
     marginRight: 'auto !important',
+    paddingBottom: '75px',
   },
   promotionVideo: {
     width: '100% !important',
@@ -210,7 +215,7 @@ export default function Shop({ products, menuItems }) {
                 })}
               </Carousel>
             </GridListTile>
-            <GridListTile cols={numCols()} cellHeight={25} className={classes.productTitle}>
+            <GridListTile cols={numCols()} className={classes.productTitle}>
               <div className={classes.promoTitle}>
                 <h1>Products</h1>
               </div>
@@ -227,7 +232,7 @@ export default function Shop({ products, menuItems }) {
             })}
           </GridList>
         ) : (
-          <GridList cellHeight={200} cols={numCols()} spacing={24} className={classes.gridItemm}>
+          <GridList cellHeight={200} cols={numCols()} spacing={24} className={classes.gridItem}>
             <GridListTile rows={3}>
               <div className={classes.promoTitle}>
                 <h1>Promotions</h1>
@@ -257,7 +262,7 @@ export default function Shop({ products, menuItems }) {
                 })}
               </Carousel>
             </GridListTile>
-            <GridListTile cellHeight={25} className={classes.productTitle}>
+            <GridListTile className={classes.productTitle}>
               <div className={classes.promoTitle}>
                 <h1>Products</h1>
               </div>
@@ -275,6 +280,7 @@ export default function Shop({ products, menuItems }) {
           </GridList>
         )}
       </div>
+      <Footer />
     </div>
   );
 }
