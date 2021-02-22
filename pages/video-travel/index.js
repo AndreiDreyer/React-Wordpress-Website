@@ -15,6 +15,7 @@ import Typography from "@material-ui/core/Typography";
 import Grow from '@material-ui/core/Grow';
 
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Youtube from 'react-youtube';
 
 import {
   FiCard,
@@ -136,42 +137,26 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   tile: {
-    boxShadow: '10px !important'
+    width: '100%',
+    height: '500px !important',
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
   },
 }));
 
+
+
 const tileData = [
-  { img: "26.jpg", title: "1", author: "john smith", rows: 2, cols: 1},
-    { img: "27.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "28.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "29.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
-    { img: "30.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "31.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "32.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
-    { img: "33.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "34.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "35.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "36.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
-    { img: "37.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "38.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "39.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
-    { img: "40.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "41.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "42.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
-    { img: "43.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "44.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "45.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
-    { img: "46.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "47.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "23.jpg", title: "logo", author: "john smith" , rows: 2, cols: 1},
-    { img: "24.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1},
-    { img: "25.jpg", title: "logo", author: "mary smith" , rows: 2, cols: 1}
+  { mediaItemUrl: "vthmLNBfpaU", title: "1", author: "john smith", rows: 1, cols: 1},
+  { mediaItemUrl: "vthmLNBfpaU", title: "1", author: "john smith", rows: 1, cols: 1},
+  { mediaItemUrl: "vthmLNBfpaU", title: "1", author: "john smith", rows: 1, cols: 1},
+  { mediaItemUrl: "vthmLNBfpaU", title: "1", author: "john smith", rows: 1, cols: 1},
+  { mediaItemUrl: "vthmLNBfpaU", title: "1", author: "john smith", rows: 1, cols: 1},
+  { mediaItemUrl: "vthmLNBfpaU", title: "1", author: "john smith", rows: 1, cols: 1},
   ];
 
-function Gallery({menuItems}) {
+function vidGallery({menuItems}) {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -198,7 +183,7 @@ function Gallery({menuItems}) {
     return (
         <React.Fragment>
             <Head>
-                <title>Exhibition Gallery</title>
+                <title>Travel Gallery</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <TopNavBar></TopNavBar>
@@ -211,7 +196,7 @@ function Gallery({menuItems}) {
                             <FiCardMedia
                                 media="picture"
                                 alt="Contemplative Reptile"
-                                image='./_MG_0496.jpg'
+                                image='./9.jpg'
                                 title="Contemplative Reptile"
                                 className={classes.media}
                             />
@@ -231,8 +216,8 @@ function Gallery({menuItems}) {
             <Grow in={true} timeout={'auto'}>
                 <GridList cellHeight={600} spacing={10} cols={numCols()} className={classes.gridList}>
                     {tileData.map((tile) => (
-                        <GridListTile key={tile.img} cols={1}>
-                            <img src={tile.img} alt={tile.title} />
+                        <GridListTile key={tile.title} className={classes.tile}>
+                            <Youtube videoId={tile.mediaItemUrl} className={classes.tile}/>
                         </GridListTile>
                     ))}
                 </GridList>
@@ -252,4 +237,4 @@ function Gallery({menuItems}) {
   }
   
   
-  export default Gallery
+  export default vidGallery
