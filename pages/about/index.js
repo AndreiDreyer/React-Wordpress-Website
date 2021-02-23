@@ -10,8 +10,6 @@ import { getMenu } from '../../lib/api';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-import Paper from '@material-ui/core/Paper';
-
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
@@ -24,10 +22,6 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { FiCard, FiCardActionArea, FiCardActions, FiCardContent, FiCardMedia } from '../../components/ImageCard';
 
 const useStyles = makeStyles((theme) => ({
-  // appBar: {
-  //   background: 'transparent',
-  //   boxShadow: 'none',
-  // },
   phoneButton: {
     marginRight: 10,
   },
@@ -131,7 +125,7 @@ const useStyles = makeStyles((theme) => ({
   paperDiv2: {
     marginTop: 1,
     position: 'relative',
-    height: '60%',
+    height: '200%',
     [theme.breakpoints.up('1024')]: {
       marginLeft: 200,
     },
@@ -143,6 +137,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     height: '100%',
     width: '100%',
+    padding: 20,
     '& > *': {
       marginLeft: theme.spacing(4),
       marginRight: theme.spacing(4),
@@ -151,19 +146,30 @@ const useStyles = makeStyles((theme) => ({
   writingHeading: {
     width: '100%',
     textAlign: 'center',
-    color: '#f7f2df',
+    textDecoration: 'underline',
+    color: '#252525',
     fontSize: 100,
     fontFamily: 'Whitefeather',
   },
+  writingSubHeading: {
+    width: '100%',
+    textAlign: 'center',
+    color: '#252525',
+    fontSize: 30,
+    fontFamily: 'Oswald Regular',
+  },
   writing: {
+    marginTop: 10,
+    padding: 10,
     width: '100%',
     textAlign: 'center',
     fontSize: 20,
-    color: '#f7f2df',
+    color: '#252525',
     fontFamily: 'Oswald Regular',
   },
   grid: {
     flexGrow: 1,
+    marginTop: 20,
     width: '100%',
     [theme.breakpoints.up('lg')]: {
       marginLeft: 200,
@@ -245,8 +251,7 @@ export default function About({ menuItems }) {
         </div>
 
         <div className={classes.paperDiv}>
-          <Paper className={classes.paper} variant="outlined">
-            <Typography className={classes.writing} variant="h5" component="h2">
+            <Typography className={classes.writing} variant="h5" component="h2" gutterBottom={true}>
               One cannot deny, Zimbabwe is a country of contrasts. Those that have ventured here will be extremely familiar with the peculiar set of rules attached to this lands
               governance. And thus, in keeping with this particularly absurd tradition, the Salty Zebra was conceived of a contrast. You see, the founder of this collective is both
               firmly rooted in her Zimbabwean heritage, while also having a fair amount of sea foam in her veins and with both a degree in Visual Communication and a MSDT Dive
@@ -254,7 +259,6 @@ export default function About({ menuItems }) {
               contradiction. Meet the Salty Zebra Creative Company, equally salty and perfectly dusty, we are a team with a passion for making memories matter. For searching
               through the multitudes of moments for that one golden opportunity to capture something seeped in emotion and packed with meaning.
             </Typography>
-          </Paper>
         </div>
 
         <div className={classes.grid}>
@@ -268,7 +272,6 @@ export default function About({ menuItems }) {
         </div>
 
         <div className={classes.paperDiv2}>
-          <Paper className={classes.paper2} variant="outlined">
             <Typography className={classes.writingHeading} variant="h5" component="h2">
               What we do.
             </Typography>
@@ -292,7 +295,68 @@ export default function About({ menuItems }) {
               ‘make a plan’ that tends to be instilled in most Zimbabweans, brother-sister team Jessie and Chad have taken those skills instilled by their dad, honed them in two of
               the top creative institutions in Southern Africa, and are now adding their own flare to what they are dubbing ‘Brett’s Butterfly Effect’
             </Typography>
-          </Paper>
+            <Typography className={classes.writingHeading} variant="h5" component="h2">
+            PHOTO
+            </Typography>
+            <Typography className={classes.writing} variant="h5" component="h2" paragraph={true}>
+            “Photography is the story I fail to put into words.” 
+            - DESTIN SPARKS 
+            </Typography>
+            <Typography className={classes.writing} variant="h5" component="h2">
+            It all started about eight years ago, when I was handed the keys to my very first car, a mint green Datsun 1200 aptly dubbed, the Bomber. Little did I know that the life lesson my parents had tucked into that responsibility of vehicle ownership would shape and impact the future in the way it has. Fast forward to now and a passion has been expanded and molded into a company. A company blessed with the privilege to capture your images and to make those moments into memories that will bring a smile to your face in years to come. 
+            </Typography>
+            <Typography className={classes.writingSubHeading} variant="h5" component="h2">
+            Photographic services include but are not in any way limited to; 
+            </Typography>
+            <Typography className={classes.writing} variant="h5" component="h2">
+            Products and Promotional
+            </Typography>
+            <Typography className={classes.writing} variant="h5" component="h2">
+            Travel 
+            </Typography>
+            <Typography className={classes.writing} variant="h5" component="h2">
+            Family Photoshoots 
+            </Typography>
+            <Typography className={classes.writing} variant="h5" component="h2">
+            Weddings, Elopements and Couple shoots 
+            </Typography>
+            <Typography className={classes.writing} variant="h5" component="h2" paragraph={true}>
+            Content Creation 
+            </Typography>
+            <Typography className={classes.writing} variant="h5" component="h2">
+            With experience across photographic genres and having the fortune to work in many countries and different shooting environments, the Salty Zebra team are old hands at adjusting to each and every collaboration we find ourselves in. We take pride in being able to get along with most age groups, animals and conditions and place a huge amount of focus in creating and capturing images in a unique and creative way. We cannot wait to collaborate with you and to make some magic ! 
+            </Typography>
+            <Typography className={classes.writingHeading} variant="h5" component="h2">
+            VIDEO
+            </Typography>
+            <Typography className={classes.writing} variant="h5" component="h2" paragraph={true}>
+            They say a photo is worth a thousand words, it’s a wonder then, what the value of a video is? 
+            </Typography>
+            <Typography className={classes.writing} variant="h5" component="h2" paragraph={true}>
+            Throughout our childhood, almost most mornings, yes Sunday’s included, there tended to be a loud knock on the door. It was exactly the same every morning, it would be the time of the day when things haven’t quite awoken yet. The darkness of night still clung heavy, like a thick blanket, over the brightness of the day and the birds were still warming up their vocal chords. We welcomed every morning in this manner, running shoes on, panting our way through the blue light haze of dawn. As children we would lie there, barely awake yet not quite consumed still by dreams, and dread those knuckles against the wooden door, unawares to us, our mom was training us to be videographers. All those early mornings, that constant desire for dedication and that pursuit for going the extra mile have formed the basis of our moving memories and filming work. Running shoes have been replaced by a conglomeration of camera gear and dread by a welcome anticipation to be welcoming the morning with the marvel of witnessing a sunrise through a viewfinder.    
+            </Typography>
+            <Typography className={classes.writingSubHeading} variant="h5" component="h2" paragraph={true}>
+            Videographic services include but are not in any way limited to; 
+            </Typography>
+            <Typography className={classes.writing} variant="h5" component="h2">
+            Promotional videos
+            </Typography>
+            <Typography className={classes.writing} variant="h5" component="h2">
+            Documentaries
+            </Typography> 
+            <Typography className={classes.writing} variant="h5" component="h2">
+            Travel 
+            </Typography>
+            <Typography className={classes.writing} variant="h5" component="h2">
+            Weddings and Elopements 
+            </Typography>
+            <Typography className={classes.writing} variant="h5" component="h2">
+            Content Creation 
+            </Typography>
+            <Typography className={classes.writing} variant="h5" component="h2">
+            With a run and gun, documentary style, our videographic team will ensure that regardless of the weather, despite the challenges of the location and in face of whatever an on location shoot can throw at us we are always prepared, laces tied, ready to run the extra mile to ensure your brand is portrayed in the most professional and picturesque way possible, or your wedding is the film on repeat for date night because you just can’t get enough of it. What can we say, manipulating time just happens to be one of our favorite pass times. 
+
+            </Typography>
         </div>
       </Grid>
       <Footer />
