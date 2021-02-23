@@ -78,15 +78,16 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     textAlign: 'center',
     fontFamily: 'Whitefeather',
+    color: '#f7f2df',
     [theme.breakpoints.down("376")]: {
       marginTop: '0px !important',
       fontSize: '30px !important'
     },
     [theme.breakpoints.down("420")]: {
       marginTop: '0px !important',
-      fontSize: 30,
+      fontSize: '50px !important',
     },
-    [theme.breakpoints.up("760")]: {
+    [theme.breakpoints.up("540")]: {
       marginTop: 50,
       fontSize: 60,
     },
@@ -98,6 +99,7 @@ const useStyles = makeStyles((theme) => ({
   subHeading: {
     textAlign: 'center',
     fontFamily: 'Whitefeather',
+    color: '#f7f2df',
     [theme.breakpoints.down("376")]: {
       fontSize: '30px !important'
     },
