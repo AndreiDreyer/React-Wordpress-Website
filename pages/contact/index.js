@@ -6,7 +6,6 @@ import Navigation from '../../components/Navigation';
 import TopNavBar from '../../components/TopNavbar';
 import Footer from '../../components/Footer';
 
-import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { makeStyles } from '@material-ui/core/styles';
 import ContactForm from '../../components/ContactForm';
 

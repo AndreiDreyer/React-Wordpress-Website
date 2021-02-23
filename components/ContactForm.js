@@ -113,9 +113,7 @@ const EMAILJS_USER_ID = process.env.EMAILJS_USER_ID;
 function ContactForm(props) {
   const classes = useStyles();
   const { width } = props;
-  console.log(width)
   const lgThanMd = width === 'sm' || width === 'xs';
-  console.log(lgThanMd)
 
   const { values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit, handleReset, isValid, dirty } = useFormik({
     initialValues: {
