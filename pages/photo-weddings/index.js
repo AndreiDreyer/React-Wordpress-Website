@@ -198,7 +198,7 @@ function Gallery({menuItems}) {
     return (
         <React.Fragment>
             <Head>
-                <title>Travel Gallery</title>
+                <title>Wedding Gallery</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <TopNavBar></TopNavBar>
