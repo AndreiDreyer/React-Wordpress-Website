@@ -146,6 +146,10 @@ a:active {
   font-size: 24px;
 }
 
+.MuiSvgIcon-root.mediaIcon {
+  margin-top: 0.5rem;
+}
+
 @media only screen and (min-width: 768px) {
   .MuiToolbar-regular.homeTopNavBar {
     min-height: 75px;

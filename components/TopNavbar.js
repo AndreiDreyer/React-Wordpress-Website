@@ -72,11 +72,11 @@ function TopNavBar(props) {
         <div className={classes.topNavBarContainer}>
           <div className={classes.topNavBarItem}>
             {/* TODO: Link Social Media buttons */}
-              <IconButton className={clsx(classes.iconButton, classes.iconLink)}>
+            <IconButton className={clsx(classes.iconButton, classes.iconLink)}>
               <a target="_blank" href="http://www.facebook.com/the.salty.zebra.co/">
                 <FacebookIcon className={classes.topNavBarIcon} />
               </a>
-              </IconButton>
+            </IconButton>
             <Link href="">
               <IconButton className={clsx(classes.iconButton, classes.iconLink)}>
                 <InstagramIcon className={classes.topNavBarIcon} />

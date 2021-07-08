@@ -3,6 +3,7 @@ import React from 'react';
 import Navigation from '../components/Navigation';
 
 import Head from 'next/head';
+import Link from 'next/link';
 
 import { Grid } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
@@ -72,9 +73,16 @@ export default function Home({ menuItems, backgroundImageSrcs }) {
         <Toolbar disableGutters={true} className="homeTopNavBar">
           <div className="homeTopNavBarContainer">
             <div className="homeTopNavBarItem">
-              <ShoppingCartIcon className="homeTopNavBarIcon" />
-              <FacebookIcon className="homeTopNavBarIcon mediaIcon" />
-              <InstagramIcon className="homeTopNavBarIcon mediaIcon" />
+              <Link href="/cart">
+                <ShoppingCartIcon className="homeTopNavBarIcon" />
+              </Link>
+              <a target="_blank" href="http://www.facebook.com/the.salty.zebra.co/" className="homeTopNavBarIcon mediaIcon">
+                {/* <FacebookIcon className="homeTopNavBarIcon mediaIcon" /> */}
+                <FacebookIcon className="mediaIcon" />
+              </a>
+              <a target="_blank" href="#" className="homeTopNavBarIcon mediaIcon">
+                <InstagramIcon className="mediaIcon" />
+              </a>
             </div>
           </div>
         </Toolbar>
