@@ -106,9 +106,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const BOOKING_TEMPLATE_ID = process.env.BOOKING_TEMPLATE_ID;
-const EMAILJS_SERVICE_ID = process.env.EMAILJS_SERVICE_ID;
-const EMAILJS_USER_ID = process.env.EMAILJS_USER_ID;
+const NEXT_PUBLIC_BOOKING_TEMPLATE_ID = process.env.BOOKING_TEMPLATE_ID;
+const NEXT_PUBLIC_EMAILJS_SERVICE_ID = process.env.EMAILJS_SERVICE_ID;
+const NEXT_PUBLIC_EMAILJS_USER_ID = process.env.EMAILJS_USER_ID;
 
 function ContactForm(props) {
   const classes = useStyles();

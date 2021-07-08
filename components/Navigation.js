@@ -23,9 +23,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'block',
     maxWidth: drawerWidth,
     marginRight: 0,
+    marginBottom: '1%',
+    height: '81%',
     [theme.breakpoints.up(769)]: {
       width: '100%',
     },
+    [theme.breakpoints.down(768)]: {
+      height: '83%',
+    }
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -110,6 +115,39 @@ const useStyles = makeStyles((theme) => ({
       top: '3rem',
     },
   },
+  cyberlily: {
+    display: 'center',
+    textAlign: 'center',
+    fontSize: '0.5rem',
+    marginTop: "1% !important",
+    width: '100%',
+    [theme.breakpoints.down(1700)]: {
+      marginTop: "110% !important",
+    },
+    [theme.breakpoints.down(1025)]: {
+      marginTop: "300% !important",
+    },
+    [theme.breakpoints.down(769)]: {
+      marginTop: "200% !important",
+    },
+    [theme.breakpoints.down(435)]: {
+      marginTop: "129% !important",
+    },
+    [theme.breakpoints.down(400)]: {
+      marginTop: "95% !important",
+    }
+  },
+  cyberlilyText: {
+    marginBottom: "0%",
+    width: '100%',
+  },
+  cyberlilyImage: {
+    textAlign: 'center',
+    alignSelf: 'center',
+    marginLeft: '45%',
+    marginRight: 'auto',
+    width: '10%',
+  },
 }));
 
 function Navigation(props) {
@@ -131,10 +169,16 @@ function Navigation(props) {
 
   const handleClick = () => {
     setOpen(!open);
+    if (openVid) {
+      setOpenVid(!openVid);
+    }
   };
 
   const handleClickVid = () => {
     setOpenVid(!openVid);
+    if (open) {
+      setOpen(!open);
+    }
   };
 
   const drawer = (
@@ -217,6 +261,13 @@ function Navigation(props) {
           }
         })}
       </List>
+      <div className={classes.cyberlily}>
+        <p className={classes.cyberlilyText}>designed and created by </p>
+        <Link target="_blank" href="http://www.cyberlilysoftware.com" className={classes.cyberlilyText} >
+          Cyberlily Software
+        </Link>
+      </div>
+        <img className={classes.cyberlilyImage} src={"./group 101.svg"}/>
     </div>
   );
 
@@ -254,6 +305,7 @@ function Navigation(props) {
             {drawer}
           </Drawer>
         </Hidden>
+      
       </nav>
     </div>
   );

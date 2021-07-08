@@ -33,7 +33,7 @@ class ReCaptchaComp extends Component {
             data-badge="inline"
             render="explicit"
             //Add the site key here 
-            sitekey="6Leyz0kaAAAAAMqFBfWfsjJE5y-Mlu1o1KQvjjp3"
+            sitekey=""
             onloadCallback={this.onLoadRecaptcha}
             verifyCallback={this.verifyCallback}
         />
