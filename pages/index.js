@@ -80,7 +80,7 @@ export default function Home({ menuItems, backgroundImageSrcs }) {
                 {/* <FacebookIcon className="homeTopNavBarIcon mediaIcon" /> */}
                 <FacebookIcon className="mediaIcon" />
               </a>
-              <a target="_blank" href="#" className="homeTopNavBarIcon mediaIcon">
+              <a target="_blank" href="https://www.instagram.com/the.salty.zebra.co/?hl=enyou" className="homeTopNavBarIcon mediaIcon">
                 <InstagramIcon className="mediaIcon" />
               </a>
             </div>

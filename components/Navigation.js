@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'block',
     maxWidth: drawerWidth,
     marginRight: 0,
-    height: '81%',
+    height: '80%',
     [theme.breakpoints.down(1700)]: {
       height: '65%',
     },
@@ -120,8 +120,7 @@ const useStyles = makeStyles((theme) => ({
   cyberlily: {
     display: 'center',
     textAlign: 'center',
-    fontSize: '0.5rem',
-    marginTop: "1% !important",
+    fontSize: '0.7rem',
     width: '100%',
     [theme.breakpoints.down(1700)]: {
       marginTop: "110% !important",
