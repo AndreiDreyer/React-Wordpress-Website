@@ -268,7 +268,7 @@ function Navigation(props) {
           Cyberlily Software
         </Link>
       </div>
-        <img className={classes.cyberlilyImage} src={"./group 101.svg"}/>
+        <img className={classes.cyberlilyImage} src={"./Group 101.svg"}/>
     </div>
   );
 
