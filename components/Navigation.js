@@ -145,9 +145,9 @@ const useStyles = makeStyles((theme) => ({
   cyberlilyImage: {
     textAlign: 'center',
     alignSelf: 'center',
-    marginLeft: '45%',
+    marginLeft: '42%',
     marginRight: 'auto',
-    width: '10%',
+    width: '15%',
   },
 }));
 
