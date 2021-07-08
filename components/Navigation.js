@@ -23,8 +23,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'block',
     maxWidth: drawerWidth,
     marginRight: 0,
-    marginBottom: '1%',
     height: '81%',
+    [theme.breakpoints.down(1700)]: {
+      height: '65%',
+    },
     [theme.breakpoints.up(769)]: {
       width: '100%',
     },

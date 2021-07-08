@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   topAppBar: {
     backgroundColor: 'transparent',
     width: '100%',
-    zIndex: 999,
+    // zIndex: 999,
     boxShadow: 'none',
     position: 'absolute',
   },
@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '75px',
     marginTop: 'auto',
     marginBottom: 'auto',
+    zIndex: 999,
   },
   topNavBarIcon: {
     margin: 'auto 1rem auto 2rem',
@@ -71,11 +72,11 @@ function TopNavBar(props) {
         <div className={classes.topNavBarContainer}>
           <div className={classes.topNavBarItem}>
             {/* TODO: Link Social Media buttons */}
-            <Link href="">
               <IconButton className={clsx(classes.iconButton, classes.iconLink)}>
+              <a target="_blank" href="http://www.facebook.com/the.salty.zebra.co/">
                 <FacebookIcon className={classes.topNavBarIcon} />
+              </a>
               </IconButton>
-            </Link>
             <Link href="">
               <IconButton className={clsx(classes.iconButton, classes.iconLink)}>
                 <InstagramIcon className={classes.topNavBarIcon} />
